@@ -1,0 +1,119 @@
+.chat {
+    padding: rem(20px);
+    max-height: rem(600px);
+    overflow: auto;
+    li {
+        @extend %clearfix;
+    }
+    .chat-item {
+        position: relative;
+        display: flex;
+        margin: 0 0 rem(20px);
+        &.chat-other {
+            float: left;
+            padding-right: rem(70px);
+            .chat-content {
+                margin: 0;
+                &::before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 1px;
+                    transform: translate(-50%, 50%) rotate(135deg);
+                    border-width: rem(15px);
+                    border-style: solid;
+                    border-color: transparent transparent $theme-primary;
+                }
+            }
+            .chat-audio {
+                margin-left: rem(20px);
+            }
+            .chat-avtor {
+                margin-right: rem(20px);
+            }
+        }
+        &.chat-mine {
+            float: right;
+            padding-left: rem(70px);
+            .chat-content {
+                margin: 0;
+                background: #f0f2f5;
+                color: #333;
+                &::after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    right: 1px;
+                    transform: translate(50%, 50%) rotate(-135deg);
+                    border-width: rem(15px);
+                    border-style: solid;
+                    border-color: transparent transparent #f0f2f5;
+                }
+            }
+            .chat-audio {
+                margin-right: rem(20px);
+                background: #f0f2f5;
+                &:hover {
+                    background: darken(#f0f2f5, 10%);
+                }
+            }
+            .chat-avtor {
+                margin-left: rem(20px);
+            }
+        }
+        .chat-avtor {
+            display: block;
+            width: rem(50px);
+            height: rem(50px);
+            border-radius: 50%;
+        }
+        .chat-audio {
+            position: relative;
+            margin: rem(7px) 0 0;
+            width: rem(58px);
+            height: rem(36px);
+            border-radius: rem(10px);
+            background: $theme-primary;
+            cursor: pointer;
+            transition: background .2s linear;
+            &:hover {
+                background: darken($theme-primary, 10%);
+            }
+            .icon-horn {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                font-size: rem(18px);
+            }
+        }
+        .chat-content {
+            position: relative;
+            flex: 1;
+            margin: 0 rem(20px);
+            padding: rem(10px);
+            border-radius: rem(10px);
+            background: $theme-primary;
+            font-size: rem(14px);
+            line-height: rem(25px);
+            color: #FFF;
+            // min-width: rem(200px);
+            word-wrap: break-word;
+        }
+    }
+    .chat-tip {
+        margin: 0 0 rem(20px);
+        text-align: center;
+        em {
+            display: inline-block;
+            padding: 0 rem(20px);
+            font-size: rem(16px);
+            line-height: rem(30px);
+            border-radius: rem(20px);
+            background: #ccc;
+            color: #fff;
+        }
+    }
+}

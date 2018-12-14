@@ -1,0 +1,7 @@
+export const SETTING_PARAM = 'OMS-SETTING_PARAM'
+export const SETTING_CITY = 'OMS-SETTING_CITY'
+export const SETTING_CITY_LEVEL = 'OMS-SETTING_CITY_LEVEL'
+export const NOTICE_INFO = 'OMS-NOTICE_INFO'
+export const CITY_PROXY_BASE = 'omsCityProxyBaseInfo'
+export const CITY_PROXY_YEAR= 'omsCityProxyYear'
+export const CITY_PROXY_MONTH = 'omsCityProxyMonth'

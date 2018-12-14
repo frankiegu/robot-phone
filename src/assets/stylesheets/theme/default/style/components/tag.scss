@@ -1,0 +1,20 @@
+.tag {
+  font-size: 0;
+  &.tag-ghost {
+    .tag-item {
+      background: #FFF;
+      color: $color-normal;
+      border-color: #F1F1F1;
+    }
+  }
+  .tag-item {
+    display: inline-block;
+    margin: 0 rem(20px) rem(20px) 0;
+    padding: 0 rem(40px);
+    border: 1px solid #D4DBE2;
+    font-size: rem(16px);
+    line-height: rem(44px);
+    color: $color-dark;
+    background: #D4DBE2;
+  }
+}

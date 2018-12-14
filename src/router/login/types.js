@@ -1,0 +1,7 @@
+export const LOGIN = 'login'
+export const LOGIN_SMS = 'smsLogin'
+export const LOGIN_OMS = 'omsLogin'
+export const LOGIN_PAMS = 'pamsLogin'
+export const LOGIN_CAMS = 'camsLogin'
+export const LOGIN_EMS = 'emsLogin'
+export const LOGIN_STAFF = 'staffLogin'

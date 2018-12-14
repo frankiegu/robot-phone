@@ -1,0 +1,70 @@
+.card {
+    .card-item {
+        border: 1px solid #e1e7f1;
+        cursor: pointer;
+        transition: border-color, background .2s linear;
+        &:not(:last-child) {
+            margin-bottom: rem(15px);
+        }
+        &.active,
+        &:hover {
+            border-color: $color-link;
+            @each $name in map-keys($theme-map) {
+                $value: map-get($theme-map, $name);
+                &.card-#{$name} {
+                    border-color: $value;
+                }
+            }
+        }
+        &.active {
+            border-style: solid;
+        }
+    }
+    .card-header,
+    .task-detail {
+        height: rem(35px);
+        line-height: rem(35px);
+        padding: 0 rem(15px);
+        background-color: #f5f8fb;
+        font-size: rem(16px);
+        color: #333;
+        align-items: center;
+        .task-pg-strip-desc {
+            width: rem(50px);
+            height: rem(20px);
+            line-height: rem(20px);
+            text-align: center;
+            border-radius: rem(12px);
+            font-size: rem(14px);
+        }
+        .doing {
+            background-color: #e4f1fe;
+            color: #5983ff;
+        }
+        .parseing {
+            color: #e79301;
+            background-color: #ffefb0;
+        }
+        .finish {
+            color: #32bd1b;
+            background-color: #e6f1de;
+        }
+    }
+    .card-body {
+        padding: 0 rem(15px) rem(15px) rem(15px);
+        font-size: rem(14px);
+        line-height: rem(26px);
+        color: $color-dark;
+        p {
+            white-space: nowrap;
+        }
+        .porgress-bar {
+            width: rem(290px);
+            white-space: nowrap;
+        }
+        p {
+            font-size: rem(14px);
+            color: #666;
+        }
+    }
+}

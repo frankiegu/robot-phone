@@ -1,0 +1,18 @@
+.case {
+  display: flex;
+  border: 1px solid #F1F1F1;
+  border-radius: 5px;
+  .case-item {
+    flex: 1;
+    text-align: center;
+  }
+  h3 {
+    font-size: rem(24px);
+    line-height: rem(48px);
+    color: $color-extra-dark;
+  }
+  p {
+    font-size: rem(16px);
+    color: $color-extra-dark;
+  }
+}

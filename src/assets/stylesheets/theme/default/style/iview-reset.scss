@@ -1,0 +1,138 @@
+// reset iview style
+.ivu-tag {
+    background: #fff;
+}
+
+.ivu-tag-checked {
+    background: #f1f1f1;
+}
+
+.ivu-input-group {
+    &.ivu-input-group-with-prepend {
+        .ivu-input-group-prepend {
+            background-color: transparent;
+            border-right-width: 0;
+        }
+    }
+}
+
+.ivu-progress-bg {
+    background-color: #5983ff;
+}
+
+.callTime_ss {
+    .ivu-progress-bg {
+        background-color: #59c6ff;
+    }
+}
+
+.callTime_ss2 {
+    .ivu-progress-bg {
+        background-color: #f5d761;
+    }
+}
+
+.ivu-form-inline {
+    .ivu-form-item:last-child {
+        margin-right: 0;
+    }
+}
+
+.ivu-modal-header p,
+.ivu-modal-header-inner {
+    font-size: rem(16px);
+    line-height: initial;
+    height: auto;
+}
+
+.modal-nm {
+    .ivu-modal {
+        width: rem(600px) !important;
+    }
+}
+
+.ivu-table th {
+    height: rem(57px);
+    background-color: #f5f8fb;
+}
+
+.ivu-form .ivu-form-item-label {
+    font-size: rem(14px);
+}
+
+.ivu-table:after {
+    height: 0;
+}
+
+.ivu-table:before {
+    height: 0;
+}
+
+.ivu-table-wrapper {
+    border: none;
+    // position: static;
+}
+
+.ivu-spin-fix {
+    background-color: RGBA(0, 0, 0, .15)
+}
+
+.ivu-btn-ghost {
+    color: #333;
+}
+
+.ivu-form-item-append {
+    display: inline-block;
+    margin-left: -8px;
+    padding: 8px 12px 8px 0;
+    font-size: rem(16px);
+    vertical-align: middle;
+    color: #495060;
+}
+
+// .ivu-tabs {
+//   .ivu-tabs-tab-active {
+//     color: #2C393F;
+//     font-weight: bold;
+//   }
+//   .ivu-tabs-ink-bar {
+//     background-color: #2C393F;
+//   }
+// }
+textarea.ivu-input {
+    resize: none;
+}
+
+.ivu-tag-warning {
+    background: $theme-warning;
+    .ivu-tag-text {
+        color: #fff;
+    }
+}
+
+.ivu-tag-error {
+    background: $theme-danger;
+    .ivu-tag-text {
+        color: #fff;
+    }
+}
+
+.modal-hide-footer {
+    .ivu-modal-footer {
+        display: none;
+    }
+}
+
+.ivu-progress-success .ivu-progress-bg {
+    background-color: #5983ff;
+}
+
+// 弹框山下居中
+.vertical-center-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .ivu-modal {
+        top: 0;
+    }
+}

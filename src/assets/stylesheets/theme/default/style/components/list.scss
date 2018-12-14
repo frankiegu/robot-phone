@@ -1,0 +1,98 @@
+.list {
+    li {
+        padding: rem(10px);
+        transition: color, background .2s linear;
+        border-bottom: 1px dashed #e4e3e3;
+        cursor: pointer;
+        &.active,
+        &:hover {
+            background-color: #f8f9fc;
+            @each $name in map-keys($theme-map) {
+                .c-#{$name} {
+                    color: #FFF;
+                }
+            }
+            .list-item-title2 {
+                color: #5983ff;
+            }
+        }
+    }
+    .list-item {
+        color: $color-normal;
+        @extend %clearfix;
+    }
+    .list-item-title {
+        font-size: rem(16px);
+        line-height: rem(64px);
+        color: $color-dark;
+        @include ellipsis
+    }
+    .list-item-title2 {
+        position: relative;
+        padding-left: rem(10px);
+        font-size: rem(16px);
+        line-height: rem(35px);
+        color: $color-dark;
+        @include ellipsis;
+        &::before {
+            position: absolute;
+            left: 0;
+            top: rem(8px);
+            content: "";
+            display: inline-block;
+            width: rem(3px);
+            height: rem(18px);
+            background-color: #5983ff;
+        }
+    }
+    .list-item-info {
+        font-size: rem(14px);
+        .icon {
+            vertical-align: middle;
+            margin-left: rem(8px);
+            font-size: rem(15px);
+        }
+    }
+    .list-item-ext {
+        display: table;
+        float: right;
+        margin: 0 0 0 rem(10px);
+        font-size: rem(14px);
+        p {
+            font-size: rem(14px);
+        }
+        .ivu-icon {
+            margin-right: rem(10px);
+            font-size: rem(22px);
+        }
+        .list-item-ext-text {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
+    .list-item-main {
+        overflow: hidden;
+        p {
+            font-size: rem(14px);
+        }
+    }
+    .bulueLable {
+        color: #666;
+    }
+    .lable {
+        margin-left: rem(10px);
+        font-weight: 500;
+        color: #333;
+        display: inline-block;
+        width: rem(56px);
+    }
+}
+
+.task-detail {
+    position: relative;
+    .numTotal {
+        z-index: 300;
+        position: absolute;
+        left: rem(280px);
+    }
+}

@@ -1,0 +1,37 @@
+.collection {
+  width: rem(375px);
+  max-height: rem(352px);
+  overflow: auto;
+  border: 1px solid #CFCFCF;
+  border-radius: rem(5px);
+  li {
+    &:not(:last-child) {
+      border-bottom: 1px solid #CFCFCF;
+    }
+  }
+  .collection-user {
+    position: relative;
+    display: block;
+    padding: rem(12px);
+    cursor: pointer;
+    img {
+      float: left;
+      width: rem(46px);
+      height: rem(46px);
+    }
+    em {
+      position: absolute;
+      right: rem(12px);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    p {
+      overflow: hidden;
+      margin: 0 rem(50px) 0 rem(60px);
+      font-size: rem(15px);
+      line-height: rem(46px);
+      color: $background-color-normal;
+      @extend %ellipse;
+    }
+  }
+}

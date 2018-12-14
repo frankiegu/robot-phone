@@ -1,0 +1,111 @@
+.city-level-selection {
+  box-sizing: border-box;
+  display: flex;
+  padding: rem(15px);
+  border: 1px solid $border-color-normal;
+  .city-level-letter-list {
+    box-sizing: border-box;
+    width: rem(50px);
+    margin: 0 rem(20px) 0 0;
+    padding: rem(20px) 0;
+    height: rem(500px);
+    border: 1px solid $border-color-normal;
+    overflow: auto;
+    a {
+      display: block;
+      margin: 0 0 1px;
+      height: rem(50px);
+      font-size: rem(16px);
+      line-height: rem(50px);
+      text-align: center;
+      transition: all .2s linear;
+      &:hover,
+      &.active {
+        background: $theme-primary;
+        color: #FFF;
+      }
+    }
+  }
+  .city-level-container {
+    flex: 1;
+    height: rem(500px);
+    overflow: auto;
+  }
+}
+
+.city-level-container {
+  position: relative;
+  box-sizing: border-box;
+  padding: rem(10px);
+  .city-level-item {
+    display: flex;
+    padding: rem(20px) 0 0;
+    border-width: 1px 0 0;
+    border-style: solid;
+    border-color: $border-color-normal;
+    &:last-child {
+      border-bottom: 1px solid $border-color-normal;
+    }
+    .city-level-item-letter {
+      width: rem(40px);
+      font-size: rem(16px);
+      font-weight: bold;
+    }
+    .city-level-item-list {
+      flex: 1;
+    }
+  }
+  .city-level-item-list {
+    flex: 1;
+    .city-level-item-city {
+      margin: 0 0 rem(20px);
+      &:not(:last-child) {
+        margin-right: rem(20px);
+      }
+      &.level-1 {
+        .ivu-badge-count {
+          background: $theme-primary;
+        }
+      }
+      &.level-2 {
+        .ivu-badge-count {
+          background: $theme-success;
+        }
+      }
+      &.level-3 {
+        .ivu-badge-count {
+          background: $theme-info;
+        }
+      }
+      &.level-4 {
+        .ivu-badge-count {
+          background: $theme-warning;
+        }
+      }
+    }
+    a {
+      display: inline-block;
+      padding: 0 rem(30px);
+      border: 1px solid $border-color-normal;
+      font-size: rem(14px);
+      line-height: rem(38px);
+      color: $color-normal;
+      transition: background, color .2s linear;
+      &:hover {
+        background: $background-color-extra-light;
+      }
+      &.level-gray {
+        background: $theme-default;
+        color: #FFF;
+      }
+      &.level-primary {
+        background: $theme-primary;
+        color: #FFF;
+      }
+      &.level-warning {
+        background: $theme-warning;
+        color: #FFF;
+      }
+    }
+  }
+}

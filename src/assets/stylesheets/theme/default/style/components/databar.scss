@@ -1,0 +1,42 @@
+.databar {
+  display: flex;
+  padding-bottom: rem(20px);
+  border-bottom: rem(1px) solid #e8e8e8;
+  .databar-item {
+    @extend %ellipse;
+    em {
+      float: right;
+      margin-left: rem(10px);
+    }
+    &:nth-child(1){
+      width: 33%;
+    }
+    &:nth-child(2){
+      width: 35%;
+    }
+    &:nth-child(3){
+      width: 32%;
+    }
+  }
+  li {
+    padding: 0 rem(20px);
+    font-size: rem(14px);
+    line-height: rem(44px);
+    color: $color-dark; 
+  }
+  .border-R{
+    border-right: rem(1px) solid #e8e8e8;
+    .barWidth1{
+      width: rem(110px);
+    }
+  }
+  .databar-title {
+    font-size: rem(16px);
+    color: $color-title;
+    border-bottom: none;
+    .icon,
+    .ivu-icon {
+      cursor: pointer;
+    }
+  }
+}

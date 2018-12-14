@@ -1,0 +1,5 @@
+export const PORT = 'PAMS-PORT'
+export const FINANCE = 'PAMS-FINANCE'
+export const SETTING_LOG = 'PAMS-SETTING_LOG'
+export const SETTING_NOTICE_INFO = 'PAMS-SETTING_NOTICE_INFO'
+export const CITY_PROXY_BASE = 'PAMS-CITY_PROXY_BASE'

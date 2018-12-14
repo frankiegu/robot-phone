@@ -1,0 +1,79 @@
+.page-wrapper {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    line-height: 26px;
+    .ivu-page {
+        float: right;
+    }
+}
+
+.simple-total {
+    line-height: 25px;
+    margin-top: 1rem;
+    color: #666;
+}
+
+.custom_scollBar {
+    &::-webkit-scrollbar {
+        width: 10px;
+        height: 0;
+    }
+    &::-webkit-scrollbar-button {
+        background-color: #efefef;
+    }
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    &::-webkit-scrollbar-track-piece {
+        background: #efefef;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: #9ca8d3;
+        border-radius: 5px;
+    }
+    &::-webkit-scrollbar-corner {
+        background: #9ca8d3;
+    }
+    &::-webkit-scrollbar-resizer {
+        background: transparent;
+    }
+}
+
+.checkBox-common {
+    &>div {
+        margin-bottom: rem(15px);
+    }
+    &>div:last-child {
+        margin-bottom: rem(25px);
+    }
+}
+
+.dateBtn {
+    width: rem(60px);
+    margin-top: rem(2px);
+    height: rem(31px);
+    line-height: rem(31px);
+    text-align: center;
+    border: 1px solid #D2D2D2;
+    border-radius: rem(5px);
+    cursor: pointer;
+    &:hover {
+        border: 1px solid #2d8cf0;
+    }
+}
+
+.dateBtn2 {
+    display: inline-block;
+    font-size: rem(14px);
+    width: rem(80px);
+    height: rem(32px);
+    margin-left: rem(8px);
+    line-height: rem(32px);
+    padding: 0 rem(20px);
+    text-align: center;
+    border: 1px solid #D2D2D2;
+    border-radius: rem(5px);
+    span {
+        color: red;
+    }
+}

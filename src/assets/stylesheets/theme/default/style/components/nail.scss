@@ -1,0 +1,25 @@
+.nail {
+    display: flex;
+    justify-content: space-between;
+    &.nail-f-lg {
+        h3 {
+            font-size: rem(36px);
+        }
+    }
+}
+
+.nail-item {
+    display: inline-block;
+    padding: rem(5px) rem(10px);
+    border-radius: rem(5px);
+    text-align: center;
+    background: #5983ff;
+    color: #fff;
+    .h3 {
+        font-size: rem(16px);
+    }
+    p {
+        line-height: rem(20px);
+        font-size: rem(14px);
+    }
+}

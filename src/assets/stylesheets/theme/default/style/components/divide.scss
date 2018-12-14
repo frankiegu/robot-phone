@@ -1,0 +1,12 @@
+.divide {
+  &.full {
+    .divide-item {
+      display: none;
+    }
+    .divide-main {
+      &.task-r {
+        margin-left: 0;
+      }
+    }
+  }
+}

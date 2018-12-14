@@ -1,0 +1,4 @@
+export const PORT = 'CAMS-PORT'
+export const FINANCE = 'CAMS-FINANCE'
+export const SETTING_LOG = 'CAMS-SETTING_LOG'
+export const SETTING_NOTICE_INFO = 'CAMS-SETTING_NOTICE_INFO'

@@ -1,0 +1,15 @@
+.cube {
+  .cube-header {
+    font-size: rem(18px);
+    line-height: rem(50px);
+    color: $color-dark;
+    text-align: center;
+    background: #D4DBE2;
+  }
+  .cube-body {
+    padding: rem(20px);
+    border-width: 0 1px 1px;
+    border-style: solid;
+    border-color: #F1F1F1;
+  }
+}

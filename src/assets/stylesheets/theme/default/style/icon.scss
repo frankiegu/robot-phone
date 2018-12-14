@@ -1,0 +1,31 @@
+$icon-path-base: '../images';
+$icon-map: ( 
+  'enlarge': ( width: rem(37px), height: rem(37px), url: 'enlarge.png'), 
+  'narrow': ( width: rem(37px), height: rem(37px), url: 'narrow.png'), 
+  'login-back': ( width: rem(12px), height: rem(8px), url: 'login_back.png'), 
+);
+.icon {
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  @each $name in map-keys($icon-map) {
+    $width: #{map-get(map-get($icon-map, $name), 'width')};
+    $height: #{map-get(map-get($icon-map, $name), 'height')};
+    &.icon-#{$name} {
+      width: $width;
+      height: $height;
+      background-image: url('#{$icon-path-base}/#{map-get(map-get($icon-map, $name), "url")}');
+      background-size: $width $height;
+    }
+  }
+}
+
+.icon-male {
+  color: #02c1de;
+}
+.icon-female {
+  color: #f971e4
+}
+.icon-horn {
+  color: #FFF;
+}

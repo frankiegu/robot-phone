@@ -1,0 +1,35 @@
+.board-primary {
+    width: rem(214px);
+    padding: rem(25px) rem(15px);
+    border: 1px solid #dcdcdc;
+}
+
+.board {
+    padding: rem(10px) 0;
+    box-shadow: 0 2px 8px 0 #DCDCDC;
+    border-radius: rem(5px);
+    background: #FFFFFF;
+    @each $name in map-keys($theme-map) {
+        &.board-#{$name} {
+            .board-header {
+                &::before {
+                    background: map-get($theme-map, $name);
+                }
+            }
+        }
+    }
+    .board-header {
+        position: relative;
+        margin-left: rem(20px);
+        padding: rem(10px) rem(20px) rem(10px) 0;
+        border-bottom: 1px solid #F1F1F1;
+        font-size: rem(16px);
+        color: $color-dark;
+    }
+    .board-body {
+        padding: rem(20px);
+        font-size: rem(14px);
+        line-height: rem(36px);
+        color: $color-extra-dark;
+    }
+}

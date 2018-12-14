@@ -1,0 +1,39 @@
+.plate {
+  &.plate-simple {
+    max-height: rem(220px);
+    border-bottom: 1px solid #F8F8F8;
+    overflow: auto;
+    .plate-item {
+      width: rem(160px);
+    }
+  }
+  .plate-item {
+    display: inline-block;
+    margin: 0 0 rem(9px);
+    padding: rem(10px);
+    text-align: center;
+    min-width: rem(194px);
+    border: 1px solid #CFCFCF;
+    border-radius: rem(5px);
+    background: #f5f8fb;
+    font-size: rem(14px);
+    color: $color-normal;
+    white-space: nowrap;
+    word-break: break-all;
+    cursor: pointer;
+    transition: border-color, background .2s linear;
+    &:not(:last-child) {
+      margin-right: rem(20px);
+    }
+    &.active,
+    &:hover {
+      background: rgba(2, 193, 222, 0.05);
+      border-color: $theme-primary;
+    }
+    h3 {
+      margin: 0 0 rem(20px);
+      font-size: rem(16px);
+      color: $color-dark;
+    }
+  }
+}

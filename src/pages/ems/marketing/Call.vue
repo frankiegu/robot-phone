@@ -1,0 +1,407 @@
+<template>
+  <div>
+    <div class="panel">
+      <div class="panel-body">
+        <Form class="panel-form" inline>
+          <div style="margin-bottom:20px;white-space: nowrap;">
+                        <FormItem>
+            <Select
+              style="width: 230px;"
+              v-model="params.status"
+              placeholder="请选择分配状态"
+              clearable
+              @on-change="search"
+            >
+              <Option value="1">已分配</Option>
+              <Option value="0">未分配</Option>
+            </Select>
+          </FormItem>
+          <FormItem>
+            <Select
+              style="width: 230px;"
+              v-model="params.isTransfer"
+              placeholder="是否转接"
+              clearable
+              @on-change="search"
+            >
+              <Option value="1">是</Option>
+              <Option value="0">否</Option>
+            </Select>
+          </FormItem>
+          <FormItem>
+            <Select
+              style="width: 230px;"
+              v-model="params.userLevel"
+              placeholder="请选择客户等级"
+              clearable
+              @on-change="search"
+            >
+              <Option value="A">A</Option>
+              <Option value="B">B</Option>
+              <Option value="C">C</Option>
+              <Option value="D">D</Option>
+              <Option value="E">E</Option>
+              <Option value="F">F</Option>
+            </Select>
+          </FormItem>
+          <FormItem>
+            <Select
+              style="width: 230px;"
+              v-model="params.callResult"
+              placeholder="请选择客户结果"
+              clearable
+              @on-change="search"
+            >
+              <Option v-for="(v, k) in CALL_RESULT" :key="k" :value="k">{{v}}</Option>
+            </Select>
+          </FormItem>
+          <FormItem>
+            <Select
+              style="width: 230px;"
+              v-model="params.taskId"
+              placeholder="请选择营销任务"
+              clearable
+              @on-change="search"
+            >
+              <Option v-for="(v, i) in taskList" :key="i" :value="v.id">{{v.taskName}}</Option>
+            </Select>
+          </FormItem>
+          </div>
+          <div style="white-space: nowrap;">
+            <FormItem>
+            <Select
+              style="width: 230px;"
+              v-model="params.callAllTime"
+              placeholder="请选择通话时长"
+              clearable
+              @on-change="search"
+            >
+              <Option value="1">小于10秒</Option>
+              <Option value="2">10秒～20秒</Option>
+              <Option value="3">20秒～30秒</Option>
+              <Option value="4">30秒～40秒</Option>
+              <Option value="5">40秒～50秒</Option>
+              <Option value="6">50秒～1分钟</Option>
+              <Option value="7">1分钟～2分钟</Option>
+              <Option value="8">大于2分钟</Option>
+            </Select>
+          </FormItem>
+          <FormItem>
+            <Select
+              style="width: 230px;"
+              v-model="params.callCount"
+              placeholder="请选择通话轮次"
+              clearable
+              @on-change="search"
+            >
+              <Option value="1">0~少于3轮</Option>
+              <Option value="2">4～6轮</Option>
+              <Option value="3">7～10轮</Option>
+              <Option value="4">11～20轮</Option>
+              <Option value="5">21～30轮</Option>
+              <Option value="6">大于30轮</Option>
+            </Select>
+          </FormItem>
+          <FormItem>
+            <DatePicker
+              type="daterange"
+              placeholder="请选择呼叫日期"
+              style="width: 230px;"
+              @on-change="delaySearch"
+              v-model="dateRange"
+            />
+          </FormItem>
+          <FormItem>
+            <i-input
+              type="text"
+              search
+              enter-button
+              placeholder="主叫号码/客户号码/日期"
+              style="width: 230px;"
+              v-model.trim="params.idOrMobileOrCardMobile"
+              @on-enter="search"
+              @on-search="search"
+            ></i-input>
+          </FormItem>
+          </div>
+        </Form>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-body">
+        <div class="tool">
+          <div class="tool-btns">
+            <Dropdown>
+              <Button ghost shape="circle" type="primary">导出
+                <Icon type="md-arrow-dropdown" />
+              </Button>
+              <DropdownMenu slot="list">
+                <DropdownItem
+                  @click.native="exportFile(index+1)"
+                  v-for="(item,index) in exportNumList"
+                  :key="index"
+                >{{item}}</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
+        </div>
+        <Table :border="false" :columns="table.columns" :data="table.list" ref="table"/>
+        <ms-pagination
+          :pageNum="params.pageNum"
+          :pageSize="params.pageSize"
+          :total="page.totalNum"
+          @change="list"
+        />
+      </div>
+    </div>
+    <Modal
+        width="850px"
+        v-model="detail.show"
+        title="通话详情"
+        >
+        <call-record-detail :data="detail.entity" v-if="detail.show"/>
+    </Modal>
+    <!-- <ms-panel v-model="detail.show" title="通话详情">
+      <call-record-detail :data="detail.entity" v-if="detail.show"/>
+    </ms-panel> -->
+  </div>
+</template>
+<script>
+import { indexMixin } from "@/mixins";
+import callRecordApi from "@/api/ems/callRecord";
+import clientApi from "@/api/ems/client";
+import {
+  duration,
+  fmt,
+  downloadFileUrl,
+  watchDateRangeToTimestamp
+} from "@/util";
+import { CallRecordDetail } from "@/components/packages/ems/callRecord";
+import { getCallResultLabel, CALL_RESULT } from "@/constants";
+
+export default {
+  name: "marketingCall",
+  mixins: [indexMixin],
+  components: {
+    CallRecordDetail
+  },
+  data() {
+    return {
+      params: {
+        status: "",
+        userLevel: "",
+        callResult: "",
+        idOrMobileOrCardMobile: "",
+        taskId: "",
+        callAllTime: "",
+        callCount: "",
+        isTransfer: "",
+        startTime: "",
+        endTime: ""
+      },
+      dateRange: [],
+      taskList: [],
+      CALL_RESULT,
+      table: {
+        columns: [
+         
+          {
+            title: "主叫号码",
+            key: "cardMobile"
+          },
+          {
+            title: "客户号码",
+            key: "mobile"
+          },
+          {
+            title: "呼叫结果",
+            key: "callResult",
+            value: row => {
+              return getCallResultLabel(row.callResult);
+            },
+            render: (h, { row, column, index }) => {
+              return h("span", column.value(row));
+            }
+          },
+          {
+            title: "客户等级",
+            key: "userLevel",
+            render: (h, { row, column, index }) => {
+              return (
+                <select
+                  style="width: 40px;"
+                  onChange={e => this.changeUserLevel(row, e.target.value)}
+                >
+                  <option value="">无</option>
+                  <option value="A" selected={row.userLevel === "A"}>
+                    A
+                  </option>
+                  <option value="B" selected={row.userLevel === "B"}>
+                    B
+                  </option>
+                  <option value="C" selected={row.userLevel === "C"}>
+                    C
+                  </option>
+                  <option value="D" selected={row.userLevel === "D"}>
+                    D
+                  </option>
+                  <option value="E" selected={row.userLevel === "E"}>
+                    E
+                  </option>
+                  <option value="F" selected={row.userLevel === "F"}>
+                    F
+                  </option>
+                </select>
+              );
+            }
+          },
+          {
+            title: "是否转接人工",
+             width: 110,
+            key: "isTransfer",
+            value: row => {
+              return ["否", "是"][row.isTransfer];
+            },
+            render: (h, { row, column, index }) => {
+              return h("span", column.value(row));
+            }
+          },
+          {
+            title: "转接对象",
+            key: "transferName",
+            render: (h, { row, column, index }) => {
+              return h("span", row.transferName ? row.transferName : "无");
+            }
+          },
+          {
+            title: "通话时长",
+            key: "callAllTime",
+            value: row => {
+              return duration(row.callAllTime);
+            },
+            render: (h, { row, column, index }) => {
+              return h("span", column.value(row));
+            }
+          },
+          {
+            title: "通话轮次",
+            key: "callCount"
+          },
+          {
+            title: "呼叫时间",
+            key: "callStartTime",
+            value: row => {
+              return fmt.date(row.callStartTime);
+            },
+            render: (h, { row, column, index }) => {
+              return h("span", column.value(row));
+            }
+          },
+          {
+            title: "营销任务",
+            key: "taskName"
+          },
+          {
+            title: "分配状态",
+            key: "status",
+            value: row => {
+              return ["未分配", row.employeeName || "已分配"][row.status];
+            },
+            render: (h, { row, column, index }) => {
+              return h("span", column.value(row));
+            }
+          },
+          {
+            title: "操作",
+            render: (h, { row }) => {
+              if (row.isRead === 0) {
+                return h(
+                  "a",
+                  {
+                    on: {
+                      click: () => {
+                        this.showDetail(row.id);
+                        if (row.isRead === 0) {
+                          callRecordApi.isRead({ callId: row.id }).then(res => {
+                            this.listAndDetail(row.id);
+                          });
+                        }
+                      }
+                    }
+                  },
+                  "未读"
+                );
+              } else {
+                return h(
+                  "a",
+                  {
+                    style: {
+                      color: "#32bd1b"
+                    },
+                    on: {
+                      click: () => {
+                        this.showDetail(row.id);
+                        if (row.isRead === 0) {
+                          callRecordApi.isRead({ callId: row.id }).then(res => {
+                            this.listAndDetail(row.id);
+                          });
+                        }
+                      }
+                    }
+                  },
+                  "已读"
+                );
+              }
+            }
+          }
+        ]
+      }
+    };
+  },
+  created() {
+    clientApi.getFirmTaskList().then(data => {
+      this.taskList = data;
+    });
+    this.$watch(
+      "dateRange",
+      watchDateRangeToTimestamp(this.params, "startTime", "endTime")
+    );
+  },
+  methods: {
+    getApi() {
+      return callRecordApi;
+    },
+    changeUserLevel(entity, userLevel) {
+      clientApi
+        .updateUserLevel({
+          id: entity.id,
+          userLevel
+        })
+        .then(() => {
+          this.success("更新用户等级成功");
+        });
+    },
+    exportFile(pageSize) {
+      let params = Object.assign({}, this.params);
+      params.pageNum = 1;
+      params.pageSize = pageSize;
+      callRecordApi.exportFile(params).then(data => {
+        downloadFileUrl(data, "呼叫记录.xls");
+      });
+    },
+    //Change the color of the table row
+    rowClassName(row) {
+      if (row.isRead === 1) {
+        return "demo-table-info-row";
+      }
+      return "";
+    }
+  }
+};
+</script>
+<style lang="less">
+.ivu-table .demo-table-info-row td {
+  background-color: #dbe0e1;
+  color: #3c3b3b;
+}
+</style>

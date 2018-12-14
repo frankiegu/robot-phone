@@ -1,0 +1,6 @@
+@media screen and (max-width: 1440px) {
+  html,
+  body {
+    font-size: #{1440px/$screen-width*$font-size-root};
+  }
+}

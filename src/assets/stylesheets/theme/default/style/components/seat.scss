@@ -1,0 +1,70 @@
+.seat {
+  .seat-num {
+    margin: 0 rem(20px) 0 0; // width: rem(36px);
+    width: 32px;
+    font-size: rem(20px);
+    line-height: 32px; // line-height: rem(36px);
+    color: $color-extra-dark;
+    font-style: normal;
+    text-align: center;
+    background: #F1F1F1;
+    border-radius: 50%;
+  }
+  .seat-ipt {
+    width: rem(430px);
+  }
+  .seat-btn-del {
+    margin: 0 0 0 rem(20px);
+    font-size: rem(20px);
+    line-height: 32px;
+    color: $theme-danger;
+  }
+  .seat-item {
+    margin: 0 0 rem(20px);
+    font-size: 0;
+    .seat-num,
+    .seat-ipt,
+    .seat-btn-del {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+
+.seat-table {
+  display: flex;
+  .seat-col {
+    flex: 1;
+    box-sizing: border-box;
+    padding: 0 rem(40px);
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+    &:not(:last-child) {
+      .seat-col-table {
+        position: relative;
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          right: rem(-40px);
+          width: 1px;
+          height: 100%;
+          background: #D4DBE2;
+        }
+      }
+    }
+  }
+  h2 {
+    font-size: rem(28px);
+    color: $color-extra-dark;
+  }
+  .seat-col-table {
+    margin-top: rem(40px);
+    padding: 0 0 rem(40px);
+  }
+}

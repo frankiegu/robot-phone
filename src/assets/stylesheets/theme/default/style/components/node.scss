@@ -1,0 +1,54 @@
+.node {
+    // margin: 0 0 rem(30px);
+    .node-header {
+        position: relative;
+        font-size: rem(16px);
+        line-height: rem(28px);
+        padding-left: rem(8px);
+        color: $color-extra-dark;
+        white-space: nowrap;
+        overflow: hidden;
+        a {
+            color: #5983ff;
+        }
+        .click {
+            display: inline-block;
+            width: rem(152px);
+            max-width: rem(152px);
+        }
+        img {
+            vertical-align: middle;
+        }
+    }
+    .node-header-btn {
+        color: #02C1DE;
+        &:hover {
+            color: $theme-success_hover;
+        }
+    }
+    .node-body {
+        padding: rem(10px) 0;
+    }
+    .node-item {
+        display: block;
+        height: rem(32px);
+        padding-left: rem(13px);
+        font-size: rem(14px);
+        line-height: rem(32px);
+        color: $color-dark;
+        transition: background .2s linear;
+        @extend %ellipse;
+        &:hover,
+        &.active {
+            background-color: #f5f8fb;
+        }
+    }
+    .nodata {
+        display: block;
+        height: rem(32px);
+        color: #999;
+        padding-left: rem(13px);
+        font-size: rem(14px);
+        line-height: rem(32px);
+    }
+}

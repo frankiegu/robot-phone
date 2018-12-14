@@ -1,0 +1,314 @@
+/*
+ * 登录页 找回密码页面样式
+ */
+
+$login-form-height: rem(47px);
+$forget-form-height: rem(36px);
+
+.login-bg, .forget-bg {
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  // background: $background-color-dark;
+}
+.login-bg {
+  // background: $background-color-dark url(../images/login_bg.png) center no-repeat;
+  background-size: cover;
+}
+.loginCanvas{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+.login-wrapper, .forget-wrapper {
+  position: fixed;
+  z-index: 2000;
+  border-radius: 2px;
+  transform: translate(50%, -50%); /* 水平线3/4处 垂直1/2处 */
+}
+.login-wrapper {
+  top: 50%;
+  right: 50%;
+  width: rem(341px);
+  .ivu-btn-primary{
+    border-color: none !important;
+  }
+}
+.forget-wrapper {
+  top: 50%;
+  right: 50%;
+  padding: rem(20px) rem(40px);
+  width: rem(400px);
+  min-height: rem(462px);
+}
+
+.login-title {
+  text-align: center;
+  font-size: rem(24px);
+  letter-spacing: rem(3px);
+  line-height: rem(24px);
+  color: $color-extra-dark;
+}
+
+.login-form {
+  position: relative;
+  width: 100%;
+}
+.forget-form {
+  position: relative;
+  margin: rem(45px) auto auto;
+  width: rem(400px);
+}
+
+.login-code .ivu-input-wrapper {
+  display: inline-block;
+  width: 58.3333%;
+}
+.forget-code .ivu-input-wrapper {
+  display: inline-block;
+  width: rem(254px);
+}
+.login-code-img, .forget-code-img {
+  float: right;
+  margin-right: 0;
+  color: #FFF;
+  border-radius: 2px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.login-code-img {
+  float: right;
+  width: 37.5%;
+  height: $login-form-height;
+  background: $background-color-light;
+}
+.forget-code-img {
+  width: rem(110px);
+  height: rem(36px);
+  font-size: rem(14px);
+  text-align: center;
+  background: $theme-primary;
+
+  &.dis {
+    background: $background-color-light;
+    pointer-events: none;
+  }
+}
+
+.login-btn-submit, .forget-btn-submit {
+  padding: 0;
+  width: 100%;
+  color: #FFF;
+  background:#1f8cec;
+  text-align: center;
+  border-radius: 2px;
+}
+.login-btn-submit {
+  font-size: rem(24px);
+  line-height: $login-form-height;
+}
+.forget-btn-submit {
+  margin-top: rem(20px);
+  font-size: rem(20px);
+  line-height: $forget-form-height;
+}
+
+.login-more {
+  display: inline-block;
+  margin: 0 0 -10px 115px;
+  font-size: rem(14px);
+  color: $color-dark;
+
+}
+.login-check {
+  font-size: rem(18px);
+  color: $color-dark;
+
+  .ivu-checkbox-inner {
+    width: rem(20px);
+    height: rem(20px);
+    border: 1px solid $background-color-light;
+  }
+
+  .ivu-checkbox-checked .ivu-checkbox-inner {
+    border-color: $theme-primary;
+    background-color: $theme-primary;
+  }
+
+  .ivu-checkbox-checked .ivu-checkbox-inner:after {
+    top: rem(1.5px);
+    left: rem(6px);
+    width: rem(6px);
+    height: rem(12px);
+  }
+}
+.login-more-forget {
+  color: $color-dark;
+  text-decoration: none;
+}
+.forget-more {
+  margin-top: rem(20px);
+  font-size: rem(16px);
+  text-align: center;
+}
+.forget-back {
+  color: $color-dark;
+
+  &:hover {
+    color: $color-dark;
+  }
+
+  > .icon {
+    display: inline-block;
+    margin-right: 3px;
+    margin-top: -3px;
+    vertical-align: middle;
+  }
+}
+
+.home-sms-block {
+  display: flex;
+  display: -webkit-flex;
+  width: 100%;
+  height: rem(195px);
+  flex-direction: column;
+  justify-content: space-around;
+}
+.home-sms-row {
+  position: relative;
+  width: 100%;
+}
+.home-sms-item {
+  position: relative;
+  display: inline-block;
+  padding: rem(15px) 0;
+  width: 47.5%;
+  font-size: rem(14px);
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  background: $theme-primary;
+  border-radius: rem(5px);
+  &:hover {
+    color: #fff;
+  }
+}
+.home-sms-item:last-child {
+  float: right;
+  margin-right: 0;
+}
+.home-pms-block {
+  display: flex;
+  display: -webkit-flex;
+  width: 100%;
+  height: rem(195px);
+  flex-direction: column;
+  justify-content: space-around;
+}
+.home-pms-item {
+  display: block;
+  padding: rem(10px) 0;
+  width: 100%;
+  font-size: rem(14px);
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  background: $theme-primary;
+  border-radius: rem(5px);
+  &:hover {
+    color: #fff;
+  }
+}
+
+/* reset form */
+@mixin ivu-input {
+  position: relative;
+  padding: 0 rem(20px);
+  width: 100%;
+  color: $color-extra-dark;
+  border: 1px solid $border-color-normal;
+  border-radius: 2px;
+
+  &::-webkit-input-placeholder {
+    color: $border-color-normal;
+    background: #FFF;
+    font-size: rem(14px)
+  }
+}
+@mixin ivu-error-tip {
+  position: absolute;
+  top: auto;
+  bottom: rem(-20px);
+  left: 0;
+  padding-top: 0;
+  font-size: rem(12px);
+  color: $theme-danger;
+  white-space: nowrap;
+}
+
+.login-form {
+  .ivu-form-item {
+    position: relative;
+    overflow: visible;
+   margin: rem(20px) 0 rem(25px) 0;
+  }
+
+  .ivu-input {
+    @include ivu-input;
+    font-size: rem(20px);
+    height: $login-form-height;
+    line-height: $login-form-height;
+  }
+
+  .ivu-form-item-error {
+    .ivu-input {
+      border-color: $theme-danger;
+    }
+  }
+
+  .ivu-form-item-error-tip {
+    @include ivu-error-tip;
+  }
+}
+
+.forget-form {
+  .ivu-form-item {
+    position: relative;
+    overflow: visible;
+    margin-top: rem(15px);
+    margin-bottom: rem(25px);
+  }
+
+  .ivu-form-item-label {
+    position: absolute;
+    left: rem(-120px);
+    bottom: 0;
+    padding: 0;
+    width: rem(100px);
+    font-size: rem(16px);
+    line-height: $forget-form-height;
+    color: $color-dark;
+    text-align: right;
+  }
+
+  .ivu-input {
+    @include ivu-input;
+    font-size: rem(16px);
+    height: $forget-form-height;
+    line-height: $login-form-height;
+  }
+
+  .ivu-form-item-error-tip {
+    @include ivu-error-tip;
+  }
+}

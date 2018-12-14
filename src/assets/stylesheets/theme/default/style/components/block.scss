@@ -1,0 +1,39 @@
+.block {
+    padding: 0 0 rem(20px);
+    &.indent {
+        padding-left: rem(20px);
+    }
+    &.block-gray {
+        .block-body {
+            background: #F8F8F8;
+        }
+    }
+    .block-header {
+        padding: 0 rem(20px);
+        font-size: rem(16px);
+        line-height: rem(44px);
+        color: $color-dark;
+        background-color: #f5f8fb;
+        @extend %ellipse;
+    }
+    .block-body {
+        padding: 0 rem(20px);
+        font-size: rem(14px);
+        color: $color-extra-dark;
+        p {
+            font-size: rem(14px);
+            color: $color-dark;
+        }
+        .bottom {
+            margin-top: rem(30px);
+        }
+    }
+    .fleX {
+        align-items: center;
+        .width {
+            text-align: center;
+            width: rem(150px);
+            margin-bottom: rem(45px);
+        }
+    }
+}

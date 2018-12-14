@@ -1,0 +1,41 @@
+.talk-box {
+    position: fixed;
+    top: rem(70px);
+    right: 0;
+    width: rem(1140px);
+}
+
+.talk {
+    background: #f5f5f5;
+    .chat {
+        border: 1px solid #e5e5e5;
+        height: rem(540px);
+    }
+    .talk-inp {
+        padding: rem(10px);
+        border: 1px solid #e5e5e5;
+        border-top: none;
+        overflow: hidden;
+        transition: background .2s linear;
+        &.active {
+            background: #fff;
+        }
+        textarea {
+            padding: 0 rem(10px);
+            outline: none;
+            border: none;
+            width: 100%;
+            height: rem(100px);
+            background: transparent;
+            resize: none;
+            font-size: rem(16px);
+        }
+        .talk-enter {
+            float: right;
+        }
+    }
+}
+
+.panel-body>.talk {
+    margin: rem(-40px) rem(-20px) rem(-20px);
+}
