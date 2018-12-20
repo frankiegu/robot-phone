@@ -1,30 +1,15 @@
 <template>
   <div>
-    <div class="divide" :class="{full: fullScreen}">
-      <div class="divide-item">
-        <div class="panel">
-          <div class="panel-body">
-            <i-form class="panel-form clear" inline>
-              <FormItem>
-                <i-select v-model="query.status" @on-change='handlerSearch' placeholder="请选择标签状态" class="w150">
-                  <i-option v-for="(item,i) in queryStatusList" :key="i" :value="item.value">{{item.label}}</i-option>
-                </i-select>
-              </FormItem>
-              <div class="fr">
-                <FormItem>
-                <i-input v-model="query.searchName" type="text" placeholder="搜索模板ID/名称" @on-enter="handlerSearch">
-                </i-input>
-              </FormItem>
-                <FormItem>
-                  <i-button type="primary" @click="handlerSearch">查询</i-button>
-                </FormItem>
-              </div>
-            </i-form>
-          </div>
-        </div>
-      </div>
+    <Breadcrumb separator=">">
+        <span class="home" @click="linkTo('emsHomeIndex')">
+          <BreadcrumbItem>首页</BreadcrumbItem>
+        </span>
+        <BreadcrumbItem>系统设置</BreadcrumbItem>
+        <BreadcrumbItem>客户标签管理</BreadcrumbItem>
+    </Breadcrumb>
+    <div class="divide" :class="{full: fullScreen}"> 
       <div class="task">
-        <div class="task-l divide-item">
+        <div class="task-l divide-item" style="width:14rem">
           <div class="panel">
             <div class="panel-header">
               标签管理
@@ -32,13 +17,24 @@
                 <i-button type="primary" @click="addManage">新增</i-button>
               </div>
             </div>
+            <div class="pd10" style="padding-bottom:0;">
+              <div class="mb10">
+                 <i-select v-model="query.status" @on-change='handlerSearch' placeholder="请选择标签状态">
+                  <i-option v-for="(item,i) in queryStatusList" :key="i" :value="item.value">{{item.label}}</i-option>
+                </i-select>
+              </div>
+              <div>
+                 <i-input search v-model="query.searchName" type="text" placeholder="搜索模板ID/名称" @on-search="handlerSearch" @on-enter="handlerSearch">
+                </i-input>
+              </div>
+            </div>
             <div class="panel-body">
               <ul class="list">
                 <li v-for="(item,i) in labelList" :key="i" :class="{'active' : currentLabel.id == item.id }" @click="handlerChangeLable(item)">
                   <div class="list-item">
                     <div class="list-item-main">
-                      <p class="list-item-title">{{item.labelName}}</p>
-                      <div class="list-item-info">客户数：{{item.userCount}}</div>
+                      <p>{{item.labelName}}</p>
+                      <p>客户数：{{item.userCount}}</p>
                     </div>
                   </div>
                 </li>
@@ -50,14 +46,7 @@
         </div>
         <div class="task-r divide-main">
           <div class="panel">
-            <div class="panel-header">
-              <i class="icon icon-enlarge panel-header-icon" :class="fullScreen ? 'icon-narrow' : 'icon-enlarge'" @click="() => fullScreen = !fullScreen"></i>
-              标签详情
-              <div class="panel-header-tools" v-show="currentLabel && currentLabel.id">
-                <i-button type="primary" @click="handleEdit">编辑</i-button>
-                <i-button type="error" @click="handlerDeleteLabel">删除</i-button>
-              </div>
-            </div>
+            
             <div class="panel-body">
               <Tabs value="1" v-model="tabName">
                 <TabPane label="基础信息" name="info">
@@ -68,6 +57,10 @@
                   v-if="tabName === '2'"
                   :label-id="currentLabel ? currentLabel.id : ''"></user-list>
                 </TabPane>
+                <div slot="extra" class="panel-header-tools" v-show="currentLabel && currentLabel.id">
+                <i-button type="primary" @click="handleEdit">编辑</i-button>
+                <i-button type="error" @click="handlerDeleteLabel">删除</i-button>
+              </div>
               </Tabs>
             </div>
           </div>
@@ -86,6 +79,7 @@ import { indexMixin } from '@/mixins'
 import tagEdit from './new.vue'
 import userList from "./user-list";
 import detail from "./detail";
+import Util from '@/util/util';
 const API_LabelInfo = API.ems.labelInfo;
 export default {
   mixins: [indexMixin],
@@ -116,6 +110,9 @@ export default {
     }
   },
   methods: {
+    linkTo(name) {
+      Util.openPage(this, name);
+    },
     init() {
       this.loadLabelList().then(data => {
         if (data.dataList.length) {

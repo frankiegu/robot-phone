@@ -12,7 +12,6 @@ import {
   api as apiBaseURL
 } from '@/config'
 import * as libComponents from '@/components/libs'
-
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import './assets/stylesheets/theme/default'

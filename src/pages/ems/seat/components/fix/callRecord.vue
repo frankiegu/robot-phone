@@ -1,22 +1,22 @@
 <template>
   <div>
     <Form inline>
-      <FormItem label="分配状态"
-                :label-width="60">
-        <Select style="width: 120px;"
+      <FormItem 
+                >
+        <Select style="width: 180px;"
                 v-model="params.status"
-                placeholder="全部"
+                placeholder="请选择分配状态"
                 clearable
                 @on-change="search">
           <Option value="1">已分配</Option>
           <Option value="0">未分配</Option>
         </Select>
       </FormItem>
-      <FormItem label="客户等级"
-                :label-width="60">
-        <Select style="width: 120px;"
+      <FormItem label=""
+                >
+        <Select style="width: 180px;"
                 v-model="params.userLevel"
-                placeholder="全部"
+                placeholder="请选择客户等级"
                 clearable
                 @on-change="search">
           <Option value="A">A</Option>
@@ -27,11 +27,11 @@
           <Option value="F">F</Option>
         </Select>
       </FormItem>
-      <FormItem label="通话时长"
-                :label-width="60">
-        <Select style="width: 120px;"
+      <FormItem 
+                >
+        <Select style="width: 180px;"
                 v-model="params.callAllTime"
-                placeholder="全部"
+                placeholder="请选择通话时长"
                 clearable
                 @on-change="search">
           <Option value="1">小于10秒</Option>
@@ -40,11 +40,11 @@
           <Option value="4">大于2分钟</Option>
         </Select>
       </FormItem>
-      <FormItem label="通话轮次"
-                :label-width="60">
-        <Select style="width: 120px;"
+      <FormItem 
+                >
+        <Select style="width: 180px;"
                 v-model="params.callCount"
-                placeholder="全部"
+                placeholder="请选择通话轮次"
                 clearable
                 @on-change="search">
           <Option value="1">0~10轮</Option>
@@ -55,12 +55,12 @@
       </FormItem>
     </Form>
     <div class="tool">
-      <div class="tool-btns">
+      <div>
         <Dropdown>
-          <Button type="success">
+          <i-button type="primary" ghost>
             导出
             <Icon type="arrow-down-b"></Icon>
-          </Button>
+          </i-button>
           <DropdownMenu slot="list">
             <DropdownItem @click.native="exportFile(index+1)" v-for="(item,index) in exportNumList" :key='index'>{{item}}</DropdownItem>
           </DropdownMenu>
@@ -76,11 +76,15 @@
                    :total="page.totalNum"
                    @change="list" />
 
-    <ms-panel v-model="detail.show"
+<Modal :footer-hide="true" class-name="vertical-center-modal" width="850px" v-model="detail.show" title="通话详情">
+<call-record-detail  @showdetail="showDetail" @listdetail="listAndDetail" :data="detail.entity"
+                          v-if="detail.show" />
+</Modal>
+    <!-- <ms-panel v-model="detail.show"
               title="通话详情">
       <call-record-detail :data="detail.entity"
                           v-if="detail.show" />
-    </ms-panel>
+    </ms-panel> -->
 
   </div>
 </template>
@@ -164,14 +168,40 @@ export default {
           }
         }, {
           title: '操作',
-          render: (h, { row }) => {
-            return h('a', {
-              on: {
-                click: () => {
-                  this.showDetail(row.id)
-                }
+          render: (h, { row,index }) => {
+                 if (row.isRead == 0) {
+                return h(
+                  "a",
+                  {
+                    on: {
+                      click: () => {                     
+                        this.showDetail(row.id,index);
+                        if (row.isRead === 0) {
+                          callRecordApi.isRead({ callId: row.id }).then(res => {
+                            this.listAndDetail(row.id);
+                          });
+                        }
+                      }
+                    }
+                  },
+                  "未读"
+                );
+              } else {
+                return h(
+                  "a",
+                  {
+                    style: {
+                      color: "#32bd1b"
+                    },
+                    on: {
+                      click: () => {
+                        this.showDetail(row.id,index);                                              
+                      }
+                    }
+                  },
+                  "已读"
+                );
               }
-            }, '详情')
           }
         }]
       }

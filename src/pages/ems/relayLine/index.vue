@@ -1,7 +1,16 @@
 <template>
   <div>
+    <Breadcrumb separator=">">
+        <span class="home" @click="linkTo('emsHomeIndex')">
+          <BreadcrumbItem>首页</BreadcrumbItem>
+        </span>
+        <BreadcrumbItem>中继线计费</BreadcrumbItem>
+        <BreadcrumbItem>中继线管理</BreadcrumbItem>
+    </Breadcrumb>
     <!-- 上方,搜索 -->
-    <div class="panel">
+    <div style="height: calc(100vh - 125px);
+    overflow: auto;">
+            <div class="panel">
       <div class="panel-body">
         <i-form class="panel-form clear" inline :label-width="0">
           <FormItem>
@@ -47,7 +56,7 @@
       </div>
     </div>
 
-    <div class="panel">
+    <div class="panel" style="margin-bottom:0;">
       <div class="panel-body">
         <div class="tool">
           <div class="tool-btns">
@@ -85,6 +94,7 @@
         </div>
       </div>
     </div>
+    </div>
     <Modal  width="800px" :footer-hide="true" v-model="detail.show" title="通话详情">
       <call-record-detail :data="detail.entity" v-if="detail.show"/>
     </Modal>
@@ -97,6 +107,7 @@ import { fmt, watchDateRangeToTimestamp, downloadFileUrl } from "@/util";
 import relayLineApi from "@/api/common/relayLineCount";
 import callRecordApi from "@/api/ems/callRecord";
 import relayLineEvenBus from "./src/relayLine.js";
+import Util from '@/util/util'
 export default {
   name: "relayLine",
   components: {
@@ -316,6 +327,9 @@ export default {
     });
   },
   methods: {
+     linkTo(name) {
+      Util.openPage(this, name);
+    },
     getApi() {
       return relayLineApi;
     },

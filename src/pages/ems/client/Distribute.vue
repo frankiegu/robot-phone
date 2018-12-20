@@ -12,16 +12,17 @@
           <div class="fr">
             <FormItem>
               <Input type="text"
+                     search
+                     @on-search="handleSearch"
                      placeholder="输入坐席号码/名称"
                      v-model="form.name_mobile" />
             </FormItem>
             <FormItem>
-              <Button type="primary"
-                      @click="handleSearch">查询</Button>
+             
             </FormItem>
           </div>
-          <FormItem label="">
-            <Select v-model="form.status">
+          <FormItem >
+            <Select style="width:195px;" v-model="form.status">
               <Option value="">请选择</Option>
               <Option value="0">未开始</Option>
               <Option value="1">正常</Option>

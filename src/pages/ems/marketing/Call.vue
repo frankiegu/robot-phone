@@ -1,12 +1,21 @@
 <template>
   <div>
+    <Breadcrumb separator=">">
+        <span class="home" @click="linkTo('emsHomeIndex')">
+          <BreadcrumbItem>首页</BreadcrumbItem>
+        </span>
+        <BreadcrumbItem>AI外呼</BreadcrumbItem>
+        <BreadcrumbItem>呼叫记录</BreadcrumbItem>
+    </Breadcrumb>
+    <div style=" height: calc(100vh - 125px);
+    overflow: auto;">
     <div class="panel">
       <div class="panel-body">
         <Form class="panel-form" inline>
-          <div style="margin-bottom:20px;white-space: nowrap;">
-                        <FormItem>
+          <div style="margin-bottom:20px;white-space: nowrap;width:100%;">
+                        <FormItem style="width:15%">
             <Select
-              style="width: 230px;"
+              
               v-model="params.status"
               placeholder="请选择分配状态"
               clearable
@@ -16,9 +25,8 @@
               <Option value="0">未分配</Option>
             </Select>
           </FormItem>
-          <FormItem>
+          <FormItem style="width:15%">
             <Select
-              style="width: 230px;"
               v-model="params.isTransfer"
               placeholder="是否转接"
               clearable
@@ -28,9 +36,8 @@
               <Option value="0">否</Option>
             </Select>
           </FormItem>
-          <FormItem>
+          <FormItem style="width:15%">
             <Select
-              style="width: 230px;"
               v-model="params.userLevel"
               placeholder="请选择客户等级"
               clearable
@@ -44,9 +51,8 @@
               <Option value="F">F</Option>
             </Select>
           </FormItem>
-          <FormItem>
+          <FormItem style="width:15%">
             <Select
-              style="width: 230px;"
               v-model="params.callResult"
               placeholder="请选择客户结果"
               clearable
@@ -55,9 +61,9 @@
               <Option v-for="(v, k) in CALL_RESULT" :key="k" :value="k">{{v}}</Option>
             </Select>
           </FormItem>
-          <FormItem>
+          <FormItem style="width:15%">
             <Select
-              style="width: 230px;"
+              
               v-model="params.taskId"
               placeholder="请选择营销任务"
               clearable
@@ -66,58 +72,53 @@
               <Option v-for="(v, i) in taskList" :key="i" :value="v.id">{{v.taskName}}</Option>
             </Select>
           </FormItem>
-          </div>
-          <div style="white-space: nowrap;">
-            <FormItem>
-            <Select
-              style="width: 230px;"
-              v-model="params.callAllTime"
-              placeholder="请选择通话时长"
-              clearable
-              @on-change="search"
-            >
-              <Option value="1">小于10秒</Option>
-              <Option value="2">10秒～20秒</Option>
-              <Option value="3">20秒～30秒</Option>
-              <Option value="4">30秒～40秒</Option>
-              <Option value="5">40秒～50秒</Option>
-              <Option value="6">50秒～1分钟</Option>
-              <Option value="7">1分钟～2分钟</Option>
-              <Option value="8">大于2分钟</Option>
-            </Select>
-          </FormItem>
-          <FormItem>
-            <Select
-              style="width: 230px;"
-              v-model="params.callCount"
-              placeholder="请选择通话轮次"
-              clearable
-              @on-change="search"
-            >
-              <Option value="1">0~少于3轮</Option>
-              <Option value="2">4～6轮</Option>
-              <Option value="3">7～10轮</Option>
-              <Option value="4">11～20轮</Option>
-              <Option value="5">21～30轮</Option>
-              <Option value="6">大于30轮</Option>
-            </Select>
-          </FormItem>
-          <FormItem>
+          <FormItem style="width:15%;">
             <DatePicker
               type="daterange"
+              style="width:100%;"
               placeholder="请选择呼叫日期"
-              style="width: 230px;"
               @on-change="delaySearch"
               v-model="dateRange"
             />
           </FormItem>
-          <FormItem>
+          </div>
+          <div style="white-space: nowrap;width:100%;">
+            <FormItem style="width:18%;">
+               <InputNumber
+              placeholder="最小通话秒数"
+              style="width:38%;"
+              v-model.trim="params.startCallAllTime"
+             
+            ></InputNumber>
+           <span>—</span>
+             <InputNumber
+              placeholder="最大通话秒数"
+              style="width:38%;"
+              v-model.trim="params.endCallAllTime"
+             
+            ></InputNumber>
+             <Button @click="inputVerify1" shape="circle" icon="ios-search"></Button>
+            </FormItem>
+            <FormItem style="width:18%;">
+               <InputNumber
+              placeholder="最小通话轮次"
+              style="width:38%;"
+              v-model.trim="params.startCallCount"
+            ></InputNumber>
+           <span>—</span>
+             <InputNumber
+              placeholder="最大通话轮次"
+              style="width:38%;"
+              v-model.trim="params.endCallCount"            
+            ></InputNumber>
+             <Button @click="inputVerify2" shape="circle" icon="ios-search"></Button>
+            </FormItem>
+          
+          <FormItem style="width:15%;">
             <i-input
               type="text"
               search
-              enter-button
               placeholder="主叫号码/客户号码/日期"
-              style="width: 230px;"
               v-model.trim="params.idOrMobileOrCardMobile"
               @on-enter="search"
               @on-search="search"
@@ -129,10 +130,10 @@
     </div>
     <div class="panel">
       <div class="panel-body">
-        <div class="tool">
+        <div class="mb10 tool">
           <div class="tool-btns">
             <Dropdown>
-              <Button ghost shape="circle" type="primary">导出
+              <Button ghost  type="primary">导出
                 <Icon type="md-arrow-dropdown" />
               </Button>
               <DropdownMenu slot="list">
@@ -154,16 +155,17 @@
         />
       </div>
     </div>
+    </div>
     <Modal
+        class-name="vertical-center-modal"
         width="850px"
+        :footer-hide = "true"
         v-model="detail.show"
         title="通话详情"
         >
-        <call-record-detail :data="detail.entity" v-if="detail.show"/>
+        <call-record-detail :isShow="false" :data="detail.entity" v-if="detail.show"/>
     </Modal>
-    <!-- <ms-panel v-model="detail.show" title="通话详情">
-      <call-record-detail :data="detail.entity" v-if="detail.show"/>
-    </ms-panel> -->
+    
   </div>
 </template>
 <script>
@@ -178,7 +180,7 @@ import {
 } from "@/util";
 import { CallRecordDetail } from "@/components/packages/ems/callRecord";
 import { getCallResultLabel, CALL_RESULT } from "@/constants";
-
+import Util from '@/util/util'
 export default {
   name: "marketingCall",
   mixins: [indexMixin],
@@ -196,8 +198,13 @@ export default {
         callAllTime: "",
         callCount: "",
         isTransfer: "",
-        startTime: "",
-        endTime: ""
+        startTime: "",        
+        endTime: "",
+        startCallAllTime:null,
+        endCallAllTime:null,
+        startCallCount:null,
+        endCallCount:null
+
       },
       dateRange: [],
       taskList: [],
@@ -368,6 +375,45 @@ export default {
     );
   },
   methods: {
+    linkTo(name) {
+      Util.openPage(this, name);
+    },
+    inputVerify1(){
+       if(this.params.startCallAllTime==null){
+         this.$Message.warning({content:'请输入最小通话秒数',duration: 1});
+         return
+       }
+       else if(this.params.endCallAllTime==null){
+         this.$Message.warning({content:'请输入最大通话秒数',duration: 1});
+         return
+       }
+       else if(this.params.startCallAllTime>this.params.endCallAllTime){
+           this.$Message.warning({content:'起始值不能小于结束值',duration: 1});
+         return
+       }
+       else{
+          this.search();
+       }
+      
+    },
+    inputVerify2(){
+       if(this.params.startCallCount==null){
+         this.$Message.warning({content:'请输入最小通话轮次',duration: 1});
+         return
+       }
+       else if(this.params.endCallCount==null){
+         this.$Message.warning({content:'请输入最大通话轮次',duration: 1});
+         return
+       }
+       else if(this.params.startCallAllTime>this.params.endCallAllTime){
+           this.$Message.warning({content:'起始值不能小于结束值',duration: 1});
+         return
+       }
+       else{
+          this.search();
+       }
+      
+    },
     getApi() {
       return callRecordApi;
     },

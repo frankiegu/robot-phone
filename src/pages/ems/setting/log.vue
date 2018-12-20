@@ -1,33 +1,35 @@
 <template>
   <div>
+    <Breadcrumb separator=">">
+        <span class="home" @click="linkTo('emsHomeIndex')">
+          <BreadcrumbItem>首页</BreadcrumbItem>
+        </span>
+        <BreadcrumbItem>系统设置</BreadcrumbItem>
+        <BreadcrumbItem>操作日志</BreadcrumbItem>
+    </Breadcrumb>
     <div class="panel">
       <div class="panel-body">
         <Form class="panel-form"
               inline
-              :label-width="60">
-          <div class="fr">
-            <FormItem>
-              <i-input type="text"
-                       placeholder="搜索内容/电话"
-                       style="width: 220px;"
-                       v-model.trim="params.nameMobile"
-                       @keyup.native.enter="search">
-                <Icon type="search"
-                      slot="prepend"></Icon>
-              </i-input>
-            </FormItem>
-            <FormItem :label-width="1">
-              <Button type="primary"
-                      @click="search">查询</Button>
-            </FormItem>
-          </div>
-          <FormItem label="创建日期">
+              :label-width="80">
+              <FormItem label="创建日期">
             <DatePicker type="daterange"
                         placeholder="选择日期"
-                        style="width: 200px;"
+                        style="width: 230px;"
                         v-model="dateRange"
                         @on-change="delaySearch" />
           </FormItem>
+            <FormItem>
+              <i-input type="text"
+              search
+              @on-search="search"
+                       placeholder="搜索内容/电话"
+                       style="width: 230px;"
+                       v-model.trim="params.nameMobile"
+                       @keyup.native.enter="search">
+               
+              </i-input>
+            </FormItem>
         </Form>
       </div>
     </div>
@@ -48,7 +50,7 @@
 import { indexMixin } from '@/mixins'
 import logSystemUserApi from '@/api/common/logSystemUserApi'
 import { fmt, watchDateRangeToTimestamp } from '@/util'
-
+import Util from '@/util/util';
 export default {
   name: 'marketingCall',
   mixins: [indexMixin],
@@ -90,6 +92,9 @@ export default {
     this.$watch('dateRange', watchDateRangeToTimestamp(this.params, 'startTime', 'endTime'))
   },
   methods: {
+     linkTo(name) {
+      Util.openPage(this, name);
+    },
     getApi() {
       return logSystemUserApi
     }

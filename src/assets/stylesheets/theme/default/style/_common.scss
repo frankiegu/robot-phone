@@ -77,3 +77,29 @@
         color: red;
     }
 }
+
+.tabs-message {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: rem(16px);
+    color: #333;
+    div {
+        cursor: pointer;
+        margin-right: rem(60px);
+    }
+    .active {
+        color: #5983FF;
+        border-bottom: rem(2px) solid #5983ff;
+    }
+}
+
+.contentAfter::before {
+    content: "";
+    position: absolute;
+    left: rem(10px);
+    display: inline-block;
+    width: rem(3px);
+    height: rem(20px);
+    background: #5983FF;
+}

@@ -1,6 +1,13 @@
 <template>
   <div class="divide"
        :class="{full: fullScreen}">
+       <Breadcrumb separator=">">
+        <span class="home" @click="linkTo('emsHomeIndex')">
+          <BreadcrumbItem>首页</BreadcrumbItem>
+        </span>
+        <BreadcrumbItem>话术管理</BreadcrumbItem>
+        <BreadcrumbItem>新话术列表</BreadcrumbItem>
+    </Breadcrumb>
     <div class="task">
       <div class="task-l divide-item">
         <div class="panel">
@@ -118,7 +125,7 @@ import ModDetail from './detail'
 import { WhisperingForm } from '@/components/packages/common/whisperingNew'
 import { WhisperingTypeSelect } from '@/components/packages/ems/select'
 import { ImportWhispering } from '@/components/packages/common/whispering'
-
+import Util from '@/util/util'
 export default {
   mixins: [indexMixin],
   components: {
@@ -152,6 +159,9 @@ export default {
     })
   },
   methods: {
+     linkTo(name) {
+      Util.openPage(this, name);
+    },
     getApi() {
       return whisperingNewApi
     },

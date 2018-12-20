@@ -259,12 +259,15 @@ export default {
          * 显示详情
          * @param {any} entity
          */
-    showDetail(entityOrId) {
+    showDetail(entityOrId, index) {
+      // console.log('index', index)
       if (typeof entityOrId !== 'object') {
         this.getApi().get(entityOrId).then(data => {
           this.detail.entity = data || {
             id: ''
           }
+          this.detail.entity.tableData = this.table.list
+          this.detail.entity.currentIndex = index
           this.detail.show = true
         })
       } else {

@@ -81,6 +81,12 @@
     color: #333;
 }
 
+.ivu-input-number-input {
+    &::-webkit-input-placeholder {
+        color: #c5c8ce;
+    }
+}
+
 .ivu-form-item-append {
     display: inline-block;
     margin-left: -8px;
@@ -125,6 +131,20 @@ textarea.ivu-input {
 
 .ivu-progress-success .ivu-progress-bg {
     background-color: #5983ff;
+}
+
+.ivu-breadcrumb {
+    margin-bottom: rem(10px);
+    margin-left: 0.5rem;
+    .home {
+        cursor: pointer;
+        &:hover {
+            color: #5983ff;
+        }
+    }
+    &>span:last-child {
+        font-weight: 500;
+    }
 }
 
 // 弹框山下居中

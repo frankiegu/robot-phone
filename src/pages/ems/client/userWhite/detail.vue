@@ -3,12 +3,9 @@
     <div class="panel">
       <div class="panel-header">客户详情
         <div class="panel-header-tools" v-if="entity && entity.id && entity.type===1">
-          <span @click="showEdit" class="iconWap">
-            <Icon size="25" type="ios-create-outline"/>
-          </span>
-          <span @click="showDel(entity.id)" class="iconWap">
-            <Icon size="25" color="red" type="ios-trash-outline"/>
-          </span>
+          <Button class="mr10" type="primary"  @click="showEdit">编辑</Button>
+                      <Button type="error"  @click="showDel(entity.id)">删除</Button>
+          
         </div>
       </div>
       <div class="panel-body" v-show="!entity || !entity.id">

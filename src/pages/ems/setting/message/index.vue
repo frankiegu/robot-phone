@@ -1,39 +1,29 @@
 <template>
 	<div>
+		<Breadcrumb separator=">">
+        <span class="home" @click="linkTo('emsHomeIndex')">
+          <BreadcrumbItem>首页</BreadcrumbItem>
+        </span>
+        <BreadcrumbItem>系统设置</BreadcrumbItem>
+        <BreadcrumbItem>短信模板管理</BreadcrumbItem>
+    </Breadcrumb>
 		<div class="divide"
 		     :class="{ full: fullScreen }">
-			<!-- 上方,搜索 -->
-			<div class="divide-item">
-				<div class="panel">
-					<div class="panel-body">
-						<i-form class="panel-form clear"
-						        inline>
-							<div class="fr">
-								<FormItem>
-									<i-input placeholder="搜索模板ID/名称"
-									         v-model.trim="params.idName"
-									         @keyup.native.enter="search">
-										<Icon type="search"
-										      slot="prepend"></Icon>
-									</i-input>
-								</FormItem>
-								<FormItem>
-									<i-button type="primary"
-									          @click="search">查询</i-button>
-								</FormItem>
+			<div class="task">
+				<!-- 左侧 -->
+				<div class="task-l divide-item">
+					<div class="panel">
+						<div class="panel-header">
+							短信模板列表
+							<div class="panel-header-tools">
+								<i-button type="primary"
+								          @click="showForm()">添加模板</i-button>
 							</div>
-							<FormItem>
-								<i-select class="w150"
-								          placehoder="请选择模板分类"
-								          v-model="params.type"
-								          @on-change="search">
-									<i-option value="">全部</i-option>
-									<i-option value="1">初筛推送短信</i-option>
-									<i-option value="2">关键字短信</i-option>
-								</i-select>
-							</FormItem>
-							<FormItem>
-								<i-select class="w150"
+						</div>
+						<div class="pd10" style="padding-bottom:0;">
+							<div class="mt10 fleX">
+									<i-select 
+									        style="width:100%;"
 								          placehoder="审核状态"
 								          v-model="params.type"
 								          @on-change="search">
@@ -42,22 +32,23 @@
 									<i-option value="1">通过</i-option>
 									<i-option value="2">拒绝</i-option>
 								</i-select>
-							</FormItem>
-						</i-form>
-					</div>
-				</div>
-			</div>
-			<div class="task">
-				<!-- 左侧 -->
-				<div class="task-l divide-item">
-					<div class="panel">
-						<div class="panel-header">
-							<Icon type="email"></Icon>
-							短信模板列表
-							<div class="panel-header-tools">
-								<i-button type="primary"
-								          icon="plus"
-								          @click="showForm()">添加模板</i-button>
+									<i-select
+									style="width:100%;"
+								          placehoder="请选择模板分类"
+								          v-model="params.type"
+								          @on-change="search">
+									<i-option value="">全部</i-option>
+									<i-option value="1">初筛推送短信</i-option>
+									<i-option value="2">关键字短信</i-option>
+								</i-select>
+							</div>
+							<div class="mt10">
+									<i-input placeholder="搜索模板ID/名称"
+									search
+									@on-search= "search"
+									         v-model.trim="params.idName"
+									         @keyup.native.enter="search">
+									</i-input>
 							</div>
 						</div>
 						<div class="panel-body">
@@ -71,12 +62,12 @@
 									    @click="showDetail(item)">
 										<div class="list-item">
 											<div class="list-item-main">
-												<p class="list-item-title">
+												<p>
 													{{ item.name }}
 												</p>
-												<div>
+												<p>
 													发送量：{{ item.sendCount }}
-												</div>
+												</p>
 											</div>
 										</div>
 									</li>
@@ -100,14 +91,23 @@
 				</div>
 			</div>
 			<!-- 弹窗 -->
-			<ms-panel v-model="form.show"
+		
+			<Modal :mask-closable="false" class-name="vertical-center-modal" v-model="form.show"
 			          :title="form.entity.id ? '编辑短信模板' : '新增短信模板'">
 				<template v-if="form.show">
 					<message-form :data="form.entity"
 					              @on-cancel="cancelForm"
+												ref="mYform"
 					              @after-submit="afterSubmitForm"></message-form>
 				</template>
-			</ms-panel>
+				<div slot="footer">
+							<i-button 
+				          style="margin-right: 8px"
+				          @click="cancelForm">取消</i-button>
+				<i-button type="primary"
+				          @click="submitFrom">确定</i-button>
+				</div>
+			</Modal>
 		</div>
 	</div>
 </template>
@@ -118,7 +118,7 @@ import messageTemplateApi from '@/api/ems/messageTemplate'
 import MessageDetail from './components/detail.vue'
 import MessageForm from './components/new.vue'
 import messageEventBus from './components/messageEventBus'
-
+import Util from '@/util/util'
 export default {
 	name: 'emsMessage',
 	mixins: [indexMixin],
@@ -145,6 +145,12 @@ export default {
 		})
 	},
 	methods: {
+		 linkTo(name) {
+      Util.openPage(this, name);
+    },
+		submitFrom(){
+			this.$refs.mYform.submit();
+		},
 		getApi() {
 			return messageTemplateApi
 		},

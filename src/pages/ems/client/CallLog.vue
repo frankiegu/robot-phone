@@ -1,28 +1,35 @@
 <template>
   <div>
-    <div class="panel">
+    <Breadcrumb separator=">">
+        <span class="home" @click="linkTo('emsHomeIndex')">
+          <BreadcrumbItem>首页</BreadcrumbItem>
+        </span>
+        <BreadcrumbItem>客户中心</BreadcrumbItem>
+        <BreadcrumbItem>呼叫记录</BreadcrumbItem>
+    </Breadcrumb>
+<div style="height: calc(100vh - 125px);
+    overflow: auto;background:#fff;">
+      <div class="panel" style="margin-bottom:0;border-bottom:1rem solid #f3f4f8;">
       <div class="panel-body">
         <Form class="panel-form"
               inline
-              :label-width="60">
+              :label-width="100">
           <div class="fr">
             <FormItem>
               <i-input type="text"
+              search
                        placeholder="搜索ID/主叫号码/客户号码"
-                       style="width: 220px;"
+                       style="width: 230px;"
+                       @on-search="search"
                        v-model.trim="params.idOrMobileOrCardMobile"
                        @keyup.enter="search">
-                <Icon type="search"
-                      slot="prepend"></Icon>
+                
               </i-input>
             </FormItem>
-            <FormItem :label-width="1">
-              <Button type="primary"
-                      @click="search">查询</Button>
-            </FormItem>
+            
           </div>
           <FormItem label="营销任务"
-                    :label-width="60">
+                    >
             <Select style="width: 120px;"
                     v-model="params.taskId"
                     placeholder="全部"
@@ -34,7 +41,7 @@
             </Select>
           </FormItem>
           <FormItem label="客户等级"
-                    :label-width="60">
+                    >
             <Select style="width: 120px;"
                     v-model="params.userLevel"
                     placeholder="全部"
@@ -49,7 +56,7 @@
             </Select>
           </FormItem>
           <FormItem label="呼叫结果"
-                    :label-width="60">
+                    >
             <Select style="width: 120px;"
                     v-model="params.callResult"
                     placeholder="全部"
@@ -74,12 +81,13 @@
                        @change="list" />
       </div>
     </div>
+</div>
 
-    <ms-panel v-model="detail.show"
+    <Modal v-model="detail.show" width="850" :footer-hide="true" class-name="vertical-center-modal" 
               title="通话详情">
       <call-record-detail :data="detail.entity"
                           v-if="detail.show" />
-    </ms-panel>
+    </Modal>
   </div>
 </template>
 <script>
@@ -88,7 +96,7 @@ import clientApi from '@/api/ems/client'
 import { duration, fmt } from '@/util'
 import { CallRecordDetail } from '@/components/packages/ems/callRecord'
 import { getCallResultLabel, CALL_RESULT } from '@/constants'
-
+import Util from '@/util/util';
 export default {
   name: 'marketingCall',
   mixins: [indexMixin],
@@ -186,6 +194,9 @@ export default {
     })
   },
   methods: {
+    linkTo(name) {
+      Util.openPage(this, name);
+    },
     getApi() {
       return clientApi
     },

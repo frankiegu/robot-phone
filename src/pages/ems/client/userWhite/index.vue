@@ -1,5 +1,12 @@
 <template>
   <div>
+    <Breadcrumb separator=">">
+        <span class="home" @click="linkTo('emsHomeIndex')">
+          <BreadcrumbItem>首页</BreadcrumbItem>
+        </span>
+        <BreadcrumbItem>客户中心</BreadcrumbItem>
+        <BreadcrumbItem>黑名单</BreadcrumbItem>
+    </Breadcrumb>
     <div class="divide" :class="{full: fullScreen}">
       <div class="task">
         <div class="task-l divide-item">
@@ -138,6 +145,7 @@ import BatchForm from "./batchForm.vue";
 import exportForm from "./exportForm.vue";
 import modEventBus from "./src/eventBus";
 import { watchDateRangeToTimestamp, getType } from "@/util";
+import Util from '@/util/util';
 export default {
   name: "emsMessage",
   mixins: [indexMixin],
@@ -183,6 +191,9 @@ export default {
     modEventBus.$off("list.delete");
   },
   methods: {
+    linkTo(name) {
+      Util.openPage(this, name);
+    },
     submitBatch(){
       this.$refs.batchForms.submit();
     },

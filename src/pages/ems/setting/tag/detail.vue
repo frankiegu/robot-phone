@@ -3,11 +3,11 @@
     <div v-show="!!labelId">
       <div class="cf">
         <div class="dib">
-          <h1>{{label.labelName}}</h1>
-          <sub>ID: {{label.id}}</sub>
+          <span class="title" style="margin:0;">{{label.labelName}}</span>
+          <span>ID: {{label.id}}</span>
         </div>
         <div class="fr">
-          <div class="mb10">状态：{{statusMap[label.status]}}</div>
+          <!-- <div class="mb10">状态：{{statusMap[label.status]}}</div> -->
           <i-switch v-model="label.status" size="large" :true-value="1" :false-value="0" @on-change="handlerChangeStatus">
             <span slot="open">开启</span>
             <span slot="close">禁用</span>

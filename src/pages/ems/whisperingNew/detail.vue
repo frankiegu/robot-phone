@@ -1,23 +1,6 @@
 <template>
   <div class="panel">
-    <div class="panel-header">
-      <i
-        class="icon icon-enlarge panel-header-icon"
-        :class="fullScreen ? 'icon-narrow' : 'icon-enlarge'"
-        @click="toggleFullScreen"
-      ></i>
-      任务详情
-      <div class="panel-header-tools" v-if="entity.id">
-        <export-whispering :data="entity" isNew v-if="entity.isDownload === 1"/>
-        <Button type="primary" @click="commit" v-if="entity.isChange === 1">提交审核</Button>
-        <!-- 共享话术可以复制为企业话术 -->
-        <Button type="info" @click="showCopy" v-if="entity.owner === 1 && entity.isCopy === 1">复制</Button>
-        <template v-if="entity.owner === 2">
-          <Button type="primary" @click="showForm">编辑</Button>
-          <Button type="error" @click="showDel(entity.id)">删除话术</Button>
-        </template>
-      </div>
-    </div>
+   
     <div class="panel-body">
       <p class="nodata" v-show="!entity.id">暂无数据</p>
       <Tabs v-model="tabName" v-if="entity.id">
@@ -45,6 +28,17 @@
         <TabPane label="模拟训练" name="train" style="padding: 0 5px;">
           <talk v-if="tabName === 'train'" :whisperingId="entity.id" :title="entity.title"/>
         </TabPane>
+        
+         <div slot="extra" class="panel-header-tools" v-if="entity.id">
+        <export-whispering :data="entity" isNew v-if="entity.isDownload === 1"/>
+        <Button type="primary" @click="commit" v-if="entity.isChange === 1">提交审核</Button>
+        <!-- 共享话术可以复制为企业话术 -->
+        <Button type="info" @click="showCopy" v-if="entity.owner === 1 && entity.isCopy === 1">复制</Button>
+        <template v-if="entity.owner === 2">
+          <Button type="primary" @click="showForm">编辑</Button>
+          <Button type="error" @click="showDel(entity.id)">删除话术</Button>
+        </template>
+      </div>
       </Tabs>
     </div>
 

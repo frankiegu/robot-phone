@@ -1,29 +1,6 @@
 <template>
   <div class="panel" style="border-radius: 0px; box-shadow: none;">
-    <div class="panel-header">
-      <i
-        class="icon icon-enlarge panel-header-icon"
-        :class="fullScreen ? 'icon-narrow' : 'icon-enlarge'"
-        @click="toggleFullScreen"
-      ></i>
-      任务详情
-      <div class="panel-header-tools" v-if="entity.id">
-        <!-- <Button style="margin-right:10px" type="default" shape="circle" @click="showTalk">体验话术</Button> -->
-        <export-whispering style="margin-right:10px" :data="entity" v-if="entity.isDownload === 1"/>
-        <Button style="margin-right:10px" type="primary"  @click="commit" v-if="entity.isChange === 1">提交审核</Button>
-        <!-- 共享话术可以复制为企业话术 -->
-        <Button
-        style="margin-right:10px"
-          type="info"
-          @click="showCopy"
-          v-if="entity.owner === 1 && entity.isCopy === 1"
-        >复制</Button>
-        <template v-if="entity.owner === 2">
-          <Button style="margin-right:10px" type="primary"  @click="showForm">话术编辑</Button>
-          <Button type="error"   @click="showDel(entity.id)">删除话术</Button>
-        </template>
-      </div>
-    </div>
+   
     <div class="panel-body">
       <p class="nodata" v-show="!entity.id">暂无数据</p>
       <Tabs v-model="tabName" v-if="entity.id">
@@ -40,6 +17,23 @@
          <TabPane label="模拟训练" name="train">
           <talk :whisperingId="entity.id" :title="entity.title" v-if="tabName === 'train'"/>
         </TabPane>
+        
+        <div slot="extra" class="panel-header-tools" v-if="entity.id">
+        <!-- <Button style="margin-right:10px" type="default" shape="circle" @click="showTalk">体验话术</Button> -->
+        <export-whispering style="margin-right:10px" :data="entity" v-if="entity.isDownload === 1"/>
+        <Button style="margin-right:10px" type="primary"  @click="commit" v-if="entity.isChange === 1">提交审核</Button>
+        <!-- 共享话术可以复制为企业话术 -->
+        <Button
+        style="margin-right:10px"
+          type="info"
+          @click="showCopy"
+          v-if="entity.owner === 1 && entity.isCopy === 1"
+        >复制</Button>
+        <template v-if="entity.owner === 2">
+          <Button style="margin-right:10px" type="primary"  @click="showForm">话术编辑</Button>
+          <Button type="error"   @click="showDel(entity.id)">删除话术</Button>
+        </template>
+      </div>
       </Tabs>
     </div>
 

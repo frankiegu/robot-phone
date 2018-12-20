@@ -2,8 +2,8 @@
 	<div class="task-detail">
 		<div class="cf">
 			<div class="dib">
-				<h1>{{entity.name}}</h1>
-				<sub>ID: {{entity.id}}</sub>
+				<span class="title" style="margin:0">{{entity.name}}</span>
+				<span>ID: {{entity.id}}</span>
 			</div>
 			<div class="fr">
 				<div class="mb10">状态：{{statusMap[entity.status]}}</div>

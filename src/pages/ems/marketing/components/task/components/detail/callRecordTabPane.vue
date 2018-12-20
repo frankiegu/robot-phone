@@ -42,6 +42,14 @@
           <Option value="F">F</Option>
         </Select>
       </FormItem>
+      <FormItem label="呼叫时间" :label-width="80">
+        <DatePicker
+          v-model="queryCreateTime"
+          type="daterange"
+          placeholder="呼叫时间"
+          style="width: 150px;"
+        ></DatePicker>
+      </FormItem>
       <FormItem>
         <div style="cursor: pointer;padding: 5px 10px;" @click="showOrHidden">
           <span>
@@ -53,24 +61,35 @@
       </FormItem>
       <collapse-transition>
         <div v-show="isShow">
-          <FormItem label="通话时长" :label-width="80">
-            <Select
-              style="width: 150px;"
-              v-model="params.callAllTime"
-              placeholder="全部"
-              clearable
-              @on-change="search"
-            >
-              <Option value="1">小于10秒</Option>
-              <Option value="2">10秒～20秒</Option>
-              <Option value="3">20秒～30秒</Option>
-              <Option value="4">30秒～40秒</Option>
-              <Option value="5">40秒～50秒</Option>
-              <Option value="6">50秒～1分钟</Option>
-              <Option value="7">1分钟～2分钟</Option>
-              <Option value="8">大于2分钟</Option>
-            </Select>
+          <FormItem :label-width="10">
+            <InputNumber
+              placeholder="最小通话秒数"
+              style="width: 85px;"
+              v-model.trim="params.startCallAllTime"
+            ></InputNumber>
+            <span>—</span>
+            <InputNumber
+              placeholder="最大通话秒数"
+              style="width: 85px;"
+              v-model.trim="params.endCallAllTime"
+            ></InputNumber>
+            <Button @click="inputVerify1" shape="circle" icon="ios-search"></Button>
           </FormItem>
+          <FormItem :label-width="5">
+            <InputNumber
+              placeholder="最小通话轮次"
+              style="width: 85px;"
+              v-model.trim="params.startCallCount"
+            ></InputNumber>
+            <span>—</span>
+            <InputNumber
+              placeholder="最大通话轮次"
+              style="width: 85px;"
+              v-model.trim="params.endCallCount"
+            ></InputNumber>
+            <Button @click="inputVerify2" shape="circle" icon="ios-search"></Button>
+          </FormItem>
+
           <FormItem label="呼叫结果" :label-width="80">
             <Select
               style="width: 150px;"
@@ -82,22 +101,7 @@
               <Option v-for="(v, k) in CALL_RESULT" :key="k" :value="k">{{v}}</Option>
             </Select>
           </FormItem>
-          <FormItem label="通话轮次" :label-width="80">
-            <Select
-              style="width: 150px;"
-              v-model="params.callCount"
-              placeholder="全部"
-              clearable
-              @on-change="search"
-            >
-              <Option value="1">0~少于3轮</Option>
-              <Option value="2">4～6轮</Option>
-              <Option value="3">7～10轮</Option>
-              <Option value="4">11～20轮</Option>
-              <Option value="5">21～30轮</Option>
-              <Option value="6">大于30轮</Option>
-            </Select>
-          </FormItem>
+
           <FormItem label="关键字" :label-width="80">
             <Select
               style="width: 150px;"
@@ -110,19 +114,11 @@
               <Option value="0">无效</Option>
             </Select>
           </FormItem>
-          <FormItem label="呼叫时间" :label-width="80">
-            <DatePicker
-              v-model="queryCreateTime"
-              type="daterange"
-              placeholder="呼叫时间"
-              style="width: 150px;"
-            ></DatePicker>
-          </FormItem>
-          <FormItem label :label-width="15">
+
+          <FormItem label :label-width="10">
             <i-input
               type="text"
               search
-              enter-button
               placeholder="搜索关键字,多个英文逗号分隔"
               v-model.trim="params.keyWords"
               @on-enter="search"
@@ -134,8 +130,9 @@
       </collapse-transition>
     </Form>
     <div class="tool">
+      <div class="tool-btns">
         <Dropdown>
-          <Button ghost  type="primary">导出
+          <Button ghost type="primary">导出
             <Icon type="arrow-down-b"></Icon>
           </Button>
           <DropdownMenu slot="list">
@@ -146,16 +143,16 @@
             >{{item}}</DropdownItem>
           </DropdownMenu>
         </Dropdown>
-      <Button ghost class="ml10" type="primary" @click="showAllot"
-        v-if="[3, 4].indexOf(data.status) > -1">分配
-            <Icon type="arrow-down-b"></Icon>
-          </Button>
-      <!-- <a
-        class="distribute"
-        href="javascript: void(0)"
-        @click="showAllot"
-        v-if="[3, 4].indexOf(data.status) > -1"
-      >分配</a> -->
+        <Button
+          ghost
+          class="ml10"
+          type="primary"
+          @click="showAllot"
+          v-if="[3, 4].indexOf(data.status) > -1"
+        >分配
+          <Icon type="arrow-down-b"></Icon>
+        </Button>
+      </div>
     </div>
     <Table
       :columns="table.columns"
@@ -170,15 +167,29 @@
       @change="list"
     />
 
-    <Modal width="850px" v-model="detail.show" title="通话详情" :footer-hide="true" class="vertical-center-modal">
-      <call-record-detail :data="detail.entity" v-if="detail.show"/>
+    <Modal
+      class-name="vertical-center-modal"
+      width="850px"
+      v-model="detail.show"
+      title="通话详情"
+      :footer-hide="true"
+      class="vertical-center-modal"
+    >
+      <call-record-detail
+        @showdetail="showDetail"
+        @listdetail="listAndDetail"
+        :data="detail.entity"
+        v-if="detail.show"
+      />
     </Modal>
-    <!-- <ms-panel v-model="detail.show"
-              title="通话详情">
-      <call-record-detail :data="detail.entity"
-                          v-if="detail.show" />
-    </ms-panel>-->
-    <Modal @on-ok="asyncOK" width="425" v-model="allot.show" title="分配客户给销售人员">
+    <Modal
+      class-name="vertical-center-modal"
+      :mask-closable="false"
+      @on-ok="asyncOK"
+      width="480"
+      v-model="allot.show"
+      title="分配客户给销售人员"
+    >
       <ms-lazy :initial="allot.show">
         <allot
           :clientList="allot.list"
@@ -221,7 +232,11 @@ export default {
         keyWords: "",
         isTransfer: "",
         startTime: "",
-        endTime: ""
+        endTime: "",
+        startCallAllTime: null,
+        endCallAllTime: null,
+        startCallCount: null,
+        endCallCount: null
       },
       queryCreateTime: [],
       CALL_RESULT,
@@ -364,14 +379,14 @@ export default {
             align: "center",
             width: 90,
             fixed: "right",
-            render: (h, { row }) => {
+            render: (h, { row, index }) => {
               if (row.isRead == 0) {
                 return h(
                   "a",
                   {
                     on: {
                       click: () => {
-                        this.showDetail(row.id);
+                        this.showDetail(row.id, index);
                         if (row.isRead === 0) {
                           callRecordApi.isRead({ callId: row.id }).then(res => {
                             this.listAndDetail(row.id);
@@ -391,8 +406,7 @@ export default {
                     },
                     on: {
                       click: () => {
-                         alert(2)
-                        this.showDetail(row.id);
+                        this.showDetail(row.id, index);
                       }
                     }
                   },
@@ -420,6 +434,34 @@ export default {
     }
   },
   methods: {
+    inputVerify1() {
+      if (this.params.startCallAllTime == null) {
+        this.$Message.warning({ content: "请输入最小通话秒数", duration: 1 });
+        return;
+      } else if (this.params.endCallAllTime == null) {
+        this.$Message.warning({ content: "请输入最大通话秒数", duration: 1 });
+        return;
+      } else if (this.params.startCallAllTime > this.params.endCallAllTime) {
+        this.$Message.warning({ content: "起始值不能小于结束值", duration: 1 });
+        return;
+      } else {
+        this.search();
+      }
+    },
+    inputVerify2() {
+      if (this.params.startCallCount == null) {
+        this.$Message.warning({ content: "请输入最小通话轮次", duration: 1 });
+        return;
+      } else if (this.params.endCallCount == null) {
+        this.$Message.warning({ content: "请输入最大通话轮次", duration: 1 });
+        return;
+      } else if (this.params.startCallAllTime > this.params.endCallAllTime) {
+        this.$Message.warning({ content: "起始值不能小于结束值", duration: 1 });
+        return;
+      } else {
+        this.search();
+      }
+    },
     asyncOK() {
       this.$refs.myallot.submit();
     },

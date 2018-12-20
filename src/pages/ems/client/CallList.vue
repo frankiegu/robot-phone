@@ -10,11 +10,11 @@
           :pageSize="pager.pageSize"
           @on-change="handleChangePageNum"
           @on-page-size-change="handleChangePageSize" />
-    <ms-panel v-model="detail.show"
+    <Modal width="850" :footer-hide="true" class-name="vertical-center-modal" v-model="detail.show"
               title="通话详情">
-      <call-record-detail :data="detail.entity"
+      <call-record-detail :isShow="false"  :data="detail.entity"
                           v-if="detail.show" />
-    </ms-panel>
+    </Modal>
   </div>
 </template>
 <script>
@@ -100,14 +100,40 @@ export default {
         }, {
           title: '操作',
           align: 'center',
-          render: (h, { row }) => {
-            return h('a', {
-              on: {
-                click: () => {
-                  this.showDetail(row.id)
-                }
+          render: (h, { row,index }) => {
+                   if (row.isRead == 0) {
+                return h(
+                  "a",
+                  {
+                    on: {
+                      click: () => {                     
+                        this.showDetail(row.id,index);
+                        if (row.isRead === 0) {
+                          callRecordApi.isRead({ callId: row.id }).then(res => {
+                            this.listAndDetail(row.id);
+                          });
+                        }
+                      }
+                    }
+                  },
+                  "未读"
+                );
+              } else {
+                return h(
+                  "a",
+                  {
+                    style: {
+                      color: "#32bd1b"
+                    },
+                    on: {
+                      click: () => {
+                        this.showDetail(row.id,index);                                             
+                      }
+                    }
+                  },
+                  "已读"
+                );
               }
-            }, '详情')
           }
         }]
       }

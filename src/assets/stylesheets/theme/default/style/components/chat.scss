@@ -1,6 +1,6 @@
 .chat {
     padding: rem(20px);
-    max-height: rem(600px);
+    // max-height: rem(600px);
     overflow: auto;
     li {
         @extend %clearfix;

@@ -1,5 +1,12 @@
 <template>
   <div>
+    <Breadcrumb separator=">">
+        <span class="home" @click="linkTo('emsHomeIndex')">
+          <BreadcrumbItem>首页</BreadcrumbItem>
+        </span>
+        <BreadcrumbItem>客户中心</BreadcrumbItem>
+        <BreadcrumbItem>客户管理</BreadcrumbItem>
+    </Breadcrumb>
     <div class="divide" :class="{full: fullScreen}">
       <div class="task">
         <div class="task-l divide-item">
@@ -113,14 +120,9 @@
                       <Option v-for="t in clientTaskList" :value="t.id" :key="t.id">{{ t.taskName }}</Option>
                     </Select>
                     <span v-show="dataList.length" style="margin-left:20px;">
-                      <span @click="handleEdit" class="iconWap">
-                        <Icon size="25" type="ios-create-outline"/>
-                      </span>
-                      <span @click="handleDelete" class="iconWap">
-                        <Icon size="25" color="red" type="ios-trash-outline"/>
-                      </span>
-                      <!-- <Button type="primary" :disabled="!client.id" @click="handleEdit">编辑</Button>
-                      <Button type="error" :disabled="!client.id" @click="handleDelete">删除</Button>-->
+                     
+                      <Button type="primary" :disabled="!client.id" @click="handleEdit">编辑</Button>
+                      <Button type="error" :disabled="!client.id" @click="handleDelete">删除</Button>
                     </span>
                   </span>
                 </div>
@@ -128,13 +130,7 @@
               <div class="task-detail">
                 <h1>
                   <div class="fr">
-                    <!--
-                        <Button :disabled="!client.id"
-                                type="primary"
-                                @click="handleCall">
-                          <i class="icon icon-phone"></i> 呼叫(累计{{ client.callNum }}次)
-                        </Button>
-                    -->
+                   
                     <Button
                       v-if="client.isAllot === 1"
                       type="default"
@@ -223,7 +219,7 @@ import CallList from "./CallList.vue";
 import Edit from "./Edit.vue";
 import Distribute from "./Distribute";
 import CallModal from "@/components/packages/ems/call/modal";
-
+import Util from '@/util/util'
 const API_CLIENT = API.ems.client;
 const API_TASK = API.ems.task;
 
@@ -270,6 +266,9 @@ export default {
     this.getTaskList();
   },
   methods: {
+     linkTo(name) {
+      Util.openPage(this, name);
+    },
     submitForm() {
       this.$refs.edit.handleConfirm();
     },
@@ -364,7 +363,7 @@ export default {
     handleIdChange(id) {
       if (id) {
         this.getClientDetail(id);
-        this.$refs.call.initCallList({ record_id: this.selectedTask });
+        this.$refs.call.initCallList({ mobile: this.selectedMobile});
       }
     },
     clickDistrubute(cardRelateId) {

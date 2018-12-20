@@ -1,6 +1,7 @@
 .card {
     .card-item {
         border: 1px solid #e1e7f1;
+        border-radius: rem(5px);
         cursor: pointer;
         transition: border-color, background .2s linear;
         &:not(:last-child) {
@@ -8,17 +9,20 @@
         }
         &.active,
         &:hover {
-            border-color: $color-link;
+            border-color: #80A3FF;
             @each $name in map-keys($theme-map) {
                 $value: map-get($theme-map, $name);
                 &.card-#{$name} {
-                    border-color: $value;
+                    // border-color: $value;
                 }
             }
         }
         &.active {
             border-style: solid;
         }
+    }
+    .card-header {
+        border-radius: rem(5px);
     }
     .card-header,
     .task-detail {

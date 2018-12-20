@@ -1,14 +1,6 @@
 <template>
 	<div>
 	  <div class="panel" >
-	    <div class="panel-header">
-        <i class="icon icon-enlarge panel-header-icon" :class="fullScreen ? 'icon-narrow' : 'icon-enlarge'" @click="toggleFullScreen"></i>
-        短信模板详情
-        <div class="panel-header-tools" v-if="entity && entity.id">
-          <i-button type="primary" @click="showEdit">编辑</i-button>
-          <i-button type="error" @click="showDel(entity.id)">删除</i-button>
-        </div>
-			</div>
 			<div class="panel-body" 
 						v-show="!entity || !entity.id">
 				<p class="nodata">暂无数据</p>
@@ -28,18 +20,31 @@
 							<send-record-tab-panel  v-if="tabName === 'record'" :data="entity"/>
           	</ms-lazy>
 					</TabPane>
+				
+					 <div class="panel-header-tools fr"  slot="extra" v-if="entity && entity.id">
+          <i-button type="primary" class="mr10" @click="showEdit">编辑</i-button>
+          <i-button type="error" @click="showDel(entity.id)">删除</i-button>
+        </div>
 				</Tabs>
 			</div>
 		</div>
 		<!-- 弹窗 -->
-    <ms-panel v-model="template.show"
+    <Modal class-name="vertical-center-modal" v-model="template.show"
               :title="entity.id ? '编辑短信模板' : '新增短信模板'">
       <template v-if="template.show">
         <message-form :data="entity"
+				          ref="mYform"
                   @on-cancel="cancelForm"
                   @after-submit="afterSubmitForm"></message-form>
       </template>
-    </ms-panel>
+			<div slot="footer">
+							<i-button 
+				          style="margin-right: 8px"
+				          @click="cancelForm">取消</i-button>
+				<i-button type="primary"
+				          @click="submitFrom">确定</i-button>
+				</div>
+    </Modal>
 	</div>
 </template>
 
@@ -74,6 +79,9 @@ export default {
 		}
 	},
 	methods: {
+			submitFrom(){
+			this.$refs.mYform.submit();
+		},
     getApi() {
     	return messageTemplateApi
     },

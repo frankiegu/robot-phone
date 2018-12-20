@@ -1,20 +1,14 @@
 <template>
   <div>
     <div class="panel">
-      <div class="panel-header">
-        {{title}}
-        <div class="panel-header-tools">
-          <i-button type="primary"
-                    @click="handlerSave">保存</i-button>
-        </div>
-      </div>
+     
       <div class="panel-body">
         <div>注：为建立健康、友好的营销呼叫平台，全平台限制只允许在 {{timeLimit.amWorkTime}} - {{timeLimit.amRestTime}} 和 {{timeLimit.pmWorkTime}} - {{timeLimit.pmRestTime}} 可呼叫，其余时间不可呼叫，敬请谅解！</div>
         <hr class="mtb10">
         <i-form ref="refForm"
                 :model="template"
                 :rules="rules"
-                :label-width="140">
+                :label-width="120">
           <div class="max-w800">
             <FormItem label="时间模板名称："
                       prop="templateName">
@@ -23,7 +17,7 @@
                        placeholder="输入模板名称"></i-input>
             </FormItem>
             <Row>
-              <i-col span="10">
+              <i-col span="11">
                 <FormItem label="上午上班时间：">
                   <TimePicker v-model="template.amStartTime"
                               class="wp100"
@@ -43,8 +37,8 @@
                               placeholder="选择时间"></TimePicker>
                 </FormItem>
               </i-col>
-              <i-col span="10"
-                     offset="4">
+              <i-col span="11"
+                     offset="2">
                 <FormItem label="下午上班时间：">
                   <TimePicker v-model="template.pmStartTime"
                               class="wp100"
@@ -66,7 +60,7 @@
               </i-col>
             </Row>
             <FormItem label="拨号时间：">
-              <i-button :type="template.weekDate.includes(k) ? 'primary' : 'default'"
+              <i-button  :type="template.weekDate.includes(k) ? 'primary' : 'default'"
                         class="mr15 mb15"
                         v-for="(v,k) in weekArray"
                         :key="k"
@@ -80,6 +74,7 @@
                           @on-change="handleChangeDate"
                           @on-ok="handlerOkDate">
                 <i-button type="primary"
+                ghost
                           @click="handlerClickDate">选择时间</i-button>
               </DatePicker>
               <span>已选择{{template.excludeDate.length}}天</span>

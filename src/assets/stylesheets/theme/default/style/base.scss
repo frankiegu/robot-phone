@@ -1,153 +1,160 @@
 html,
 body {
-  height: 100%;
-  font-family: $font-family;
-  font-size: $font-size-root;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+    font-family: $font-family;
+    font-size: $font-size-root;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-  text-decoration: none;
-  &:hover {
     text-decoration: none;
-  }
+    &:hover {
+        text-decoration: none;
+    }
 }
 
 ins {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 em {
-  font-style: normal;
+    font-style: normal;
 }
 
 hr {
-  height: 1px;
-  border: none;
-  background: #F1F1F1;
+    height: 1px;
+    border: none;
+    background: #F1F1F1;
 }
 
-ul, li {
-  list-style-type: none;
+ul,
+li {
+    list-style-type: none;
 }
 
 .fl {
-  float: left;
+    float: left;
 }
 
 .fr {
-  float: right;
+    float: right;
 }
-.fleX{
+
+.fleX {
     display: flex;
     justify-content: space-between;
     white-space: nowrap;
 }
+
 .text-c {
-  text-align: center;
+    text-align: center;
 }
 
 .text-l {
-  text-align: left;
+    text-align: left;
 }
 
 .text-r {
-  text-align: right;
+    text-align: right;
 }
 
 .container {
-  position: relative;
-  padding: rem(20px);
+    position: relative;
+    padding: rem(10px) rem(20px) rem(20px) rem(20px);
 }
 
 .pagination {
-  margin: rem(20px) 0 0;
-  text-align: right;
+    margin: rem(20px) 0 0;
+    text-align: right;
 }
 
 .help-block {
-  font-size: rem(14px);
-  color: $color-normal;
+    font-size: rem(14px);
+    color: $color-normal;
 }
 
 .clear {
-  @extend %clearfix;
+    @extend %clearfix;
 }
-.vm{
-  display: inline-block;
-  vertical-align: middle;
+
+.vm {
+    display: inline-block;
+    vertical-align: middle;
 }
+
 .inline-b {
-  display: inline-block;
+    display: inline-block;
 }
 
 .table {
-  table {
-    table-layout: fixed;
-  }
+    table {
+        table-layout: fixed;
+    }
 }
-.blue_link{
+
+.blue_link {
     margin-left: rem(10px);
     font-size: rem(14px);
     color: #5983ff;
     cursor: pointer;
-
 }
+
 $size-map: ( 5: rem(5px), 10: rem(10px), 15: rem(15px), 20: rem(20px), 25: rem(25px), 30: rem(30px));
 @each $name in map-keys($size-map) {
-  $value: map-get($size-map, $name);
-  .mt-#{$name} {
-    margin-top: $value;
-  }
-  .mr-#{$name} {
-    margin-right: $value;
-  }
-  .mb-#{$name} {
-    margin-bottom: $value;
-  }
-  .ml-#{$name} {
-    margin-left: $value;
-  }
-  .margin-#{$name} {
-    margin: $value;
-  }
-  .pt-#{$name} {
-    padding-top: $value;
-  }
-  .pr-#{$name} {
-    padding-right: $value;
-  }
-  .pb-#{$name} {
-    padding-bottom: $value;
-  }
-  .pl-#{$name} {
-    padding-left: $value;
-  }
-  .padding-#{$name} {
-    padding: $value;
-  }
+    $value: map-get($size-map, $name);
+    .mt-#{$name} {
+        margin-top: $value;
+    }
+    .mr-#{$name} {
+        margin-right: $value;
+    }
+    .mb-#{$name} {
+        margin-bottom: $value;
+    }
+    .ml-#{$name} {
+        margin-left: $value;
+    }
+    .margin-#{$name} {
+        margin: $value;
+    }
+    .pt-#{$name} {
+        padding-top: $value;
+    }
+    .pr-#{$name} {
+        padding-right: $value;
+    }
+    .pb-#{$name} {
+        padding-bottom: $value;
+    }
+    .pl-#{$name} {
+        padding-left: $value;
+    }
+    .padding-#{$name} {
+        padding: $value;
+    }
 }
 
 @each $name in map-keys($theme-map) {
-  .c-#{$name} {
-    color: map-get($theme-map, $name) !important;
-  }
-}
-@for $i from 0 through 16 {
-	$v: ($i * 2) + 10;
-	.fs#{$v} {font-size: rem($v + px) }
+    .c-#{$name} {
+        color: map-get($theme-map, $name) !important;
+    }
 }
 
+@for $i from 0 through 16 {
+    $v: ($i * 2) + 10;
+    .fs#{$v} {
+        font-size: rem($v + px)
+    }
+}
 
 $font-size-map: ( 12: rem(12px), 14: rem(14px), 16: rem(16px), 18: rem(18px), 20: rem(20px), 24: rem(24px));
 @each $name in map-keys($font-size-map) {
-  $value: map-get($font-size-map, $name);
-  .fs-#{$name} {
-    font-size: $value;
-  }
+    $value: map-get($font-size-map, $name);
+    .fs-#{$name} {
+        font-size: $value;
+    }
 }
-
 
 $theme:#2D8cF0;
 $primary-color: #02C1DE;
@@ -155,8 +162,6 @@ $success-color: #3EC093;
 $info-color: #0091DB;
 $warning-color: #F7AD60;
 $error-color: #FF7570;
-
-
 input:-webkit-autofill {
     box-shadow: 0 0 0px 1000px white inset;
     border: 1px solid #CCC !important;
@@ -207,16 +212,19 @@ input:-webkit-autofill {
 .tc {
     text-align: center;
 }
+
 .df {
     display: -webkit-box;
     display: flex;
 }
-.flex1{
+
+.flex1 {
     -webkit-box-flex: 1;
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
 }
+
 .tl {
     text-align: left;
 }
@@ -280,6 +288,7 @@ input:-webkit-autofill {
 .text-success {
     color: $success-color;
 }
+
 .info-link,
 .text-info {
     color: $info-color;
@@ -289,41 +298,50 @@ input:-webkit-autofill {
 .text-warning {
     color: $warning-color;
 }
+
 .error-link,
 .text-error {
     color: $error-color;
 }
+
 .text-link,
 .success-link,
 .info-link,
 .warning-link,
 .error-link,
-.pointer{
+.pointer {
     cursor: pointer
 }
 
 .bd,
-.border-solid{
-    border:1px solid #ddd
+.border-solid {
+    border: 1px solid #ddd
 }
-.bl{
-    border-left:1px solid #ddd
+
+.bl {
+    border-left: 1px solid #ddd
 }
-.bt{
-    border-top:1px solid #ddd
+
+.bt {
+    border-top: 1px solid #ddd
 }
-.br{
-    border-right:1px solid #ddd
+
+.br {
+    border-right: 1px solid #ddd
 }
-.bb{
-    border-bottom:1px solid #ddd
+
+.bb {
+    border-bottom: 1px solid #ddd
 }
-.hi{
+
+.hi {
     height: inherit
 }
-.fb{
+
+.fb {
     font-weight: bold;
 }
+
 .fc-gray {
     color: #888
 }
@@ -360,20 +378,21 @@ input:-webkit-autofill {
     color: #999;
 }
 
-.radius3{
+.radius3 {
     border-radius: 3px
 }
-.radius4{
+
+.radius4 {
     border-radius: 4px
 }
-.radius5{
+
+.radius5 {
     border-radius: 5px
 }
-.lh20{
+
+.lh20 {
     line-height: 20px
 }
-
-
 
 .pos-r {
     position: relative;
@@ -389,9 +408,11 @@ input:-webkit-autofill {
     content: "";
     display: table;
 }
-.cn:after{
+
+.cn:after {
     clear: none;
 }
+
 .cf:after,
 .cl {
     clear: both;
@@ -406,13 +427,15 @@ input:-webkit-autofill {
     vertical-align: middle;
 }
 
-.vma-info{
+.vma-info {
     font-size: .7rem;
     color: #02c1de;
 }
-.vma-wanming{
+
+.vma-wanming {
     color: #ed4014;
 }
+
 .fb {
     font-weight: bold;
 }
@@ -432,8 +455,6 @@ input:-webkit-autofill {
 .margin-auto {
     margin: 0 auto;
 }
-
-
 
 @mixin ellipsis {
     text-overflow: ellipsis;

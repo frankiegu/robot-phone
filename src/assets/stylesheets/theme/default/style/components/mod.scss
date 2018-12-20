@@ -12,7 +12,7 @@
 .task {
     display: flex;
     @extend %clearfix;
-    height: calc(100vh - 105px);
+    height: calc(100vh - 125px);
     overflow: auto;
     .task-l1 {
         width: rem(378px);
@@ -27,6 +27,7 @@
         width: rem(471px);
         background: #FFFFFF;
         margin-left: rem(20px);
+        padding: 0 rem(10px);
         border-left: 1px solid #e5e5e5;
         overflow: auto;
     }
@@ -43,6 +44,7 @@
         border-radius: 0.25rem;
         background: #FFFFFF;
         margin-left: rem(14px);
+        padding: 0 rem(10px);
         overflow: auto;
         .nodata {
             margin-top: rem(40px);

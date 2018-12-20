@@ -40,8 +40,12 @@
             </div>
           </div>
         </div>
+        <div class="fleX pd30" v-if="isShow">
+          <Button :disabled="isdisable1" type="primary" ghost @click="upPage(0)">上一条</Button>
+          <Button :disabled="isdisable2" type="primary" ghost @click="upPage(1)">下一条</Button>
+        </div>
       </div>
-      <div class="task-r1" style="width:100%;overflow:hidden;">
+      <div class="task-r1" style="width:100%;">
         <chat :data="entity" :autoScroll="autoScroll"/>
       </div>
     </div>
@@ -51,7 +55,7 @@
 <script>
 import { detailMixin } from "@/mixins";
 import Chat from "./components/chat.vue";
-
+import callRecordApi from "@/api/ems/callRecord";
 export default {
   mixins: [detailMixin],
   components: {
@@ -61,14 +65,73 @@ export default {
     autoScroll: {
       type: Boolean,
       default: false
+    },
+    isShow:{
+      type: Boolean,
+      default: true
     }
   },
   data() {
     return {
+      isdisable1:false,
+      isdisable2:false,
       entity: {
         keywordList: []
       }
     };
+  },
+  created () {
+    //console.log("entity",this.entity)
+    if(this.entity.tableData.length<=1){
+        this.isdisable1 = true;
+         this.isdisable2 = true;
+      }else if(this.entity.currentIndex==0){
+         this.isdisable1 = true;
+      }
+      else if(this.entity.currentIndex+1==this.entity.tableData.length){
+         this.isdisable2 = true;
+      }
+      else{
+        this.isdisable1 = false;
+         this.isdisable2 = false;
+      }
+  },
+  methods:{
+    
+    upPage(num){
+      let currentIndex = this.entity.currentIndex;
+      let tableList = this.entity.tableData;           
+       if(num === 0){
+        currentIndex--
+        if(currentIndex<=0){
+          this.isdisable1 = true;
+        }
+        else{
+          this.isdisable1 = false;
+          this.isdisable2 = false;
+        }
+         this.$emit('showdetail',tableList[currentIndex].id,currentIndex);
+         
+      }
+      else{
+        currentIndex++;
+        if(currentIndex+1>=tableList.length){
+          this.isdisable2 = true;
+        }
+        else{
+           this.isdisable1 = false;
+           this.isdisable2 = false;
+        }
+        this.$emit('showdetail',tableList[currentIndex].id,currentIndex);
+        // 用于判断是否已读
+          if(tableList[currentIndex].isRead === 0){
+            console.log('====',tableList[currentIndex].isRead);
+            callRecordApi.isRead({ callId: tableList[currentIndex].id }).then(res => {
+                            this.$emit('listdetail',tableList[currentIndex].id)
+                          });
+          }
+      }
+    }
   }
 };
 </script>

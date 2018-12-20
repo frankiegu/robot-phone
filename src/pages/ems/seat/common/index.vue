@@ -1,5 +1,12 @@
 <template>
   <div>
+     <Breadcrumb separator=">">
+        <span class="home" @click="linkTo('emsHomeIndex')">
+          <BreadcrumbItem>首页</BreadcrumbItem>
+        </span>
+        <BreadcrumbItem>AI外呼</BreadcrumbItem>
+        <BreadcrumbItem>{{cardTypeName}}坐席</BreadcrumbItem>
+    </Breadcrumb>
     <div class="divide" :class="{full: fullScreen}">
       <div class="task">
         <div class="task-l divide-item">
@@ -82,13 +89,13 @@
         </div>
         <div class="task-r divide-main">
           <div class="panel" style="border-radius: 0px; box-shadow: none;">
-            <div class="panel-header">
+            <!-- <div class="panel-header">
              
               {{cardTypeName}}坐席详情
               <template v-if="detail && detail.id">
                 <slot name="detailOperator" :data="detail"/>
               </template>
-            </div>
+            </div> -->
             <div class="panel-body" v-show="!dataList.length">
               <p class="nodata">暂无数据!!</p>
             </div>
@@ -121,6 +128,7 @@ import seatMixin from "@/mixins/seatMixin";
 import baseInfo from "./baseInfo";
 import callRecord from "./callRecord";
 import { watchDateRangeToTimestamp } from "@/util";
+import Util from '@/util/util'
 export default {
   data() {
     return {
@@ -210,6 +218,9 @@ export default {
   },
   mixins: [seatMixin],
   methods: {
+    linkTo(name) {
+      Util.openPage(this, name);
+    },
     pageInit() {
       this.query.cardType = this.cardType;
       this.getSeatList();

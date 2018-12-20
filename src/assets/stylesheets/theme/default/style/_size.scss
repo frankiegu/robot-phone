@@ -1,26 +1,41 @@
 // padding
-$distance-map: (pd: padding, pt: padding-top, pb: padding-bottom, pr: padding-right, pl: padding-left , 
-				mg: margin, mt: margin-top, mb: margin-bottom, mr: margin-right, ml: margin-left);
-@each $key,$propety in $distance-map{
-	@for $i from 0 through 24 {
-		$v: $i * 5;
-		.#{$key}#{$v}{
-			#{$propety}: $v + px;
-		}
-	}	
+$distance-map: (pd: padding, pt: padding-top, pb: padding-bottom, pr: padding-right, pl: padding-left, mg: margin, mt: margin-top, mb: margin-bottom, mr: margin-right, ml: margin-left);
+@each $key,
+$propety in $distance-map {
+    @for $i from 0 through 24 {
+        $v: $i * 5;
+        .#{$key}#{$v} {
+            #{$propety}: $v + px;
+        }
+    }
 }
+
 @for $i from 0 through 10 {
-	$v: $i * 5;
-	.mlr#{$v}{ margin-left: $v + px; margin-right: $v + px;}
-	.mtb#{$v}{ margin-top: $v + px; margin-bottom: $v + px;}
-	.plr#{$v}{ padding-left: $v + px; padding-right: $v + px;}
-	.ptb#{$v}{ padding-top: $v + px; padding-bottom: $v + px;}
+    $v: $i * 5;
+    .mlr#{$v} {
+        margin-left: $v + px;
+        margin-right: $v + px;
+    }
+    .mtb#{$v} {
+        margin-top: $v + px;
+        margin-bottom: $v + px;
+    }
+    .plr#{$v} {
+        padding-left: $v + px;
+        padding-right: $v + px;
+    }
+    .ptb#{$v} {
+        padding-top: $v + px;
+        padding-bottom: $v + px;
+    }
 }
 
 // font-size
 @for $i from 0 through 10 {
-	$v: ($i * 2) + 12;
-	.fs#{$v} {font-size: $v + px; }
+    $v: ($i * 2) + 12;
+    .fs#{$v} {
+        font-size: $v + px;
+    }
 }
 
 // width
@@ -31,18 +46,30 @@ $distance-map: (pd: padding, pt: padding-top, pb: padding-bottom, pr: padding-ri
     $width3: $i*10 + 300;
     $width4: $i*10 + 400;
     $width5: $i*10 + 500;
-    .w#{$width} {width: $width + px !important;}
-    .w#{$width1} {width: $width1 + px !important;}
-    .w#{$width2} {width: $width2 + px !important;}
-    .w#{$width3} {width: $width3 + px !important;}
-    .w#{$width4} {width: $width4 + px !important;}
-    .w#{$width5} {width: $width5 + px !important;}
+    .w#{$width} {
+        width: $width + px !important;
+    }
+    .w#{$width1} {
+        width: $width1 + px !important;
+    }
+    .w#{$width2} {
+        width: $width2 + px !important;
+    }
+    .w#{$width3} {
+        width: $width3 + px !important;
+    }
+    .w#{$width4} {
+        width: $width4 + px !important;
+    }
+    .w#{$width5} {
+        width: $width5 + px !important;
+    }
 }
+
 // widht percent
 @for $i from 0 through 10 {
     $percent1: $i*5;
     $percent2: $i*5 + 50;
-    .wp#{$percent1} {width: $percent1 + % !important; } 
-    .wp#{$percent2} {width: $percent2 + % !important; }
+    // .wp#{$percent1} {width: $percent1 + % !important; } 
+    // .wp#{$percent2} {width: $percent2 + % !important; }
 }
-

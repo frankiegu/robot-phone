@@ -10,9 +10,9 @@ const extendBaseApi = (modular, apiVersion = apiVersionConfig, mock = false) => 
   let prefixUri = `/${apiVersion}/${modular}`
   return {
     /**
-     * 查询列表
-     * @param {*} params
-     */
+         * 查询列表
+         * @param {*} params
+         */
     list(params, options) {
       return axios(Object.assign({
         url: prefixUri,
@@ -23,9 +23,9 @@ const extendBaseApi = (modular, apiVersion = apiVersionConfig, mock = false) => 
       }, options))
     },
     /**
-     * 查询对象
-     * @param {*} id
-     */
+         * 查询对象
+         * @param {*} id
+         */
     get(id, options) {
       return axios(Object.assign({
         url: `${prefixUri}/${id}`,
@@ -35,9 +35,9 @@ const extendBaseApi = (modular, apiVersion = apiVersionConfig, mock = false) => 
       }, options))
     },
     /**
-     * 新增数据
-     * @param {*} data
-     */
+         * 新增数据
+         * @param {*} data
+         */
     save(data, options) {
       return axios(Object.assign({
         url: prefixUri,
@@ -48,9 +48,9 @@ const extendBaseApi = (modular, apiVersion = apiVersionConfig, mock = false) => 
       }, options))
     },
     /**
-     * 更新数据
-     * @param {*} data
-     */
+         * 更新数据
+         * @param {*} data
+         */
     update(data, options) {
       return axios(Object.assign({
         url: prefixUri,
@@ -61,16 +61,16 @@ const extendBaseApi = (modular, apiVersion = apiVersionConfig, mock = false) => 
       }, options))
     },
     /**
-     * 新增数据/更新数据
-     * @param {*} data
-     */
+         * 新增数据/更新数据
+         * @param {*} data
+         */
     saveOrUpdate(data, options) {
       return data.id ? this.update(data, options) : this.save(data, options)
     },
     /**
-     * 删除数据
-     * @param {*} id
-     */
+         * 删除数据
+         * @param {*} id
+         */
     del(id, options) {
       return axios(Object.assign({
         url: `${prefixUri}/${id}`,

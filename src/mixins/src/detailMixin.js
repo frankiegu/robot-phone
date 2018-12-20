@@ -26,7 +26,6 @@ export default {
     afterEntity(entity) {},
     get() {
       this.entity = Object.assign({}, this.entity, this.data)
-      // console.log('=========', this.entity)
       this.afterEntity(this.entity)
     }
   }

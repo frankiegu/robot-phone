@@ -2,18 +2,24 @@
     li {
         padding: rem(10px);
         transition: color, background .2s linear;
-        border-bottom: 1px dashed #e4e3e3;
+        border: 1px solid #D2D2D2;
+        border-radius: rem(5px);
+        margin-bottom: rem(10px);
         cursor: pointer;
         &.active,
         &:hover {
-            background-color: #f8f9fc;
+            border: 1px solid #80A3FF;
+            border-radius: rem(5px);
+            color: #80A3FF;
             @each $name in map-keys($theme-map) {
                 .c-#{$name} {
                     color: #FFF;
                 }
             }
-            .list-item-title2 {
-                color: #5983ff;
+            .list-item-main {
+                p {
+                    color: #80A3FF;
+                }
             }
         }
     }
@@ -75,6 +81,9 @@
         p {
             font-size: rem(14px);
         }
+        p:nth-child(1) {
+            color: #333;
+        }
     }
     .bulueLable {
         color: #666;
@@ -90,6 +99,7 @@
 
 .task-detail {
     position: relative;
+    font-size: rem(14px);
     .numTotal {
         z-index: 300;
         position: absolute;

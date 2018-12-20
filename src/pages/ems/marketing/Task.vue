@@ -1,5 +1,12 @@
 <template>
   <div class="divide" :class="{full: fullScreen}">
+    <Breadcrumb separator=">">
+        <span class="home" @click="linkTo('emsHomeIndex')">
+          <BreadcrumbItem>首页</BreadcrumbItem>
+        </span>
+        <BreadcrumbItem>AI外呼</BreadcrumbItem>
+        <BreadcrumbItem>任务管理</BreadcrumbItem>
+    </Breadcrumb>
     <div class="task">
       <div class="task-l divide-item">
         <div class="panel" style="border-radius: 0;box-shadow: none">
@@ -157,7 +164,7 @@ import ModDetail from "./components/task/detail";
 import ModForm from "./components/task/Form";
 import { CardSelect, WhisperingSelect } from "@/components/packages/ems/select";
 import taskEventBus from "./components/task/taskEventBus";
-
+import Util from '@/util/util'
 export default {
   name: "marketingTask",
   mixins: [indexMixin],
@@ -202,6 +209,9 @@ export default {
   methods: {
     getApi() {
       return taskApi;
+    },
+    linkTo(name) {
+      Util.openPage(this, name);
     },
     asyncOK() {
       this.$refs.myForm.submit();

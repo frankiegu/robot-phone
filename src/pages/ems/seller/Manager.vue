@@ -1,5 +1,12 @@
 <template>
   <div>
+    <Breadcrumb separator=">">
+        <span class="home" @click="linkTo('emsHomeIndex')">
+          <BreadcrumbItem>首页</BreadcrumbItem>
+        </span>
+        <BreadcrumbItem>团队管理</BreadcrumbItem>
+        <BreadcrumbItem>团队管理</BreadcrumbItem>
+    </Breadcrumb>
     <div class="divide" :class="{full: fullScreen}">
       <div class="task">
         <div class="task-r divide-main" style="margin-left:0;">
@@ -216,6 +223,7 @@ import { watchDateRangeToTimestamp } from "@/util";
 import ClientList from "./ClientList.vue";
 import BindWX from "./BindWX.vue";
 import Wx from "../wx";
+import Util from '@/util/util';
 const API_EMPLOYEE = API.ems.employee;
 
 export default {
@@ -273,6 +281,9 @@ export default {
     this.getClients();
   },
   methods: {
+     linkTo(name) {
+      Util.openPage(this, name);
+    },
     submitFrom(){
       this.$refs.myWx.submit();
     },

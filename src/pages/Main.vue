@@ -6,6 +6,7 @@
                    name="person" />
       <main-menu class="frame-nav" />
       <div class="frame-wrapper">
+         
         <div class="frame-main">
           <router-view class="container" />
           <!-- <div class="bottom_footer">Copyright©2018-2023 杭州快象网络技术有限公司 All Rights Reeserved 浙ICP备325235</div> -->
@@ -27,7 +28,6 @@
 import { mapMutations, mapGetters } from 'vuex'
 import mainHeader from '@/components/packages/main/Header.vue'
 import mainMenu from '@/components/packages/main/Menu.vue'
-import pageTags from '@/components/packages/main/Tags.vue'
 import Util from '@/util/util'
 import Protocol from './Protocol'
 import { SYSTEM } from '@/constants'
@@ -37,7 +37,6 @@ export default {
   components: {
     mainHeader,
     mainMenu,
-    pageTags,
     Protocol
   },
   name: 'mainIndex',
