@@ -138,12 +138,11 @@
       </div>
     </div>
     <Modal
+    class-name="vertical-center-modal"
       width="596"
       :mask-closable="false"
-      :footer-hide="true"
       v-model="form.show"
       :title="form.entity.id ? '编辑营销任务' : '新增营销任务'"
-      @on-ok="asyncOK"
     >
       <template v-if="form.show">
         <mod-form
@@ -153,6 +152,13 @@
           @after-submit="afterSubmitForm"
         />
       </template>
+      <div slot="footer">
+         <Button size="large" type="text"
+              style="margin-right: 8px"
+              @click="cancelForm">取消</Button>
+              <Button size="large" type="primary"
+              @click="submitTask">确定</Button>
+      </div>
     </Modal>
   </div>
 </template>
@@ -213,7 +219,7 @@ export default {
     linkTo(name) {
       Util.openPage(this, name);
     },
-    asyncOK() {
+    submitTask() {
       this.$refs.myForm.submit();
     },
     search() {

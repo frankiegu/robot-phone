@@ -1,5 +1,8 @@
 <template>
   <div class="home-body">
+    <Breadcrumb separator=">">
+          <BreadcrumbItem>首页</BreadcrumbItem>
+    </Breadcrumb>
     <div class="home-welcome fleX">
       <div class="v-middle">
         <img class="user-avtor" :src="userAvatar || defaultAvatar">

@@ -16,11 +16,12 @@
 
     <Modal v-model="protocol.show"
            title="用户协议"
+           :footer-hide="true"
            :mask-closable="false"
            width="60%"
            v-if="shouldProtocolShow">
       <protocol />
-      <p slot="footer"></p>
+      
     </Modal>
   </div>
 </template>

@@ -34,7 +34,7 @@
     <Row v-show="entity.isTransfer === 0">
       <FormItem label="机器坐席"
                 prop="cardRelateList">
-        <card-select v-model="entity.cardRelateList"
+        <card-select widths="230px" v-model="entity.cardRelateList"
                      nodataText="暂无可用坐席"
                      :options="{multiple: true}"
                      isFree />
@@ -230,7 +230,7 @@
         </FormItem>
       </div>
     </ms-fold>
-      <div class="form_footer">
+      <!-- <div class="form_footer">
         <div>
           <Button size="large" type="text"
               style="margin-right: 8px"
@@ -240,7 +240,7 @@
         <Button size="large" type="primary"
               @click="submit">确定</Button>
       </div>
-      </div>
+      </div> -->
     <Modal v-model="cardSlot.show"
            title="营销对象"
            width="400px">
@@ -341,6 +341,9 @@ export default {
         show: false,
         type: 1,
         columns: [ {
+          title: '姓名',
+          key: 'userName'
+        },{
           title: '手机号',
           key: 'mobile'
         }, {
@@ -454,9 +457,11 @@ export default {
       }))
     },
     addPhone(){
-      let list = {"mobile":this.phoneList};
-      this.afterSubmitAddCardSlot(list);
-      this.phoneList = [];
+      let list = {"mobile":this.phoneList,'userName':`客户${desenPhone(this.phoneList)}`};
+      let listArr = [];
+      listArr.push(list);
+      this.afterSubmitAddCardSlot(listArr);
+      // this.phoneList = [];
     },
     changeSwicth1(status){
       if(status){
@@ -587,7 +592,6 @@ export default {
     afterSubmitAddCardSlot(list) {
       console.log("list",list);
       this.exportXlsCardSlotList = this.exportXlsCardSlotList.concat(list)
-      this.addCardSlot.show = false
     },
     cancelAddCardSlot() {
       this.addCardSlot.show = false

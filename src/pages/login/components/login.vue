@@ -13,7 +13,8 @@
                    v-model.trim="form.account"
                    :maxlength="20"
                    placeholder="请输入登录账号"
-                   @keyup.native.enter="handleLoginSubmit" />
+                   @keyup.native.enter="handleLoginSubmit" >
+                   </i-input>
         </FormItem>
         <FormItem prop="password">
           <i-input type="password"

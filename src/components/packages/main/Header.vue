@@ -2,20 +2,26 @@
   <div>
     <div class="fleX">
       <!-- <button class="logout-btn" @click.native="handleLogout">退出</button> -->
-      <div class="l-logo">
+      <div class="fleX">
+        <div class="l-logo">
             <img class="logo" :src="platformLogo"
            v-if="platformLogo">
        <!-- {{ systemTitle }} -->
        </div>
-      <div class="fleX">
-         <div class="userMessage">
+       
+        <div v-if="iSExitFullscreen" class="top-fullScreen" @click="exitFullscreen">
+         <img src="../../../../static/images/exitFullScreen.svg" alt="">
+       </div>
+       <div v-else class="top-fullScreen" @click="handleFullScreen">
+         <img src="../../../../static/images/fullScrenn.svg" alt="">
+       </div>
+      </div>
+      <div  style="margin-right:40px;"> 
+      <Dropdown>
+        <div class="userMessage">
          <img class="user-avtor" :src="userAvatar || defaultAvatar" />
         <span class="companyNick">{{ userName }}</span>
        </div>
-      <Dropdown class="header-toggle">
-        <a href="javascript:void(0)">
-          <img src="../../../assets/images/setting.png" alt="">
-        </a>
         <DropdownMenu slot="list">
           <DropdownItem name="password"
                         @click.native="handlePersonClick">个人设置</DropdownItem>
@@ -39,7 +45,8 @@ export default {
   name: 'mainHeader',
   data(){
     return{
-      defaultAvatar: defaultAvatar
+      defaultAvatar: defaultAvatar,
+      iSExitFullscreen:false
     }
   },
   computed: {
@@ -58,6 +65,32 @@ export default {
     this.fetchUserInfo()
   },
   methods: {
+    handleFullScreen() {
+      this.iSExitFullscreen = true;
+            var de = document.documentElement;
+            if (de.requestFullscreen) {
+                de.requestFullscreen();
+            } else if (de.mozRequestFullScreen) {
+                de.mozRequestFullScreen();
+            } else if (de.webkitRequestFullScreen) {
+                de.webkitRequestFullScreen();
+            }
+        },
+         exitFullscreen() {
+           this.iSExitFullscreen = false;
+            var de = document;
+            if (de.exitFullscreen) {
+                de.exitFullscreen();
+
+            } else if (de.mozCancelFullScreen) {
+                de.mozCancelFullScreen();
+
+            } else if (de.webkitCancelFullScreen) {
+                de.webkitCancelFullScreen();
+
+            }
+            
+        },
     fetchUserInfo() {
       API_ADMIN.getAdminInfo()
         .then(res => {

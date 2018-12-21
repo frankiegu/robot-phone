@@ -15,7 +15,7 @@ export default {
     },
     widths: {
       type: String,
-      default: '180px'
+      default: '230px'
     },
     clearable: {
       type: Boolean,

@@ -2,7 +2,6 @@
   <span>
     <Select v-model="computedValue"
             v-bind="options"
-            style={width:widths}
             :placeholder="placeholder"
             :style="{width: widths}"
             :clearable="clearable"

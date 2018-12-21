@@ -2,6 +2,20 @@
  * 首页样式
  */
 
+.top-fullScreen {
+    height: rem(64px);
+    width: rem(80px);
+    text-align: center;
+    img {
+        padding: rem(5px);
+        margin-top: rem(15px);
+        cursor: pointer;
+        &:hover {
+            box-shadow: 1px 1px 10px #ccc;
+        }
+    }
+}
+
 .home-body {
     font-size: rem(16px);
     color: #333;
