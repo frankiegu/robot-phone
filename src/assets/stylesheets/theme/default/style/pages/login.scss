@@ -20,6 +20,14 @@ $forget-form-height: rem(36px);
 .login-bg {
     // background: $background-color-dark url(../images/login_bg.png) center no-repeat;
     background-size: cover;
+    .footertext {
+        position: absolute;
+        bottom: rem(80px);
+        width: 100%;
+        font-size: rem(14px);
+        color: #666;
+        text-align: center;
+    }
 }
 
 .loginCanvas {
@@ -49,6 +57,9 @@ $forget-form-height: rem(36px);
     .ivu-btn-primary {
         border-color: none !important;
     }
+    .ivu-tabs-bar {
+        border-bottom: none;
+    }
 }
 
 .forget-wrapper {
@@ -60,8 +71,9 @@ $forget-form-height: rem(36px);
 }
 
 .login-title {
+    margin-bottom: rem(30px);
     text-align: center;
-    font-size: rem(24px);
+    font-size: rem(20px);
     letter-spacing: rem(3px);
     line-height: rem(24px);
     color: $color-extra-dark;
@@ -122,7 +134,7 @@ $forget-form-height: rem(36px);
     padding: 0;
     width: 100%;
     color: #FFF;
-    background: #1f8cec;
+    background: #5983ff;
     text-align: center;
     border-radius: 2px;
 }
@@ -257,7 +269,7 @@ $forget-form-height: rem(36px);
     width: 100%;
     color: #666 !important;
     border: 1px solid $border-color-normal;
-    border-radius: 2px;
+    border-radius: 5px;
     &::-webkit-input-placeholder {
         color: $border-color-normal;
         background: #FFF;
@@ -277,16 +289,27 @@ $forget-form-height: rem(36px);
 }
 
 .login-form {
+    .rightTop {
+        position: fixed;
+        top: rem(-100px);
+        right: (-300px);
+    }
+    .ivu-checkbox-wrapper {
+        font-size: rem(14px);
+    }
     .ivu-form-item {
         position: relative;
         overflow: visible;
-        margin: rem(20px) 0 rem(25px) 0;
+        margin: rem(10px) 0 rem(25px) 0;
     }
     .ivu-input {
         @include ivu-input;
         font-size: rem(16px);
         height: $login-form-height;
         line-height: $login-form-height;
+    }
+    .ivu-tabs-nav {
+        margin-left: rem(61px);
     }
     .ivu-form-item-error {
         .ivu-input {

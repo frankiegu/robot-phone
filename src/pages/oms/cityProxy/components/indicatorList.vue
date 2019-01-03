@@ -5,31 +5,28 @@
         <Form class="panel-form" inline>
           <div class="fr">
             <FormItem>
-              <Input v-model="query.name" type="text" placeholder="搜索代理商">
-              <Icon type="search" slot="prepend"></Icon>
-              </Input>
+              <i-input style="width:230px;" search @on-search="loadList" v-model="query.name" type="text" placeholder="搜索代理商">
+              </i-input>
             </FormItem>
-            <FormItem>
-              <Button type="primary" @click="loadList">查询</Button>
-            </FormItem>
+           
           </div>
-          <FormItem label="" :label-width="20">
-            <i-select clearable v-model="query.status" @on-change='loadList' style="width: 120px;" placeholder="选择状态">
+          <FormItem label="">
+            <i-select clearable v-model="query.status" @on-change='loadList' style="width: 230px;" placeholder="选择状态">
               <Option v-for="(item,index) in statusOption" :key="index" :value="item.value">{{item.label}}</Option>
             </i-select>
           </FormItem>
-          <FormItem label="" :label-width="20">
-            <i-select clearable v-model="query.provinceId" @on-change='loadList' style="width: 120px;" placeholder="选择省份">
+          <FormItem label="">
+            <i-select clearable v-model="query.provinceId" @on-change='loadList' style="width: 230px;" placeholder="选择省份">
               <Option v-for="(item,index) in provinceList" :key="index" :value="item.provinceId">{{item.provinceName}}</Option>
             </i-select>
           </FormItem>
-          <FormItem label="" :label-width="20">
-            <i-select clearable v-model="query.cityId" @on-change='loadList' style="width: 120px;" placeholder="选择城市" :disabled="!(''+query.provinceId)">
+          <FormItem label="">
+            <i-select clearable v-model="query.cityId" @on-change='loadList' style="width: 230px;" placeholder="选择城市" :disabled="!(''+query.provinceId)">
               <Option v-for="(item,index) in cityList" :key="index" :value="item.cityId">{{item.cityName}}</Option>
             </i-select>
           </FormItem>
           <FormItem label="">
-            <i-select clearable v-model="query.proxyType" @on-change='loadList' style="width: 120px;" placeholder="选择代理商类型">
+            <i-select clearable v-model="query.proxyType" @on-change='loadList' style="width: 230px;" placeholder="选择代理商类型">
               <Option v-for="(item,index) in proxyTypeList" :key="index" :value="item.value">{{item.label}}</Option>
             </i-select>
           </FormItem>

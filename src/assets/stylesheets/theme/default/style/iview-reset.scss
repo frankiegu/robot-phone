@@ -3,6 +3,24 @@
     background: #fff;
 }
 
+.ivu-btn-primary {
+    background: #5983ff;
+}
+
+.ivu-btn-ghost {
+    background: #fff;
+}
+
+.ivu-radio-group-button .ivu-radio-wrapper,
+.ivu-radio-group-button .ivu-radio-wrapper:first-child {
+    border-radius: rem(5px);
+}
+
+.ivu-btn-error {
+    background-color: #F07466;
+    border-color: #F07466;
+}
+
 .ivu-tag-checked {
     background: #f1f1f1;
 }

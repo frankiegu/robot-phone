@@ -1,5 +1,6 @@
 <template>
   <Modal v-model="computedVisible"
+    :mask-closable="false"
          title="添加短信条数"
          style="width: 400px">
     <Form :label-width="140"
@@ -21,15 +22,14 @@
                      :step="10"
                      placeholder="添加短信条数" />
       </FormItem>
-      <FormItem>
-        <Button type="ghost"
-                style="margin-right: 8px"
+      
+    </Form>
+    <div slot="footer">
+      <Button type="text"
                 @click.native="cancel">取消</Button>
         <Button type="primary"
                 @click.native="submit">确定</Button>
-      </FormItem>
-    </Form>
-    <div slot="footer"></div>
+    </div>
   </Modal>
 </template>
 

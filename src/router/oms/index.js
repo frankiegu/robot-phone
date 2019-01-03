@@ -6,7 +6,7 @@ import * as types from './types'
 const ROUTER_MODULE = '/oms'
 export default [{
   path: `${ROUTER_MODULE}/`,
-  name: 'omsHome',
+  // name: 'omsHome',
   redirect: '/home',
   icon: 'icon-nav-home',
   meta: {
@@ -19,6 +19,7 @@ export default [{
     icon: 'icon-nav-home',
     title: '首页',
     meta: {
+      title: '首页',
       pass: true
     },
     component: resolve => {
@@ -48,6 +49,7 @@ export default [{
     path: `notice_info`,
     name: types.NOTICE_INFO,
     meta: {
+      title: '系统消息',
       id: '143'
     },
     title: '系统消息',
@@ -106,17 +108,17 @@ export default [{
   }]
 },
 
-// {
-//   path : `${ROUTER_MODULE}/provinceProxy`,
-//   icon : 'icon-nav-home',
-//   meta : {
-//     id: '132',
-//     pass: true
-//   },
-//   name : 'omsProvinceProxy',
-//   title : '省代管理',
-//   component : resolve => require(['@/pages/oms/provinceProxy/index'], resolve)
-// },
+  // {
+  //   path : `${ROUTER_MODULE}/provinceProxy`,
+  //   icon : 'icon-nav-home',
+  //   meta : {
+  //     id: '132',
+  //     pass: true
+  //   },
+  //   name : 'omsProvinceProxy',
+  //   title : '省代管理',
+  //   component : resolve => require(['@/pages/oms/provinceProxy/index'], resolve)
+  // },
 
 {
   path: `${ROUTER_MODULE}/cityProxy`,

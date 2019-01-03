@@ -545,7 +545,5 @@ export default {
   background-color: #dbe0e1;
   color: #3c3b3b;
 }
-.ivu-table-body::-webkit-scrollbar {
-  height: 10px;
-}
+
 </style>

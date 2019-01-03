@@ -16,18 +16,20 @@
     </Dropdown>
 
     <Modal v-model="importZip.show"
+    :footer-hide="true"
            title="导入话术">
       <div>
         <ms-upload :action="importZip.action"
                    accept="application/zip"
                    :format="['zip']"
                    :limit="1"
+                   :singleFileSize="30*1024"
                    @change="afterImportWhispering">
           <p slot="tip"
              style="margin-top: 10px;">请下载导入模板，参照模板格式上传文件，只允许zip格式<br />导入过程较慢，请耐心等待，不要重复导入</p>
         </ms-upload>
       </div>
-      <div slot="footer"></div>
+      
     </Modal>
   </span>
 </template>

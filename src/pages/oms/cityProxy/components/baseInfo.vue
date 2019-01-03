@@ -2,9 +2,10 @@
     <div class="task-detail">
         <div>
             <h1>{{detail.name}}
-                <ins :class="['medal',{'medal-gold':detail.cityProxyType==3,'medal-sliver':detail.cityProxyType==2,'medal-bronze':detail.cityProxyType==1}]">{{detail.cityProxyType|proxyType}}牌代理</ins>
+                <span class="idText">ID: {{detail.id}}</span>
                 <div class="fr">
                     <i-switch v-model="detail.status"
+                    size="large"
                               :true-value="1"
                               :false-value="0"
                               @on-change="statusChange">
@@ -13,148 +14,62 @@
                     </i-switch>
                 </div>
             </h1>
-            <div class="mt-20 ivu-row">
-                <div class="ivu-col ivu-col-span-4">
-                    <p>ID: {{detail.id}}</p>
+             <div class="mt-20 ivu-row">
+                 <div class="ivu-col ivu-col-span-5">
+                    <p>代理等级: {{detail.cityProxyType|proxyType}}牌</p>
                 </div>
-                <div class="ivu-col ivu-col-span-4">
-                    <p>{{detail.cityName}}</p>
+                <div class="ivu-col ivu-col-span-5">
+                    <p>代理城市: {{detail.cityName}}</p>
                 </div>
-                <div class="ivu-col ivu-col-span-4">
+                <div class="ivu-col ivu-col-span-5">
                     <p>上级代理: {{detail.superProxy}}</p>
                 </div>
+               
             </div>
-            <hr class="mt-20">
-            <div class="mt-20 nail nail-f-lg ivu-row"
-                 style="margin-left: -30px; margin-right: -30px;">
-                <div class="ivu-col ivu-col-span-6"
-                     style="padding-left: 25px; padding-right: 25px;">
-                    <div class="nail-item"
-                         style="width: 100%;">
-                        <h3>{{detail.remainPort}}</h3>
-                        <p>剩余可开通年端口数(个)</p>
-                    </div>
+            <div class="ivu-row">
+                 <div class="ivu-col ivu-col-span-5">
+                    <p>登录账号: {{detail.account}}</p>
                 </div>
-                <div class="ivu-col ivu-col-span-6"
-                     style="padding-left: 30px; padding-right: 30px;">
-                    <div class="nail-item"
-                         style="width: 100%;">
-                        <h3>{{detail.usePort}}</h3>
-                        <p>已开通年端口数(个)</p>
+                <div class="ivu-col ivu-col-span-5">
+                        <p>绑定手机号: {{detail.mobile||'--'}}</p>
                     </div>
-                </div>
-                <div class="ivu-col ivu-col-span-6"
-                     style="padding-left: 30px; padding-right: 30px;">
-                    <div class="nail-item"
-                         style="width: 100%;">
-                        <h3>{{detail.totalPort}}</h3>
-                        <p>累计购买年端口数(个)</p>
-                    </div>
-                </div>
-                <div class="ivu-col ivu-col-span-6"
-                     style="padding-left: 30px; padding-right: 30px;">
-                    <div class="nail-item"
-                         style="width: 100%;">
-                        <h3>{{detail.initPort}}</h3>
-                        <p>初始代理年端口数(个)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-20 nail nail-f-lg ivu-row"
-                 style="margin-left: -30px; margin-right: -30px;">
-                <div class="ivu-col ivu-col-span-6"
-                     style="padding-left: 25px; padding-right: 25px;">
-                    <div class="nail-item"
-                         style="width: 100%;">
-                        <h3>{{detail.monthCardRemainCount}}</h3>
-                        <p>剩余可开通月端口数(个)</p>
-                    </div>
-                </div>
-                <div class="ivu-col ivu-col-span-6"
-                     style="padding-left: 30px; padding-right: 30px;">
-                    <div class="nail-item"
-                         style="width: 100%;">
-                        <h3>{{detail.monthCardUseCount}}</h3>
-                        <p>已开通月端口数(个)</p>
-                    </div>
-                </div>
-                <div class="ivu-col ivu-col-span-6"
-                     style="padding-left: 30px; padding-right: 30px;">
-                    <div class="nail-item"
-                         style="width: 100%;">
-                        <h3>{{detail.monthCardAllCount}}</h3>
-                        <p>累计购买月端口数(个)</p>
-                    </div>
-                </div>
-                <div class="ivu-col ivu-col-span-6"
-                     style="padding-left: 30px; padding-right: 30px;">
-                    <div class="nail-item"
-                         style="width: 100%;">
-                        <h3>{{detail.monthCardInitCount}}</h3>
-                        <p>初始代理月端口数(个)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-20 ivu-row"
-                 style="margin-left: -30px; margin-right: -30px;">
-                <div class="ivu-col ivu-col-span-12"
-                     style="padding-left: 30px; padding-right: 30px;">
-                    <div class="case">
-                        <div class="case-item">
-                            <h3>{{detail.totalAmt}}</h3>
-                            <p>代理商总营业额(万)</p>
-                        </div>
-                        <div class="case-item">
-                            <h3>{{detail.profitAmt}}</h3>
-                            <p>代理商利润(万)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="ivu-col ivu-col-span-12"
-                     style="padding-left: 30px; padding-right: 30px;">
-                    <div class="case">
-                        <div class="case-item">
-                            <h3>{{detail.robotNum}}</h3>
-                            <p>机器坐席数(个)</p>
-                        </div>
-                        <div class="case-item">
-                            <h3>{{detail.humanNum}}</h3>
-                            <p>人工坐席数(个)</p>
-                        </div>
-                        <div class="case-item">
-                            <h3>{{detail.fixedNum}}</h3>
-                            <p>固定坐席数(个)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr class="mt-20">
-            <div class="mt-20 padding-20">
-                <div class="ivu-row">
-                    <div class="ivu-col ivu-col-span-8">
-                        <p>登录账号: {{detail.account}}</p>
-                    </div>
-                    <div class="ivu-col ivu-col-span-8">
-                        <p>绑定手机号: {{detail.mobile}}</p>
-                    </div>
-                </div>
-                <div class="ivu-row">
-                    <div class="ivu-col ivu-col-span-8">
-                        <p>联系人: {{detail.contactsName}}</p>
-                    </div>
-                    <div class="ivu-col ivu-col-span-8">
-                        <p>联系号码: {{detail.contactsMobile}}</p>
-                    </div>
-                </div>
-                <div class="ivu-row">
-                    <div class="ivu-col ivu-col-span-8">
-                        <p>联系地址: {{detail.contactsAddress}}</p>
-                    </div>
-                    <div class="ivu-col ivu-col-span-8">
+                    <div class="ivu-col ivu-col-span-5">
                         <p>创建时间: {{detail.createTime|msToDate}}</p>
                     </div>
-                </div>
+                     
             </div>
+            <div class="ivu-row">
+                
+                <div class="ivu-col ivu-col-span-5">
+                    <p>AI坐席数: {{detail.robotNum}}</p>
+                </div>
+                <div class="ivu-col ivu-col-span-5">
+                    <p>人工坐席数: {{detail.humanNum}}</p>
+                </div>
+                <div class="ivu-col ivu-col-span-5">
+                    <p>智能坐席数: {{detail.fixedNum}}</p>
+                </div>
+ 
+            </div>
+             <div class="middleboxWrap fleX mt-20">
+                 <div class="">
+                    <p class="text">
+                        <span class="red w115">{{detail.remainPort}}</span> <span class="weq">=</span><span class="fc-blue w115">{{detail.totalPort}}</span><span class="weq">-</span><span class="fc-blue w115">{{detail.usePort}}</span>
+                    </p>
+                     <p class="text">
+                        <span class="w115 mr-40">账户剩余年端口数</span> <span class="w115 mr-40">累计购买年端口数</span><span>累计使用年端口数</span>
+                    </p>
+                </div>
+               <div class="">
+                    <p class="text">
+                        <span class="red w115">{{detail.monthCardRemainCount}}</span> <span class="weq">=</span><span class="fc-blue w115">{{detail.monthCardAllCount}}</span><span class="weq">-</span><span class="fc-blue w115">{{detail.monthCardUseCount}}</span>
+                    </p>
+                     <p class="text">
+                        <span class="w115 mr-40">账户剩余月端口数</span> <span class="w115 mr-40">累计购买月端口数</span><span>累计使用月端口数</span>
+                    </p>
+                </div>
+               
+            </div>      
         </div>
         <!-- <div class="tc pd50" v-else>
             <span>暂无数据</span>

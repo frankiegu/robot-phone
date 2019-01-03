@@ -89,13 +89,12 @@
         </div>
         <div class="task-r divide-main">
           <div class="panel" style="border-radius: 0px; box-shadow: none;">
-            <!-- <div class="panel-header">
-             
+            <div class="panel-header">
               {{cardTypeName}}坐席详情
               <template v-if="detail && detail.id">
                 <slot name="detailOperator" :data="detail"/>
               </template>
-            </div> -->
+            </div>
             <div class="panel-body" v-show="!dataList.length">
               <p class="nodata">暂无数据!!</p>
             </div>

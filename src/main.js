@@ -17,6 +17,7 @@ import 'iview/dist/styles/iview.css'
 import './assets/stylesheets/theme/default'
 import VueTree from 'vue-simple-tree'
 import * as directives from './directives'
+// import './assets/stylesheets/theme/default/style/iview-theme.less'
 Vue.use(iView)
 Vue.use(VueTree)
 Vue.use(plugins)

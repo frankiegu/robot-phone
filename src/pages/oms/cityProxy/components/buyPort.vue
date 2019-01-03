@@ -1,35 +1,36 @@
 <template>
     <div>
         <Modal :value="visible"
+        :mask-closable="false"
                title="购买端口"
                @on-visible-change="onVisible">
-            <div>
+            <div class="ml-25">
                 <h3 class="mb10">后台端口信息</h3>
-                <Row class="tc mb20">
-                    <Col :span="12"> 剩余年端口数：{{platePortInfo.accountRemainPort }}</Col>
-                    <Col :span="12"> 剩余月端口数：{{platePortInfo.accountRemainMonthPort}}</Col>
+                <Row class="tc mb20 fs-14">
+                    <Col :span="12" class="text-l ml-40"> 剩余年端口数：{{platePortInfo.accountRemainPort }}</Col>
+                    <Col :span="8"  class="text-l"> 剩余月端口数：{{platePortInfo.accountRemainMonthPort}}</Col>
                 </Row>
                 <h3 class="mb10">{{entry.name}}市代里端口信息</h3>
-                <Row class="tc mb20">
-                    <Col :span="12"> 已购买年端口数：{{entry.totalPort}}</Col>
-                    <Col :span="12"> 剩余可用年端口数：{{entry.remainPort}}</Col>
+                <Row class="tc fs-14 mb20">
+                    <Col :span="12"  class="text-l ml-40"> 已购买年端口数：{{entry.totalPort}}</Col>
+                    <Col :span="8"  class="text-l"> 剩余可用年端口数：{{entry.remainPort}}</Col>
                 </Row>
-                <Row class="tc mb20">
-                    <Col :span="12"> 已购买月端口数：{{entry.monthCardAllCount}}</Col>
-                    <Col :span="12"> 剩余可用月端口数：{{entry.monthCardRemainCount}}</Col>
+                <Row class="tc fs-14 mb20">
+                    <Col :span="12"  class="text-l ml-40"> 已购买月端口数：{{entry.monthCardAllCount}}</Col>
+                    <Col :span="8"  class="text-l"> 剩余可用月端口数：{{entry.monthCardRemainCount}}</Col>
                 </Row>
-                <Row class="tc mb20">
-                    <Col :span="12"> 省份：{{entry.provinceName}}</Col>
-                    <Col :span="12"> 城市：{{entry.cityName}}</Col>
+                <Row class="tc fs-14 mb20">
+                    <Col :span="12"  class="text-l ml-40"> 省份：{{entry.provinceName}}</Col>
+                    <Col :span="8"  class="text-l"> 城市：{{entry.cityName}}</Col>
                 </Row>
                 <i-form :model="formData"
-                        :label-width="120"
+                        :label-width="110"
                         ref="formRef"
                         :rules="fromRules">
 
                     <FormItem label="代理商："
                               prop="adminId">
-                        {{entry.name}}
+                       <span class="fs-14"> {{entry.name}}</span>
                         <!-- <i-select clearable v-model="formData.adminId" placeholder="选择代理商" :disabled="!formData.cityId">
                             <Option v-for="(item,index) in adminList" :key="index" :value="item.id">{{item.name}}</Option>
                         </i-select> -->
@@ -65,7 +66,7 @@
                 </i-form>
             </div>
             <div slot="footer">
-                <i-button @click="dialogClose">取消</i-button>
+                <i-button @click="dialogClose" type="text">取消</i-button>
                 <i-button type="primary"
                           @click="onConfirm">确定</i-button>
             </div>

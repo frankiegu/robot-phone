@@ -1,5 +1,6 @@
 <template>
   <Modal v-model="computedVisible"
+  :mask-closable="false"
          title="修改讯飞Key">
     <Form :label-width="90"
           ref="form"
@@ -7,10 +8,10 @@
           :model="formXfKey"
           v-if="computedVisible">
       <FormItem label="sdk类型"
-                :label-width="0">
+                >
         <Select v-model="formXfKey.sdkType"
                 placeholder="选择类型"
-                style="width: 150px;">
+               >
           <Option value="0">默认</Option>
           <!--
           <Option value="1">讯飞sdk</Option>
@@ -30,17 +31,15 @@
         <Input v-model="formXfKey.appkey"
                placeholder="请输入ApiKey" />
       </FormItem>
-      <FormItem>
-        <Button type="ghost"
+      
+    </Form>
+    <div slot="footer">
+      <Button 
+                type="text"
                 size="large"
-                style="margin-right: 8px"
                 @click.native="cancel">取消</Button>
         <Button type="primary"
                 @click.native="submit">确定</Button>
-      </FormItem>
-    </Form>
-    <div slot="footer">
-
     </div>
   </Modal>
 </template>
@@ -148,6 +147,7 @@ export default {
     },
     submit() {
       this.$Modal.confirm({
+        title:"修改讯飞key",
         content: `确认修改讯飞key？`,
         width: 300,
         onOk: this.changKey

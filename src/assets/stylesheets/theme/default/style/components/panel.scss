@@ -13,8 +13,17 @@
         border-bottom: 1px solid #F1F1F1;
         font-size: rem(16px);
         line-height: rem(26px);
-        color: $color-dark;
+        color: #333;
         @extend %ellipse;
+        .v-before {
+            &::before {
+                content: "";
+                display: inline-block;
+                width: rem(3.5px);
+                height: rem(20px);
+                background: #5983ff;
+            }
+        }
         .panel-header-icon {
             vertical-align: middle;
             margin: 0 rem(10px) 0 0;
@@ -96,5 +105,29 @@
     p:nth-child(2) {
         font-size: rem(14px);
         color: #666;
+    }
+}
+
+.middleboxWrap {
+    background: #F5F8FB;
+    padding: rem(25px) rem(60px);
+    font-size: rem(16px);
+    .text {
+        span {
+            display: inline-block;
+            text-align: center;
+        }
+        .w115 {
+            width: rem(115px);
+        }
+        .weq {
+            width: rem(40px);
+        }
+        .red {
+            color: #EB4E3D;
+        }
+        &::nth-child(2) {
+            color: #666;
+        }
     }
 }

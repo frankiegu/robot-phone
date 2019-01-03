@@ -1,61 +1,45 @@
 <template>
   <div>
+    <Breadcrumb separator=">">
+      <span class="home" @click="linkTo('emsHomeIndex')">
+        <BreadcrumbItem>首页</BreadcrumbItem>
+      </span>
+      <BreadcrumbItem>坐席管理</BreadcrumbItem>
+    </Breadcrumb>
     <div class="divide" :class="{full: fullScreen}">
-      <div class="divide-item">
-        <div class="panel">
-          <div class="panel-body">
-            <i-form class="panel-form clear" inline>
-              <FormItem>
-                <i-select v-model="query.status" @on-change='handlerSearch' class="w200" placeholder="请选择状态">
-                  <i-option value="" >全部状态</i-option>
-                  <!-- 本页面不会出现审核中的状态 -->
-                  <i-option v-for="(item,i) in statusList" :value="i" :key="i" v-if="!!i">{{ item }}</i-option>
-                </i-select>
-              </FormItem>
-
-              <FormItem>
-                <DatePicker v-model="queryCreateTime" type="daterange" @on-change='handlerSearch' placeholder="选择创建时间" class="w200"></DatePicker>
-              </FormItem>
-
-              <FormItem>
-                <i-select v-model="query.adminId" class="w200" @on-change='handlerSearch' placeholder="请选择企业">
-                  <i-option value="" >全部</i-option>
-                  <i-option v-for="item in firmList" :key="item.id" :value="item.id">{{item.name}}</i-option>
-                </i-select>
-              </FormItem>
-
-              <FormItem>
-                <i-input v-model="query.mobile" type="text"  @on-enter='handlerSearch' placeholder="搜索坐席号码"></i-input>
-              </FormItem>
-
-              <div class="fr">
-                <FormItem>
-                  <i-button type="primary" @click="handlerSearch">查询</i-button>
-                </FormItem>
-              </div>
-            </i-form>
-          </div>
-        </div>
-      </div>
       <div class="task">
         <div class="task-l divide-item">
           <div class="panel">
             <div class="panel-header">
-              坐席列表
+             <Icon class="v-before fs18 mr10"></Icon>
+              <span class="vm">坐席列表</span>
+            </div>
+            <div class="padding-10" style="padding-bottom:0;">
+              <div class="fleX">
+                <i-select style="width:50%;" v-model="query.status" @on-change='handlerSearch'  placeholder="请选择状态">
+                  <i-option value="" >全部状态</i-option>
+                  <!-- 本页面不会出现审核中的状态 -->
+                  <i-option v-for="(item,i) in statusList" :value="i" :key="i" v-if="!!i">{{ item }}</i-option>
+                </i-select>
+                <DatePicker style="width:50%;" v-model="queryCreateTime" type="daterange" @on-change='handlerSearch' placeholder="选择创建时间"></DatePicker>
+              </div>
+              <div class="fleX mt-10">
+                  <i-select v-model="query.adminId"  @on-change='handlerSearch' placeholder="请选择企业">
+                  <i-option value="" >全部</i-option>
+                  <i-option v-for="item in firmList" :key="item.id" :value="item.id">{{item.name}}</i-option>
+                </i-select>
+                <i-input search @on-search="handlerSearch" v-model="query.mobile" type="text"  @on-enter='handlerSearch' placeholder="搜索坐席号码"></i-input>
+              </div>
             </div>
             <div class="panel-body">
               <ul class="list">
                 <li v-for="(item,i) in seatList" :key="i" :class="{'active' : current.id == item.id }" @click="handlerChangeCurrent(item)">
-                  <div class="list-item df">
-                    <div class="list-item-main flex1">
-                      <div class="list-item-title flex1">{{item.mobile}} </div>
-                      <div class="list-item-info">
-                        <span class="mr10">{{item.cardType | cardType}}</span>
+                      <div class="mb-5">{{item.mobile}} </div>
+                      <div>
+                        <span class="mr10 w120" style="display:inline-block;">{{item.cardType | cardType}}</span>
                         <span v-show="item.remainDays">{{item.remainDays}}天后到期</span>
-                      </div>
-                    </div>
-                    <span class="mt15">{{item.status | status}}</span>
-                  </div>
+                        <span class="mt15">{{item.status | status}}</span>
+                      </div>                  
                 </li>
               </ul>
 
@@ -66,19 +50,14 @@
         
         <div class="task-r divide-main">
           <div class="panel">
-            <div class="panel-header">
-              <i class="icon icon-enlarge panel-header-icon" :class="fullScreen ? 'icon-narrow' : 'icon-enlarge'" @click="() => fullScreen = !fullScreen"></i>
-              坐席详情
-            </div>
+           <div class="title mt-20 contentAfter">
+                     坐席详情
+                 </div>
             <div class="panel-body" v-if="!seatList.length">
                <p class="nodata">暂无数据!!</p>
             </div>
-            <div class="panel-body" v-else>
-              <Tabs value="1">
-                <TabPane label="基础信息" name="1">
-                  <seat-detail ref="detail" :current-id="current ? current.id : ''"></seat-detail>
-                </TabPane>
-              </Tabs>
+            <div class="panel-body" v-else>            
+                  <seat-detail ref="detail" :current-id="current ? current.id : ''"></seat-detail>               
             </div>
           </div>
         </div>
@@ -145,6 +124,9 @@ export default {
     },
   },
   methods: {
+     linkTo(name) {
+      Util.openPage(this, name);
+    },
     async init (){
       this.current = await this.loadSeatList()
     },

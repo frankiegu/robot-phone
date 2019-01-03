@@ -24,11 +24,19 @@
         line-height: rem(64px);
         text-align: center;
         background: $logoBox-color;
+        * {
+            vertical-align: middle;
+        }
         .logo {
-            width: rem(90px);
-            height: rem(36px);
+            width: rem(46px);
+            height: rem(46px);
+            border-radius: rem(23px);
             object-fit: cover;
             vertical-align: middle;
+        }
+        .logoText {
+            font-size: rem(18px);
+            color: #fff;
         }
     }
     .user-avtor {

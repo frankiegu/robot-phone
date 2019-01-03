@@ -3,7 +3,8 @@
     <Breadcrumb separator=">">
           <BreadcrumbItem>首页</BreadcrumbItem>
     </Breadcrumb>
-    <div class="home-welcome fleX">
+    <div class="overFlowScroll">
+       <div class="home-welcome fleX">
       <div class="v-middle">
         <img class="user-avtor" :src="userAvatar || defaultAvatar">
         <span class="middle-auto">{{judgeDate()}},</span>
@@ -127,7 +128,7 @@
 
     <div class="home-row">
       <div class="home-l">
-        <div class="panel">
+        <div class="panel"  style="margin-bottom:0;">
           <div class="panel-body" style="padding:1.2rem">
             <div class="fleX">
               <p class="home-title">拨号数据</p>
@@ -157,7 +158,7 @@
         </div>
       </div>
       <div class="home-r">
-        <div class="panel">
+        <div class="panel"  style="margin-bottom:0;">
           <div class="panel-body" style="padding:1.2rem">
             <div class="fleX">
               <p class="home-title">意向分布</p>
@@ -184,6 +185,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -256,7 +258,8 @@ const getLineChart = (res = {}, t) => {
             color: "#F0734B"
           }
         }
-      ]
+      ],
+       bottom:10
     },
     
     xAxis: {
@@ -285,27 +288,27 @@ const getLineChart = (res = {}, t) => {
     series: [
       {
         name: "呼出总数",
-        symbol: 'none',
         data: all,
-        type: type
+        type: type,
+        smooth: true //线条平滑
       },
       {
         name: "接通数量",
-        symbol: 'none',
         data: success,
-        type: type
+        type: type,
+        smooth: true //线条平滑
       },
       {
         name: "无法接通",
-        symbol: 'none',
         data: fail,
-        type: type
+        type: type,
+        smooth: true //线条平滑
       },
       {
         name: "拒接",
-        symbol: 'none',
         data: refuse,
-        type: type
+        type: type,
+        smooth: true //线条平滑
       }
     ],
     color: ["#0086fe", "#44c566", "#f6ce1a", "#e94867"]
@@ -326,7 +329,7 @@ const getLevelChart = res => {
     legend: {
       orient: "horizontal",
       left: 20,
-      bottom: 40,
+      bottom: 10,
       data: ["A", "B", "C", "D", "E", "F"],
       formatter: function(name) {
         let formatName = name;

@@ -2,7 +2,7 @@
   <div>
     <div class="panel home-row">
       <div class="panel-body home-call">
-        <span v-for="item in callCountArr"
+        <span v-for="(item,index) in callCountArr" :key="index"
               class="home-call-item">{{ item }}</span>
       </div>
     </div>

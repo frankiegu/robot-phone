@@ -5,12 +5,20 @@
         border: 1px solid #D2D2D2;
         border-radius: rem(5px);
         margin-bottom: rem(10px);
+        font-size: rem(14px);
         cursor: pointer;
+        .titles {
+            font-weight: bold;
+            color: #333;
+        }
         &.active,
         &:hover {
             border: 1px solid #80A3FF;
             border-radius: rem(5px);
             color: #80A3FF;
+            .titles {
+                color: #80A3FF;
+            }
             @each $name in map-keys($theme-map) {
                 .c-#{$name} {
                     color: #FFF;

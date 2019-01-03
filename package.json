@@ -24,6 +24,7 @@
     "js-cookie": "^2.2.0",
     "less": "^3.0.1",
     "particles.js": "^2.0.0",
+    "style-loader": "^0.23.1",
     "tinymce": "^4.7.10",
     "treant-js": "^1.0.1",
     "vma-vue-assist": "^1.1.13",

@@ -461,7 +461,6 @@ export default {
       let listArr = [];
       listArr.push(list);
       this.afterSubmitAddCardSlot(listArr);
-      // this.phoneList = [];
     },
     changeSwicth1(status){
       if(status){
@@ -590,7 +589,6 @@ export default {
       this.addCardSlot.show = true
     },
     afterSubmitAddCardSlot(list) {
-      console.log("list",list);
       this.exportXlsCardSlotList = this.exportXlsCardSlotList.concat(list)
     },
     cancelAddCardSlot() {

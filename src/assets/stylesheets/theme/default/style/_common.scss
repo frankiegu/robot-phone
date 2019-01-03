@@ -15,11 +15,11 @@
 
 .custom_scollBar {
     &::-webkit-scrollbar {
-        width: 10px;
+        width: 8px;
         height: 0;
     }
     &::-webkit-scrollbar-button {
-        background-color: #efefef;
+        // background-color: #efefef;
     }
     &::-webkit-scrollbar-track {
         background: transparent;
@@ -102,4 +102,9 @@
     width: rem(3px);
     height: rem(20px);
     background: #5983FF;
+}
+
+.overFlowScroll {
+    height: calc(100vh - 125px);
+    overflow: auto;
 }

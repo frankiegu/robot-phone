@@ -29,22 +29,22 @@ $call-count2: #24C7A9;
 }
 
 .home-welcome {
-    height: rem(139px);
+    display: flex;
+    height: rem(100px);
     font-size: rem(16px);
-    padding: rem(24px);
+    padding: 0 rem(25px);
     margin-bottom: rem(20px);
     align-items: center;
     background: #fff;
     border-radius: 3px;
-    justify-content: space-between;
     .v-middle {
         * {
             vertical-align: middle;
         }
     }
     .user-avtor {
-        width: rem(93px);
-        height: rem(93px);
+        width: rem(60px);
+        height: rem(60px);
         border-radius: 50%;
     }
     .middle-auto {
@@ -86,7 +86,7 @@ $call-count2: #24C7A9;
     .task-title {
         position: relative;
         height: rem(49px);
-        padding-left: rem(15px);
+        padding-left: rem(24px);
         line-height: rem(49px);
         border-bottom: 1px solid #e8e8e8;
         span {
@@ -248,7 +248,7 @@ $call-count2: #24C7A9;
 
 .home-accountData {
     margin-top: rem(20px);
-    padding: rem(23px);
+    padding: rem(20px) rem(25px);
     font-size: rem(16px);
     background: #fff;
     box-shadow: 0 3px 5px rgba(219, 224, 233, 0.42);
@@ -256,12 +256,12 @@ $call-count2: #24C7A9;
     .data-num {
         padding: rem(25px);
         p {
-            font-size: rem(16px);
+            font-size: rem(14px);
             color: #666;
         }
         div {
             width: 12.5%;
-            padding: 0 rem(30px);
+            padding: 0 rem(20px);
             text-align: center;
             border-right: 1px solid #e6ecfd;
             &:nth-last-child(1) {
@@ -359,6 +359,8 @@ $call-count2: #24C7A9;
 .home-call {
     display: flex;
     justify-content: space-between;
+    width: 88%;
+    margin: 0 auto;
 }
 
 .home-call-item {
@@ -374,7 +376,7 @@ $call-count2: #24C7A9;
 
 .home-header {
     font-size: rem(18px);
-    color: $color-dark;
+    color: #333;
 }
 
 .home-todo-list {
@@ -421,17 +423,13 @@ $call-count2: #24C7A9;
 
 .home-radio {
     .ivu-radio-wrapper {
+        width: rem(50px);
+        margin-right: rem(15px);
         padding: 0 rem(12px);
         height: rem(26px);
         line-height: rem(26px);
-        font-size: rem(16px);
+        font-size: rem(14px);
         color: $color-extra-dark;
-        &:first-child {
-            border-radius: 2px 0 0 2px;
-        }
-        &:last-child {
-            border-radius: 0 2px 2px 0;
-        }
         &:hover {
             color: $color-extra-dark;
             opacity: .8;
@@ -448,6 +446,7 @@ $call-count2: #24C7A9;
 
 .home-radio-r {
     .ivu-radio-wrapper {
+        width: rem(50px);
         margin-right: rem(20px);
         padding: 0 rem(20px);
         height: rem(26px);
@@ -455,18 +454,9 @@ $call-count2: #24C7A9;
         font-size: rem(16px);
         color: $color-extra-dark;
         background: $background-color-light;
-        border: none;
         &:before,
         &:after {
             display: none;
-        }
-        &:first-child {
-            border: none;
-            border-radius: 2px;
-        }
-        &:last-child {
-            border: none;
-            border-radius: 2px;
         }
         &:hover {
             color: $color-extra-dark;

@@ -1,42 +1,45 @@
 <template>
   <div>
+     <Breadcrumb separator=">">
+      <span class="home" @click="linkTo('emsHomeIndex')">
+          <BreadcrumbItem>首页</BreadcrumbItem>
+        </span>
+      <BreadcrumbItem>系统消息</BreadcrumbItem>
+    </Breadcrumb>
     <div class="panel">
       <div class="panel-body">
+         <div class="fr">
+            <Button type="primary"
+                    @click="showForm()">发布新消息</Button>
+          </div>
         <Form class="panel-form clear"
               inline
-              :label-width="80">
-          <div class="fr">
-            <FormItem>
-              <i-input type="text"
-                       placeholder="搜索ID"
-                       v-model.trim="params.id"
-                       @on-enter="search">
-                <Icon type="search"
-                      slot="prepend"></Icon>
-              </i-input>
-            </FormItem>
-            <FormItem :label-width="1">
-              <Button type="primary"
-                      @click="search">查询</Button>
-            </FormItem>
-          </div>
+              :label-width="80">                    
           <FormItem label="发布时间">
             <DatePicker type="daterange"
                         placeholder="选择日期"
-                        style="width: 200px;"
+                        style="width: 230px;"
                         v-model="dateRange"
                         @on-change="delaySearch" />
           </FormItem>
+           <FormItem>
+              <i-input type="text"
+                      search
+                      style="width:230px"
+                       placeholder="搜索ID"
+                       v-model.trim="params.id"
+                       @on-search="search"
+                       @on-enter="search">
+                
+              </i-input>
+            </FormItem>
         </Form>
       </div>
     </div>
     <div class="panel">
       <div class="panel-body">
         <div class="tool">
-          <div class="fr">
-            <Button type="primary"
-                    @click="showForm()">发布新消息</Button>
-          </div>
+         
           <Button type="error"
                   @click="showBatchDel">批量删除</Button>
         </div>
@@ -122,6 +125,9 @@ export default {
     this.$watch('dateRange', watchDateRangeToTimestamp(this.params, 'startTime', 'endTime'))
   },
   methods: {
+     linkTo(name) {
+      Util.openPage(this, name);
+    },
     getApi() {
       return noticeInfoApi
     }

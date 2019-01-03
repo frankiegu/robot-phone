@@ -27,8 +27,8 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'prod' ?
-      config.build.assetsPublicPath : config.dev.assetsPublicPath
+    publicPath: process.env.NODE_ENV === 'prod'
+            ? config.build.assetsPublicPath : config.dev.assetsPublicPath
   },
   resolve: {
     // 关于添加 '.less' 后缀
@@ -42,7 +42,7 @@ module.exports = {
     }
   },
   externals: {
-    'CKEDITOR': 'window.CKEDITOR',
+    'CKEDITOR': 'window.CKEDITOR'
     // 'vue': 'window.Vue',
     // 'vue-router': 'window.VueRouter',
     // 'vuex': 'window.Vuex',
@@ -62,6 +62,8 @@ module.exports = {
           loader: 'style-loader' // creates style nodes from JS strings
         }, {
           loader: 'css-loader' // translates CSS into CommonJS
+        }, {
+          loader: 'vue-loader'
         }, {
           loader: 'less-loader', // compiles Less to CSS
           options: {

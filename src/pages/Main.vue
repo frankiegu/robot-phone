@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <Modal v-model="protocol.show"
+    <!-- <Modal v-model="protocol.show"
            title="用户协议"
            :footer-hide="true"
            :mask-closable="false"
@@ -22,7 +22,7 @@
            v-if="shouldProtocolShow">
       <protocol />
       
-    </Modal>
+    </Modal> -->
   </div>
 </template>
 <script>
@@ -59,8 +59,8 @@ export default {
   },
   watch: {
     '$route'(to) {
-      // this.checkTag(to.name)
-      // this.setCurrentPageName(to.name)
+      this.checkTag(to.name)
+      this.setCurrentPageName(to.name)
     },
     'protocol.show'(val) {
       if (val === false) {

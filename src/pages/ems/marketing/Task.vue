@@ -42,6 +42,7 @@
               </div>
               <div class="mb10 fleX">
                   <card-select
+                  widths='100%'
                 v-model="params.cardRelateId"
                 placeholder="坐席号码"
                 @change="search"

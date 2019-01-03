@@ -3,20 +3,19 @@
     <i-table :data="tableParams.list" :columns="columns"></i-table>
 
     <div class="page-wrapper cf">
-        <Page simple show-sizer 
-          :total="tableParams.total" 
-          :current="currentPage" 
-          @on-change="onPageChange" />
-        <span class="fr">{{tableParams.total}}共条数据</span>
+      <Page
+        simple
+        show-sizer
+        :total="tableParams.total"
+        :current="currentPage"
+        @on-change="onPageChange"
+      />
+      <span class="fr">{{tableParams.total}}共条数据</span>
     </div>
-    
+
     <div v-if="lastDestroy">
-      <seat-renew v-model="modalShow" :entry="newEntry" @after-save='loadList' ></seat-renew>
+      <seat-renew v-model="modalShow" :entry="newEntry" @after-save="loadList"></seat-renew>
     </div>
-
-
-
-    
   </div>
 </template>
 <script>
@@ -82,26 +81,27 @@ export default {
               "2": "已过期",
               "3": "使用中"
             };
-            return h("span", type[`${params.row.status}`]);
+            if(params.row.status=='1'){
+               return h("span", {
+              style: {
+                color: "#32BD1B"
+              }
+            },
+             type[`${params.row.status}`]);
+            }
+           else if(params.row.status=='3'){
+              return h("span", {
+              style: {
+                color: "#5983FF"
+              }
+            },
+             type[`${params.row.status}`]);
+           }
+           else{
+              return h("span", 
+             type[`${params.row.status}`]);
+           }
           }
-        },
-        {
-          title: "操作",
-          // render: (h, params) => {
-          //   return (
-          //     <i-button
-          //       size="small"
-          //       class="ivu-btn-primary"
-          //       disabled={params.row.status == 0 || params.row.status == 2}
-          //       onClick={() => {
-          //         this.handlerEdit(params.row);
-          //       }}
-          //     >
-          //       {" "}
-          //       续费{" "}
-          //     </i-button>
-          //   );
-          // }
         }
       ],
 
@@ -121,9 +121,9 @@ export default {
       }
     }
   },
-  mounted() {
-    this.loadList()
-  },
+  // mounted() {
+  //   this.loadList()
+  // },
   methods: {
     // async loadList() {
     //   console.log('a')

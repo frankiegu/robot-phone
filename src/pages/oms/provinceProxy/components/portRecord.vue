@@ -32,9 +32,11 @@
                 this.loadList()
             }
         },
-        mounted() {
-            this.loadList()
-        },
+        // mounted() {
+        //    this.$nextTick(()=>{
+        //      this.loadList()
+        // })
+        // },
         methods: {
             async loadList() {
                 let vm = this

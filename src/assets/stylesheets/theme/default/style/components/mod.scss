@@ -52,11 +52,6 @@
             font-size: rem(16px);
         }
     }
-    .title {
-        font-size: rem(16px);
-        color: #333;
-        margin: rem(35px) 0;
-    }
     .distribute {
         height: rem(40px);
         padding: rem(8px) rem(12px);
@@ -159,8 +154,13 @@
 
 .task-detail {
     h1 {
-        font-size: rem(36px);
+        font-size: rem(16px);
         color: $color-title;
+        .idText {
+            font-size: rem(14px);
+            margin-left: rem(20px);
+            color: #999;
+        }
         em {
             font-size: rem(14px);
         }
@@ -256,19 +256,24 @@
 }
 
 .medal {
-    padding: 0 rem(10px);
-    border-radius: 2px;
+    width: rem(28px);
+    height: rem(28px);
+    line-height: rem(28px);
+    border-radius: 50%;
     font-size: rem(14px);
-    line-height: rem(20px);
+    text-align: center;
     color: #FFF;
     &.medal-gold {
-        background: #FFCA45;
+        border: 1px solid #F5CC23;
+        color: #F5CC23;
     }
     &.medal-sliver {
-        background: #7FA6CE;
+        border: 1px solid #A9BFE0;
+        color: #A9BFE0;
     }
     &.medal-bronze {
-        background: #EB816A;
+        border: 1px solid #DE9C60;
+        color: #DE9C60;
     }
 }
 
@@ -331,4 +336,20 @@
 .xlsx-btn-add {
     float: left;
     margin: 1px 5px -1px 0;
+}
+
+.title {
+    position: relative;
+    font-size: rem(16px);
+    color: #333;
+    padding-left: rem(15px);
+    margin-bottom: rem(15px);
+    &::before {
+        position: absolute;
+        left: 0;
+        content: "";
+        width: rem(3.5px);
+        height: rem(20px);
+        background: #5983ff;
+    }
 }

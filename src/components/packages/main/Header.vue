@@ -6,7 +6,7 @@
         <div class="l-logo">
             <img class="logo" :src="platformLogo"
            v-if="platformLogo">
-       <!-- {{ systemTitle }} -->
+       <span class="logoText">{{ systemTitle }}</span>
        </div>
        
         <div v-if="iSExitFullscreen" class="top-fullScreen" @click="exitFullscreen">
@@ -114,7 +114,7 @@ export default {
     },
     handleLogout() {
       this.$Modal.confirm({
-        title: '',
+        title: '退出登录',
         content: '<p>确认退出？</p>',
         onOk: () => {
           this.logout(this)

@@ -100,7 +100,7 @@ li {
     cursor: pointer;
 }
 
-$size-map: ( 5: rem(5px), 10: rem(10px), 15: rem(15px), 20: rem(20px), 25: rem(25px), 30: rem(30px));
+$size-map: ( 5: rem(5px), 10: rem(10px), 15: rem(15px), 20: rem(20px), 24: rem(24px), 25: rem(25px), 30: rem(30px), 40: rem(40px));
 @each $name in map-keys($size-map) {
     $value: map-get($size-map, $name);
     .mt-#{$name} {
@@ -156,7 +156,7 @@ $font-size-map: ( 12: rem(12px), 14: rem(14px), 16: rem(16px), 18: rem(18px), 20
     }
 }
 
-$theme:#2D8cF0;
+$theme:#5983ff;
 $primary-color: #02C1DE;
 $success-color: #3EC093;
 $info-color: #0091DB;
@@ -183,6 +183,10 @@ input:-webkit-autofill {
 
 .fl {
     float: left;
+}
+
+.box-shadow {
+    box-shadow: 0 3px 5px rgba(219, 224, 233, 0.42);
 }
 
 .fr {

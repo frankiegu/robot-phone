@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div style="max-height:32rem;overflow:auto;" class="custom_scollBar">
     <i-form :model="entity"
             :label-width="120"
             ref="form"
             :rules="rules"
-            style="width: 600px;margin: 10px auto;"
+            style="width: 400px;margin: 10px auto;"
             size="mini">
       <FormItem label="所属省份："
                 prop="provinceId">
@@ -72,7 +72,7 @@
         <i-input v-model="entity.password" type="password"></i-input>
       </FormItem>
 
-      <FormItem label="头像:"
+      <FormItem label="头像："
                 prop="headUrl">
         <ms-image-upload v-model="entity.headUrl" />
       </FormItem>
@@ -95,11 +95,6 @@
                  :rows="3"></i-input>
       </FormItem>
 
-      <div class="tc">
-        <i-button @click="handlerCancel">取消</i-button>
-        <i-button type="primary"
-                  @click="handlerSave">确定</i-button>
-      </div>
     </i-form>
   </div>
 </template>

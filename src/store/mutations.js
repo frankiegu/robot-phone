@@ -128,7 +128,7 @@ const mutations = {
       }
     }
     menuList.map((item) => {
-      return Object.assign(item, {selected: false})
+      return Object.assign(item, { selected: false })
     })
     state.menuList = menuList
   },

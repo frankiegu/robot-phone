@@ -6,32 +6,46 @@
           <Tag type="border" :color="tagColor[detail.status]">{{statusList[detail.status]}}</Tag>
         </div>
         <div class="mr100">
-          <h1>{{detail.mobile}}</h1>
-          <Row>
-            <i-col span="6">{{detail.nickName}}</i-col>
-            <i-col span="6">{{detail.cardType | cardType}}</i-col>
-            <i-col span="12">共呼出{{detail.callNum || 0}}次</i-col>
-          </Row>
+          <h1>{{detail.mobile}}<span class="idText">{{detail.cardType | cardType}}</span></h1>
+         
         </div>
-      </div>
+      </div>  
+       <div class=" ivu-row">
+                 <div class="ivu-col ivu-col-span-5">
+                    <p>通话次数： {{detail.callNum || 0}}次</p>
+                </div>
+                <div class="ivu-col ivu-col-span-5">
+                    <p>创建时间： {{detail.createTime | dateFormat}}</p>
+                </div>
+                <div class="ivu-col ivu-col-span-5">
+                    <p>到期时间： {{detail.endTime | dateFormat}}</p>
+                </div>
+               
+            </div>  
+             <div class="ivu-row">
+                 <div class="ivu-col ivu-col-span-5">
+                    <p>企业名称： {{detail.name}}</p>
+                </div>
+                <div class="ivu-col ivu-col-span-5">
+                    <p>市级代理商： {{detail.cityName}}</p>
+                </div>
+                <div class="ivu-col ivu-col-span-5">
+                    <p>省级代理商： {{detail.provinceName}}</p>
+                </div>
+               
+            </div> 
+             <div class="ivu-row">
+                 <div class="ivu-col ivu-col-span-5">
+                    <p>所属设备： {{detail.machineName}}</p>
+                </div>
+                <div class="ivu-col ivu-col-span-5">
+                    <p>所属端口： {{detail.slotNo}}</p>
+                </div>                  
+            </div>        
       
-      <hr class="mt20">
-      
-      <div class="mt20 pb20">
-        <Row  class="mb10">
-          <i-col class="mb10" :span="10">创建时间： {{detail.createTime | dateFormat}}</i-col>
-          <i-col class="mb10" :span="10">有效期至： {{detail.endTime | dateFormat}}</i-col>
-          <i-col class="mb10" :span="10">所属商家： {{detail.name}}</i-col>
-          <i-col class="mb10" :span="10">市级代理商： {{detail.cityName}}</i-col>
-          <i-col class="mb10" :span="10">所属设备： {{detail.machineName}}</i-col>
-          <i-col class="mb10" :span="10">省级代理商： {{detail.provinceName}}</i-col>
-          <i-col class="mb10" :span="10">所属端口： {{detail.slotNo}}</i-col>
-        </Row>
-      </div>
     </div>
     <!-- 没数据 -->
     <div v-show="!currentId" class="ptb50 tc"> <span>暂无数据</span> </div>
-
   </div>
 </template>
 

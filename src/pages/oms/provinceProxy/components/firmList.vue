@@ -47,9 +47,12 @@ export default {
             this.loadList()
         }
     },
-    mounted() {
-        this.loadList()
-    },
+    // mounted() {
+    //     this.$nextTick(()=>{
+    //          this.loadList()
+    //     })
+       
+    // },
     mixins: [tableMixin],
 
     methods: {
