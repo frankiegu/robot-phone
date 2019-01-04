@@ -1,6 +1,7 @@
 <template>
   <span>
     <Select v-model="computedValue"
+    :style="{width: widths}"
             v-bind="options"
             :placeholder="placeholder"
             :clearable="clearable"

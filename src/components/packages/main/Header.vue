@@ -21,13 +21,14 @@
         <div class="userMessage">
          <img class="user-avtor" :src="userAvatar || defaultAvatar" />
         <span class="companyNick">{{ userName }}</span>
+        <Icon type="ios-arrow-down" size='20'></Icon>
        </div>
-        <DropdownMenu slot="list">
+        <DropdownMenu slot="list" style="width:148px;">
           <DropdownItem name="password"
-                        @click.native="handlePersonClick">个人设置</DropdownItem>
+                        @click.native="handlePersonClick"><Icon type="md-settings" size='16' class="mr-5 mt--5"></Icon>个人设置</DropdownItem>
           <DropdownItem divided
                         name="logout"
-                        @click.native="handleLogout">退出登录</DropdownItem>
+                        @click.native="handleLogout"><Icon type="md-exit" size='16' class="mr-5 mt--5"></Icon>退出登录</DropdownItem>
         </DropdownMenu>
       </Dropdown>
       </div>

@@ -46,7 +46,17 @@
         vertical-align: middle;
     }
     .userMessage {
-        line-height: rem(64px)
+        line-height: rem(64px);
+        padding: 0 rem(10px);
+        cursor: pointer;
+        &:hover {
+            background: #ebf2fe;
+        }
+    }
+    .ivu-dropdown-item {
+        &:hover {
+            background: #ebf2fe;
+        }
     }
     .companyNick {
         width: 139px;

@@ -17,7 +17,7 @@
                 <Button type="primary" @click="showForm()">创建任务</Button>
               </div>
             </div>
-            <div class="mb20">
+            <div class="mb20 mt-10">
               <div class="fleX mb10">
                 <Select
                 style="width:50%;"
@@ -157,7 +157,7 @@
          <Button size="large" type="text"
               style="margin-right: 8px"
               @click="cancelForm">取消</Button>
-              <Button size="large" type="primary"
+              <Button  type="primary"
               @click="submitTask">确定</Button>
       </div>
     </Modal>

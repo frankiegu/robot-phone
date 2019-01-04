@@ -80,7 +80,7 @@
                   :key="index"
                   :class="{active:(item.id==activedId)}"
                   @click="selectItem(item)"
-                  v-if="itemList.length"
+                 
                 >
                   <div class="fleX" style="align-items: center">
                     <ins

@@ -285,17 +285,17 @@ input:-webkit-autofill {
 
 .text-link,
 .text-primary {
-    color: $primary-color;
+    color: $theme-primary;
 }
 
 .success-link,
 .text-success {
-    color: $success-color;
+    color: $theme-primary;
 }
 
 .info-link,
 .text-info {
-    color: $info-color;
+    color: #EB4E3D;
 }
 
 .warning-link,
@@ -454,6 +454,10 @@ input:-webkit-autofill {
 
 .flex-one {
     flex: 1;
+}
+
+.alCenter {
+    align-items: center;
 }
 
 .margin-auto {

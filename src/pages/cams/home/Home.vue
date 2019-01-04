@@ -1,108 +1,77 @@
 <template>
   <div>
-    <div class="panel home-row">
-      <div class="panel-body home-call">
-        <span v-for="item in callCountArr"
-              class="home-call-item">{{ item }}</span>
+    <Breadcrumb separator=">">
+      <BreadcrumbItem>首页</BreadcrumbItem>
+    </Breadcrumb>
+      <div class="home-welcome box-shadow">
+      <div class="v-middle">
+        <img class="user-avtor" :src="userAvatar || defaultAvatar">
+      </div>
+      <div class="ml30">
+        <div class="fs-18">
+          <span class="middle-auto">{{judgeDate}}，{{userName}}，</span>
+          <span class="middle-auto">祝您开心每一天！</span>
+        </div>
+        <div class="fs-14 fc6 mt-5">
+          所有企业昨日呼叫次数共计
+          <span class="fc-blue">{{callData.yesterday}}</span>次，今日已呼叫次数
+          <span class="fc-blue">{{callData.today}}</span>次
+        </div>
+      </div>
+       <div class="openseatBtn posit" @click="linkTo('camsFirmManage')">点我开通企业，开通坐席呀</div>
+    </div>
+        <div class="panel home-accountData">
+      <div class="home-header">数据汇总</div>
+      <div class="fleX data-num">
+         <div>
+          <p>企业数</p>
+          <p class="textColor"><a @click="linkTo('camsFirmManage')">{{ homepage.adminCount || 0 }}</a></p>
+        </div>
+        <div>
+          <p>未读消息</p>
+          <p class="textColor"><a @click="linkTo('CAMS-SETTING_NOTICE_INFO')">{{ homepage.unreadCount || 0  }}</a></p>
+        </div>
+         <div>
+          <p>年总端口数</p>
+          <p class="textColor"><a @click="linkTo('CAMS-PORT')">{{ homepage.allPortCount || 0 }}</a></p>
+        </div>
+         <div>
+          <p>剩余年可用端口数</p>
+          <p class="textColor"><a @click="linkTo('CAMS-PORT')">{{ homepage.freePortCount || 0 }}</a></p>
+        </div>
+        <div>
+          <p>月总端口数</p>
+          <p class="textColor"><a @click="linkTo('CAMS-PORT')">{{ homepage.allMonthPortCount || 0 }}</a></p>
+        </div>
+        <div>
+          <p>剩余月可用端口数</p>
+          <p class="textColor"><a @click="linkTo('CAMS-PORT')">{{ homepage.freeMonthPortCount || 0 }}</a></p>
+        </div>
+        <div>
+          <p>已到期坐席数</p>
+          <p class="textColor"><a @click="linkTo('camsSeatManage')">{{ homepage.timeouRobotCount || 0 }}</a></p>
+        </div>
+        <div>
+          <p>即将到期坐席数</p>
+          <p class="textColor"><a @click="linkTo('camsSeatManage')">{{ homepage.soonTimeoutRobotCount || 0 }}</a></p>
+        </div>
+        <div>
+          <p>总销售额（万）</p>
+          <p class="textColor">{{ homepage.allPrice || 0 }}</p>
+        </div>
       </div>
     </div>
-    <div class="home-row">
-      <div class="home-pms-l">
-        <div class="panel">
-          <div class="panel-body">
-            <p class="home-header">待处理数据</p>
-            <div class="home-todo-list">
-              <div class="home-todo-item">
-                <p>{{ homepage.unreadCount || 0 }}</p>
-                <p>未查看消息</p>
-                <p>
-                  <a @click="linkTo('CAMS-SETTING_NOTICE_INFO')">查看</a>
-                </p>
-              </div>
-              <div class="home-todo-item">
-                <p>{{ homepage.adminCount || 0 }}</p>
-                <p>开通企业数</p>
-                <p>
-                  <a @click="linkTo('camsFirmManage')">查看</a>
-                </p>
-              </div>
-              <div class="home-todo-item">
-                <p>{{ homepage.allPortCount || 0 }}</p>
-                <p>年总端口数</p>
-                <p>
-                  <a @click="linkTo('CAMS-PORT')">查看</a>
-                </p>
-              </div>
-              <div class="home-todo-item">
-                <p>{{ homepage.freePortCount || 0 }}</p>
-                <p>剩余年可用端口数</p>
-                <p>
-                  <a @click="linkTo('CAMS-PORT')">查看</a>
-                </p>
-              </div>
-              <div class="home-todo-item">
-                <p>{{ homepage.allMonthPortCount || 0 }}</p>
-                <p>月总端口数</p>
-                <p>
-                  <a @click="linkTo('CAMS-PORT')">查看</a>
-                </p>
-              </div>
-              <div class="home-todo-item">
-                <p>{{ homepage.freeMonthPortCount || 0 }}</p>
-                <p>剩余月可用端口数</p>
-                <p>
-                  <a @click="linkTo('CAMS-PORT')">查看</a>
-                </p>
-              </div>
-              <div class="home-todo-item">
-                <p>{{ homepage.timeouRobotCount || 0 }}</p>
-                <p>已到期坐席数量</p>
-                <p>
-                  <a @click="linkTo('camsSeatManage')">查看</a>
-                </p>
-              </div>
-              <div class="home-todo-item">
-                <p>{{ homepage.soonTimeoutRobotCount || 0 }}</p>
-                <p>即将到期坐席数量</p>
-                <p>
-                  <a @click="linkTo('camsSeatManage')">查看</a>
-                </p>
-              </div>
-              <div class="home-todo-item">
-                <p>{{ homepage.allPrice || 0 }}</p>
-                <p>总销售额(万元)</p>
-                <p>
-                  <a class="dis">查看</a>
-                </p>
-              </div>
-              <div class="home-todo-item">
-                <p>{{ homepage.allProfit || 0 }}</p>
-                <p>累计利润(万元)</p>
-                <p>
-                  <a class="dis">查看</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="home-pms-r">
-        <div class="panel">
-          <div class="panel-body home-pms-block">
-            <a class="home-pms-item"
-               @click="linkTo('camsFirmManage')">开通企业</a>
-            <a class="home-pms-item"
-               @click="linkTo('camsFirmManage')">开通坐席</a>
-            <!-- <a class="home-pms-item" @click="linkTo('camsSeatManage')">坐席续费</a> -->
-          </div>
-        </div>
+     <div class="panel home-row box-shadow pt-20 pl-25 pb-25">
+      <div class="home-header">总呼叫量</div>
+      <div class="pt-20 home-call">
+        <span v-for="(item,index) in callCountArr" :key="index" class="home-call-item">{{ item }}</span>
       </div>
     </div>
     <div class="home-row">
       <div class="home-l">
-        <div class="panel">
-          <div class="panel-body">
-            <p class="home-header">拨号数据</p>
+        <div class="panel box-shadow pl-25 pt-20 pr-25">
+          <div class="fleX">
+ <p class="home-header">拨号数据</p>
             <div class="home-opr">
               <RadioGroup class="home-radio"
                           v-model="callForm.days"
@@ -112,39 +81,9 @@
                        :key="item.value"
                        :label="item.value">{{ item.label }}</Radio>
               </RadioGroup>
-              <div class="fr">
-                <RadioGroup class="home-radio-r"
-                            v-model="callForm.type"
-                            @on-change="handleCallChartChange"
-                            type="button">
-                  <Radio :label="0">折线图</Radio>
-                  <Radio :label="1">柱状图</Radio>
-                </RadioGroup>
-                <span class="icon icon-download"
-                      @click="exportCallImg"></span>
-              </div>
             </div>
+          </div>
             <div class="home-body">
-              <div class="home-call-l">
-                <div class="home-call-block">
-                  <div class="left">
-                    <span class="circle circle-purple"></span>
-                  </div>
-                  <div class="right">
-                    <p class="num">{{ callData.yesterday }}</p>
-                    <p>昨日呼叫总数</p>
-                  </div>
-                </div>
-                <div class="home-call-block">
-                  <div class="left">
-                    <span class="circle circle-blue"></span>
-                  </div>
-                  <div class="right">
-                    <p class="num">{{ callData.today }}</p>
-                    <p>今日呼叫总数</p>
-                  </div>
-                </div>
-              </div>
               <div class="home-call-r">
                 <div class="home-chart">
                   <div id="echart1"
@@ -152,13 +91,12 @@
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
       <div class="home-r">
-        <div class="panel">
-          <div class="panel-body">
-            <p class="home-header">客户等级占比</p>
+        <div class="panel box-shadow pl-25 pt-20 pr-25">
+          <div class="fleX">
+            <p class="home-header">意向分布</p>
             <div class="home-opr">
               <RadioGroup class="home-radio"
                           v-model="levelForm.days"
@@ -168,24 +106,22 @@
                        :key="item.value"
                        :label="item.value">{{ item.label }}</Radio>
               </RadioGroup>
-              <div class="fr">
-                <span class="icon icon-download"
-                      @click="exportLevelImg"></span>
-              </div>
             </div>
+          </div>
             <div class="home-body">
               <div class="home-chart">
                 <div id="echart2"
                      class="echarts mt20" />
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import defaultAvatar from "@/assets/images/avtor.jpg";
+import { mapState, mapGetters } from "vuex";
 import echarts from 'echarts'
 import API from '@/api/index'
 import API_CALL from '@/api/common/call'
@@ -224,28 +160,28 @@ const getLineChart = (res = {}, t) => {
     tooltip: {
       trigger: 'axis'
     },
+    grid: {
+      top: "30"
+    },
     legend: {
+       itemWidth: 15,
+      itemHeight: 3,
+      itemGap: 10,
+       icon: "rect",
       data: [{
-        name: '呼出总数',
-        textStyle: {
-          color: '#3EC093'
-        }
+        name: '呼出总数'
+      
       }, {
-        name: '接通数量',
-        textStyle: {
-          color: '#53C9D7'
-        }
+        name: '接通数量'
+       
       }, {
-        name: '无法接通',
-        textStyle: {
-          color: '#C03E80'
-        }
+        name: '无法接通'
+       
       }, {
-        name: '拒接',
-        textStyle: {
-          color: '#F0734B'
-        }
-      }]
+        name: '拒接'
+        
+      }],
+      bottom:10
     },
     xAxis: {
       type: 'category',
@@ -253,6 +189,13 @@ const getLineChart = (res = {}, t) => {
       data: dt
     },
     yAxis: {
+      splitLine: {
+        show: true,
+        lineStyle: {
+          type: "dashed",
+          color: ["#ddd"]
+        }
+      },
       type: 'value',
       axisLine: {
         show: false
@@ -264,21 +207,25 @@ const getLineChart = (res = {}, t) => {
     series: [{
       name: '呼出总数',
       data: all,
-      type: type
+      type: type,
+      smooth: true //线条平滑
     }, {
       name: '接通数量',
       data: success,
-      type: type
+      type: type,
+      smooth: true //线条平滑
     }, {
       name: '无法接通',
       data: fail,
-      type: type
+      type: type,
+      smooth: true //线条平滑
     }, {
       name: '拒接',
       data: refuse,
-      type: type
+      type: type,
+      smooth: true //线条平滑
     }],
-    color: ['#3EC093', '#53C9D7', '#C03E80', '#F0734B']
+    color: ["#0086fe", "#44c566", "#f6ce1a", "#e94867"]
   }
 }
 // 获取圆饼图配置
@@ -294,9 +241,13 @@ const getLevelChart = res => {
       formatter: "{b}级: {d}% | {c}"
     },
     legend: {
-      orient: 'vertical',
-      left: 0,
-      top: 'middle',
+     itemWidth: 15,
+      itemHeight: 3,
+      itemGap: 10,
+      icon: "rect",
+      orient: "horizontal",
+      left: 50,
+      bottom: 50,
       data: ['A', 'B', 'C', 'D', 'E', 'F'],
       formatter: function (name) {
         let formatName = name
@@ -313,7 +264,7 @@ const getLevelChart = res => {
     },
     series: [{
       type: 'pie',
-      center: ['55%', '50%'],
+      center: ['50%', '40%'],
       radius: ['47%', '60%'],
       avoidLabelOverlap: false,
       label: {
@@ -338,7 +289,7 @@ const getLevelChart = res => {
         { value: res.levelF, name: 'F' }
       ]
     }],
-    color: ['#3EC093', '#F7AD60', '#0091DB', '#833EC0', '#F31668', '#F30000']
+     color: ["#f6ce1a", "#e94867", "#8238e0", "#338cff", "#3dc1c0", "#49c45a"]
   }
 }
 
@@ -346,6 +297,8 @@ export default {
   name: 'Home',
   data() {
     return {
+      defaultAvatar: defaultAvatar,
+      getDate: "",
       timer: null,
       callCount: 0,
       homepage: {},
@@ -369,6 +322,29 @@ export default {
     }
   },
   computed: {
+     ...mapState(["userType"]),
+    ...mapGetters(["userName", "userAvatar"]),
+    judgeDate() {
+      let now = new Date();
+      let hour = now.getHours();
+      if (hour < 6) {
+        this.getDate = "凌晨好";
+      } else if (hour < 9) {
+        return (this.getDate = "早上好");
+      } else if (hour < 12) {
+        return (this.getDate = "上午好");
+      } else if (hour < 14) {
+        return (this.getDate = "中午好");
+      } else if (hour < 17) {
+        return (this.getDate = "下午好");
+      } else if (hour < 19) {
+        return (this.getDate = "傍晚好");
+      } else if (hour < 22) {
+        return (this.getDate = "晚上好");
+      } else {
+        return (this.getDate = "夜里好");
+      }
+    },
     callCountArr() {
       const count = this.callCount
       if (Number.isInteger(count)) {
@@ -467,17 +443,8 @@ export default {
       if (name) {
         Util.openPage(this, name)
       }
-    },
-    exportCallImg() {
-      if (this.echart1) {
-        downloadBase64Img(this.echart1.getDataURL(), '拨号数据')
-      }
-    },
-    exportLevelImg() {
-      if (this.echart2) {
-        downloadBase64Img(this.echart2.getDataURL(), '客户等级占比')
-      }
     }
+   
   }
 }
 </script>

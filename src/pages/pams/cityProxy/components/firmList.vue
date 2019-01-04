@@ -1,5 +1,8 @@
 <template>
     <div>
+         <div class="title contentAfter mt-40 mb-10">
+                     企业列表
+                 </div>
         <Table :columns="firmColumns" :data="tableParams.list" stripe>
         </Table>
         <div class="page-wrapper" v-if="tableParams.total">
@@ -38,9 +41,9 @@
                 this.loadList()
             }
         },
-        mounted() {
-            this.loadList()
-        },
+        // mounted() {
+        //     this.loadList()
+        // },
         mixins: [tableMixin],
         methods: {
             async loadList() {

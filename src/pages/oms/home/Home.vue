@@ -14,8 +14,8 @@
         </div>
         <div class="fs-14 fc6 mt-5">
           所有企业昨日呼叫次数共计
-          <span class="fc-blue">3453</span>次，今日已呼叫次数
-          <span class="fc-blue">6555</span>次
+          <span class="fc-blue">{{callData.yesterday}}</span>次，今日已呼叫次数
+          <span class="fc-blue">{{callData.today}}</span>次
         </div>
       </div>
     </div>
@@ -66,7 +66,8 @@
     <div class="home-row">
       <div class="home-l">
         <div class="panel box-shadow pl-25 pt-20 pr-25">
-          <p class="home-header">拨号数据</p>
+          <div class="fleX">
+            <div class="home-header">拨号数据</div>
           <div class="home-opr fr">
             <RadioGroup
               class="home-radio"
@@ -76,6 +77,7 @@
             >
               <Radio v-for="item in callArr" :key="item.value" :label="item.value">{{ item.label }}</Radio>
             </RadioGroup>
+          </div>
           </div>
           <div>
             <div class="home-call-r">
@@ -87,9 +89,9 @@
         </div>
       </div>
       <div class="home-r">
-        <div class="panel box-shadow">
-          <div class="panel-body">
-            <p class="home-header">客户等级占比</p>
+        <div class="panel box-shadow  pl-25 pt-20 pr-25">
+          <div class="fleX">
+            <div class="home-header">意向分布</div>
             <div class="home-opr fr">
               <RadioGroup
                 class="home-radio"
@@ -104,13 +106,12 @@
                 >{{ item.label }}</Radio>
               </RadioGroup>
             </div>
-            <div style="clear:both;"></div>
+          </div>
             <div class="home-body">
               <div class="home-chart">
                 <div id="echart2" class="echarts mt20"/>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
@@ -157,7 +158,14 @@ const getLineChart = (res = {}, t) => {
     tooltip: {
       trigger: "axis"
     },
+     grid: {
+      top: "30"
+    },
     legend: {
+      itemWidth: 15,
+      itemHeight: 3,
+      itemGap: 10,
+       icon: "rect",
       data: [
         {
           name: "呼出总数",
@@ -252,9 +260,13 @@ const getLevelChart = res => {
       formatter: "{b}级: {d}% | {c}"
     },
     legend: {
+      itemWidth: 15,
+      itemHeight: 3,
+      itemGap: 10,
+       icon: "rect",
       orient: "horizontal",
-      left: 20,
-      bottom: 10,
+      left: 50,
+      bottom: 40,
       data: ["A", "B", "C", "D", "E", "F"],
       formatter: function(name) {
         let formatName = name;
@@ -273,7 +285,7 @@ const getLevelChart = res => {
       {
         type: "pie",
         center: ["50%", "40%"],
-        radius: ["45%", "63%"],
+        radius: ["47%", "63%"],
         avoidLabelOverlap: false,
         label: {
           normal: {

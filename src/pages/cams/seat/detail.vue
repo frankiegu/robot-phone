@@ -2,25 +2,26 @@
   <div class="task-detail">
     <div v-show="!!currentId">
       <div class="cf">
-        <div class="fr">
-          <Tag type="border" :color="tagColor[detail.status]">{{statusList[detail.status]}}</Tag>
-        </div>
+        
         <div class="mr100">
-          <h1>{{detail.mobile}}</h1>
-          <Row>
-            <i-col span="8">{{detail.name}}</i-col>
-            <i-col span="16">共呼出{{detail.callNum || 0}}次</i-col>
-          </Row>
+          <h1>{{detail.mobile}}
+            <span class="idText">{{detail.name}}</span>
+             <Tag class="fr" type="border" :color="tagColor[detail.status]">{{statusList[detail.status]}}</Tag>
+          </h1>
+          <div class="mt-5 ivu-row">
+                 <div class="ivu-col ivu-col-span-7">
+                    <p>通话次数: {{detail.callNum || 0}}</p>
+                </div>
+                <div class="ivu-col ivu-col-span-7">
+                    <p>创建时间: {{detail.createTime | dateFormat}}</p>
+                </div>
+                <div class="ivu-col ivu-col-span-7">
+                    <p>到期时间: {{detail.endTime | dateFormat}}</p>
+                </div>
+               
+            </div>
+          
         </div>
-      </div>
-      
-      <hr class="mt20">
-      
-      <div class="mt20 pb20">
-        <Row  class="mb10">
-          <i-col :span="10">创建时间： {{detail.createTime | dateFormat}}</i-col>
-          <i-col :span="10">有效期至： {{detail.endTime | dateFormat}}</i-col>
-        </Row>
       </div>
       <!-- <div class="bb fs16 ptb10 mtb20"> 续费记录 </div>
       <div v-if="!renewRecords.length">无</div>

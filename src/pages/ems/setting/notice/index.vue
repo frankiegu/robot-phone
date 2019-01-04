@@ -8,8 +8,8 @@
         <BreadcrumbItem>我的消息</BreadcrumbItem>
     </Breadcrumb>
     <div class="task">
-      <div class="task-r pd20" style="margin-left:0">
-        <div class="title pl20 contentAfter ml10" style="position: relative;">我的消息</div>
+      <div class="task-r" style="margin-left:0">
+        <div class="title pt-20  pl20 contentAfter ml10" style="position: relative;">我的消息</div>
         <div class="panel pl80 pr80">
           <div class="panel-body">
             <div>
@@ -17,6 +17,7 @@
                        search
                        style="width:30%;margin-left:35%"
                        class="mb20"
+                       enter-button
                        @on-search="search"
                        placeholder="搜索消息标题"
                        v-model.trim="params.title"
@@ -53,10 +54,10 @@
         </div>
       </div>
     </div>
-    <ms-panel v-model="detail.show"
+    <Modal :footer-hide="true" v-model="detail.show"
               title="消息详情">
       <mod-detail :data="detail.entity" />
-    </ms-panel>
+    </Modal>
   </div>
 </template>
 <script>

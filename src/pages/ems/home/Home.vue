@@ -3,8 +3,7 @@
     <Breadcrumb separator=">">
           <BreadcrumbItem>首页</BreadcrumbItem>
     </Breadcrumb>
-    <div class="overFlowScroll">
-       <div class="home-welcome fleX">
+       <div class="home-welcome fleX box-shadow">
       <div class="v-middle">
         <img class="user-avtor" :src="userAvatar || defaultAvatar">
         <span class="middle-auto">{{judgeDate()}},</span>
@@ -44,7 +43,7 @@
       </div>
       <div class="home-right">
         <div class="rTop-box">
-          <div class="title">快速开始/便捷导航</div>
+          <div class="titles">快速开始/便捷导航</div>
           <div class="content">
             <div
               @click="linkTo(item.route)"
@@ -54,7 +53,7 @@
           </div>
         </div>
         <div class="rBottom-box">
-          <div class="title">进度监控器</div>
+          <div class="titles">进度监控器</div>
           <div class="waterBox">
             <div id="water-earth" class="water-ball"></div>
           </div>
@@ -128,7 +127,7 @@
 
     <div class="home-row">
       <div class="home-l">
-        <div class="panel"  style="margin-bottom:0;">
+        <div class="panel box-shadow"  style="margin-bottom:0;">
           <div class="panel-body" style="padding:1.2rem">
             <div class="fleX">
               <p class="home-title">拨号数据</p>
@@ -158,7 +157,7 @@
         </div>
       </div>
       <div class="home-r">
-        <div class="panel"  style="margin-bottom:0;">
+        <div class="panel box-shadow"  style="margin-bottom:0;">
           <div class="panel-body" style="padding:1.2rem">
             <div class="fleX">
               <p class="home-title">意向分布</p>
@@ -185,7 +184,6 @@
           </div>
         </div>
       </div>
-    </div>
     </div>
   </div>
 </template>
@@ -232,7 +230,14 @@ const getLineChart = (res = {}, t) => {
     tooltip: {
       trigger: "axis"
     },
+    grid: {
+      top: "30"
+    },
     legend: {
+       itemWidth: 15,
+      itemHeight: 3,
+      itemGap: 10,
+       icon: "rect",
       data: [
         {
           name: "呼出总数",
@@ -259,7 +264,7 @@ const getLineChart = (res = {}, t) => {
           }
         }
       ],
-       bottom:10
+       bottom:0
     },
     
     xAxis: {
@@ -327,8 +332,12 @@ const getLevelChart = res => {
       formatter: "{b}级: {d}% | {c}"
     },
     legend: {
+      itemWidth: 15,
+      itemHeight: 3,
+      itemGap: 10,
+       icon: "rect",
       orient: "horizontal",
-      left: 20,
+      left: 50,
       bottom: 10,
       data: ["A", "B", "C", "D", "E", "F"],
       formatter: function(name) {
@@ -348,7 +357,7 @@ const getLevelChart = res => {
       {
         type: "pie",
         center: ["50%", "40%"],
-        radius: ["45%", "63%"],
+        radius: ["47%", "60%"],
         avoidLabelOverlap: false,
         label: {
           normal: {

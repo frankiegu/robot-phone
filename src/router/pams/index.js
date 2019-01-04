@@ -37,7 +37,7 @@ export default [{
 }, {
   path: `${ROUTER_MODULE}/cityProxy`,
   icon: 'icon-nav-home',
-  meta: {id:'123'},
+  meta: { id: '123' },
   title: '市级代理管理',
   component: Main,
   children: [{
@@ -46,28 +46,30 @@ export default [{
     title: '市级代理',
     meta: {
       // pass: true,
-      id:'127'
+      id: '127'
     },
     component: resolve => require(['@/pages/pams/cityProxy/index'], resolve)
   }]
-},{
-  path: `${ROUTER_MODULE}`,
-  icon: 'icon-nav-marketing',
-  title: '端口管理',
-  component: Main,
-  meta: {
-    id: '124'
-  },
-  children: [{
-    path: `port`,
-    name: types.PORT,
-    meta: {
-      id: '129'
-    },
-    title: '端口管理',
-    component: resolve => require(['@/pages/pams/port'], resolve),
-  }]
-}, {
+},
+  //  {
+  //   path: `${ROUTER_MODULE}`,
+  //   icon: 'icon-nav-marketing',
+  //   title: '端口管理',
+  //   component: Main,
+  //   meta: {
+  //     id: '124'
+  //   },
+  //   children: [{
+  //     path: `port`,
+  //     name: types.PORT,
+  //     meta: {
+  //       id: '129'
+  //     },
+  //     title: '端口管理',
+  //     component: resolve => require(['@/pages/pams/port'], resolve)
+  //   }]
+  // },
+{
   path: `${ROUTER_MODULE}`,
   icon: 'icon-nav-marketing',
   meta: {
@@ -82,7 +84,7 @@ export default [{
       id: '129'
     },
     title: '财务统计',
-    component: resolve => require(['@/pages/pams/finance'], resolve),
+    component: resolve => require(['@/pages/pams/finance'], resolve)
   }]
 }, {
   path: `${ROUTER_MODULE}/setting`,
@@ -109,4 +111,5 @@ export default [{
     },
     component: resolve => require(['@/pages/pams/setting/log'], resolve)
   }]
-}]
+}
+]

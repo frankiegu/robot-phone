@@ -1,27 +1,13 @@
 <template>
   <div>
+
     <div class="panel">
+      
       <div class="panel-body">
         <Form class="panel-form"
               inline
-              :label-width="60">
-          <div class="fr">
-            <FormItem>
-              <i-input type="text"
-                       placeholder="搜索ID"
-                       style="width: 220px;"
-                       v-model.trim="params.id"
-                       @keyup.enter="search">
-                <Icon type="search"
-                      slot="prepend"></Icon>
-              </i-input>
-            </FormItem>
-            <FormItem :label-width="1">
-              <Button type="primary"
-                      @click="search">查询</Button>
-            </FormItem>
-          </div>
-          <FormItem label="城市">
+              :label-width="80">
+          <FormItem label="城市" :label-width="80">
             <city-select v-model="params.cityId"
                          @change="search" />
           </FormItem>
@@ -42,6 +28,17 @@
               <Option value="2">支出</Option>
             </Select>
           </FormItem>
+           <FormItem :label-width="80">
+              <i-input type="text"
+              search
+              @on-search="search"
+                       placeholder="搜索ID"
+                       style="width: 230px;"
+                       v-model.trim="params.id"
+                       @keyup.enter="search">
+               
+              </i-input>
+            </FormItem>
         </Form>
       </div>
     </div>
@@ -58,7 +55,7 @@
           <span class="ml-20">累计使用月端口数：{{portDetail.saleMonthPort}}</span>
         </div>
         <hr class="mt-10 mb-20" />
-        <Table :columns="table.columns"
+        <Table stripe :columns="table.columns"
                :data="table.list"
                ref="table" />
         <ms-pagination :pageNum="params.pageNum"
