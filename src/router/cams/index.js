@@ -14,7 +14,7 @@ export default [{
   children: [{
     path: 'home',
     name: 'camsHomeIndex',
-    icon: 'icon-nav-home',
+    icon: '#icon-home',
     title: '首页',
     meta: {
       pass: true
@@ -38,35 +38,35 @@ export default [{
 {
   path: `${ROUTER_MODULE}/seat`,
   name: 'camsSeat',
-  icon: 'icon-nav-marketing', // 自定义的图标
+  icon: '#icon-dianhuaji', // 自定义的图标
   meta: {
-      id: '112'
+    id: '112'
   },
   title: '坐席管理', // 自定义的 tab 标题
   component: Main,
   children: [{
-      path: 'manage',
-      name: 'camsSeatManage',
-      title: '坐席列表',
-      meta: {
-          id: '117'
-      },
-      component: r => {
-          require(['@/pages/cams/seat'], r)
-      }
+    path: 'manage',
+    name: 'camsSeatManage',
+    title: '坐席列表',
+    meta: {
+      id: '117'
+    },
+    component: r => {
+      require(['@/pages/cams/seat'], r)
+    }
   },
   {
-      path: 'apply',
-      name: 'camsSeatApply',
-      title: '坐席申请列表',
-      meta: {
-          id: '118'
-      },
-      component: r => {
-          require(['@/pages/cams/seat/apply'], r)
-      }
+    path: 'apply',
+    name: 'camsSeatApply',
+    title: '坐席申请列表',
+    meta: {
+      id: '118'
+    },
+    component: r => {
+      require(['@/pages/cams/seat/apply'], r)
+    }
   }]
-}, 
+},
 {
   path: `${ROUTER_MODULE}/firm`,
   name: 'camsFirm',
@@ -88,26 +88,28 @@ export default [{
       require(['@/pages/cams/firm'], r)
     }
   }]
-}, {
+},
+// {
+//   path: `${ROUTER_MODULE}`,
+//   icon: 'icon-nav-marketing',
+//   meta: {
+//     id: '114'
+//   },
+//   title: '端口管理',
+//   component: Main,
+//   children: [{
+//     path: `port`,
+//     name: types.PORT,
+//     meta: {
+//       id: '121'
+//     },
+//     title: '端口管理',
+//     component: resolve => require(['@/pages/cams/port'], resolve),
+//   }]
+// },
+{
   path: `${ROUTER_MODULE}`,
-  icon: 'icon-nav-marketing',
-  meta: {
-    id: '114'
-  },
-  title: '端口管理',
-  component: Main,
-  children: [{
-    path: `port`,
-    name: types.PORT,
-    meta: {
-      id: '121'
-    },
-    title: '端口管理',
-    component: resolve => require(['@/pages/cams/port'], resolve),
-  }]
-}, {
-  path: `${ROUTER_MODULE}`,
-  icon: 'icon-nav-marketing',
+  icon: '#icon-caiwu',
   meta: {
     id: '115'
   },
@@ -120,11 +122,11 @@ export default [{
       id: '122'
     },
     title: '财务统计',
-    component: resolve => require(['@/pages/cams/finance'], resolve),
+    component: resolve => require(['@/pages/cams/finance'], resolve)
   }]
 }, {
   path: `${ROUTER_MODULE}/setting`,
-  icon: 'icon-nav-marketing',
+  icon: '#icon-xitong',
   meta: {
     id: '116'
   },

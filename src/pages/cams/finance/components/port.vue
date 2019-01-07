@@ -1,9 +1,8 @@
 <template>
   <div>
 
-
     <div class="panel">
-         <div class="middleboxWrap fleX mb-30" style="padding-left:3rem;padding-right:3rem">
+      <div class="middleboxWrap fleX mt-20" style="padding-left:3rem;padding-right:3rem">
                  <div>
                     <p class="text">
                         <span class="red w115">{{portDetail.accountRemainPort}}</span> <span class="weq">=</span><span class="fc-blue w115">{{portDetail.cumulativeBuyPort}}</span><span class="weq">-</span><span class="fc-blue w115">{{portDetail.salePort}}</span>
@@ -21,30 +20,27 @@
                     </p>
                 </div>
                
-            </div>     
-            <div class="panel">
+            </div> 
+      <div class="panel-body">
+           <div class="panel">
+      <div class="panel-body">
         <Form class="panel-form"
               inline
-              :lable-width="78"
-              >
+              :label-width="40">
            
-          <FormItem>
-            <city-select placeholder="选择城市" widths="162px" v-model="params.cityId"
-                         @change="search" />
-          </FormItem>
+         
           <FormItem>
             <DatePicker type="daterange"
                         placeholder="选择日期"
-                        style="width: 162px;"
+                        style="width: 220px;"
                         v-model="dateRange"
                         @on-change="delaySearch" />
           </FormItem>
-          <FormItem >
-            <Select 
+          <FormItem>
+            <Select style="width: 220px;"
                     v-model="params.useType"
-                    placeholder="收支类型"
+                    placeholder="开通类型"
                     clearable
-                    style="width:162px;"
                     @on-change="search">
               <Option value="1">收入</Option>
               <Option value="2">支出</Option>
@@ -52,16 +48,17 @@
           </FormItem>
            <FormItem>
               <i-input type="text"
-              search
-              @on-search="search"
                        placeholder="搜索ID"
-                       style="width: 162px;"
+                       style="width: 220px;"
+                       search
+                       @on-search="search"
                        v-model.trim="params.id"
                        @keyup.enter="search">
-               
+              
               </i-input>
             </FormItem>
         </Form>
+      </div>
     </div>
         <Table stripe :columns="table.columns"
                :data="table.list"
@@ -70,6 +67,7 @@
                        :pageSize="params.pageSize"
                        :total="page.totalNum"
                        @change="list" />
+      </div>
     </div>
   </div>
 </template>
@@ -77,19 +75,14 @@
 import { indexMixin } from '@/mixins'
 import cardUseLogApi from '@/api/pms/cardUseLog'
 import { fmt, watchDateRangeToTimestamp } from '@/util'
-import { CitySelect } from '@/components/packages/pams/select'
 
 export default {
   name: 'marketingCall',
   mixins: [indexMixin],
-  components: {
-    CitySelect
-  },
   data() {
     return {
       params: {
         id: '',
-        cityId: '',
         createTimeBegin: '',
         createTimeEnd: ''
       },
@@ -97,21 +90,26 @@ export default {
         columns: [{
           title: 'ID',
           key: 'id',
+          width: 80
         }, {
           title: '描述',
           key: 'describeContent'
         }, {
           title: '端口数',
           key: 'consumePortCount',
+          width: 140
         }, {
           title: '剩余年可用端口数',
           key: 'curPortCount',
+          width: 140
         }, {
           title: '剩余月可用端口数',
           key: 'curMonthPortCount',
+          width: 140
         }, {
           title: '创建时间',
           key: 'createTime',
+          width: 160,
           value: row => {
             return fmt.date(row.createTime)
           },

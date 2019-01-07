@@ -8,7 +8,7 @@ export default [{
   path: `${ROUTER_MODULE}/`,
   // name: 'omsHome',
   redirect: '/home',
-  icon: 'icon-nav-home',
+  icon: '#icon-home',
   meta: {
     pass: true
   },
@@ -16,7 +16,7 @@ export default [{
   children: [{
     path: 'home',
     name: 'omsHomeIndex',
-    icon: 'icon-nav-home',
+    icon: '#icon-home',
     title: '首页',
     meta: {
       title: '首页',
@@ -39,7 +39,7 @@ export default [{
   }]
 }, {
   path: `${ROUTER_MODULE}`,
-  icon: 'icon-nav-home',
+  icon: '#icon-msg',
   meta: {
     id: '136'
   },
@@ -57,7 +57,7 @@ export default [{
   }]
 }, {
   path: `${ROUTER_MODULE}/setting`,
-  icon: 'icon-nav-home',
+  icon: '#icon-xitong',
   meta: {
     id: '137'
   },
@@ -90,7 +90,7 @@ export default [{
   }]
 }, {
   path: `${ROUTER_MODULE}/provinceProxy`,
-  icon: 'icon-nav-home',
+  icon: '#icon-shenhetongguo',
   meta: {
     id: '132'
   },
@@ -122,7 +122,7 @@ export default [{
 
 {
   path: `${ROUTER_MODULE}/cityProxy`,
-  icon: 'icon-nav-home',
+  icon: '#icon-shizheng',
   meta: {
     id: '133'
   },
@@ -140,7 +140,7 @@ export default [{
   }]
 }, {
   path: `${ROUTER_MODULE}/firm`,
-  icon: 'icon-nav-home',
+  icon: '#icon-company',
   meta: {
     id: '134'
   },
@@ -158,7 +158,7 @@ export default [{
   }]
 }, {
   path: `${ROUTER_MODULE}/seat`,
-  icon: 'icon-nav-home',
+  icon: '#icon-dianhuaji',
   meta: {
     id: '135'
   },
@@ -176,7 +176,7 @@ export default [{
   }]
 }, {
   path: `${ROUTER_MODULE}/standard`,
-  icon: 'icon-nav-home',
+  icon: '#icon-zhibiao',
   meta: {
     id: '139'
   },

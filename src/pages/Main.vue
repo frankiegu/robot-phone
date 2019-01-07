@@ -2,12 +2,13 @@
   <div class="frame">
     <main-header class="frame-header" />
     <div class="frame-body">
-      <router-view class="frame-person"
-                   name="person" />
+     
       <main-menu class="frame-nav" />
       <div class="frame-wrapper">
          
         <div class="frame-main">
+           <router-view class="frame-person"
+                   name="person" />
           <router-view class="container" />
           <!-- <div class="bottom_footer">Copyright©2018-2023 杭州快象网络技术有限公司 All Rights Reeserved 浙ICP备325235</div> -->
         </div>

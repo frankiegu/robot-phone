@@ -39,7 +39,7 @@
         </div>
       </div>
       <div class>
-        <i-table :data="tableParams.list" :columns="columns"></i-table>
+        <i-table stripe :data="tableParams.list" :columns="columns"></i-table>
 
         <div class="page-wrapper cf">
           <Page

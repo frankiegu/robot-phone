@@ -1,57 +1,47 @@
 <template>
   <div>
+    <Breadcrumb separator=">">
+      <span class="home" @click="linkTo('camsHomeIndex')">
+        <BreadcrumbItem>首页</BreadcrumbItem>
+      </span>
+      <BreadcrumbItem>企业管理</BreadcrumbItem>
+    </Breadcrumb>
     <div class="divide"
          :class="{full: fullScreen}">
-      <div class="divide-item">
-        <div class="panel">
-          <div class="panel-body">
-            <i-form class="panel-form clear"
-                    inline>
-              <FormItem>
-                <i-select v-model="query.status"
+      <div class="task">
+        <div class="task-l divide-item">
+          <div class="panel">
+            <div class="panel-header">
+               <Icon type="ios-list-outline" class="vm fs18 v-before mr10"></Icon>
+              <span class="vm">企业管理</span>
+              <div class="panel-header-tools">
+                <i-button type="primary"
+                          @click="handlerAdd"><Icon type="md-add" size="16" style="margin-top:-4px;"/>添加企业</i-button>
+              </div>
+            </div>
+            <div class="pl-10 pr-10">
+              <div class="fleX mt-10">
+                <i-select style="width:50%;" v-model="query.status"
                           @on-change='handlerSearch'
-                          class="w200"
                           placeholder="请选择状态">
                   <i-option value="">全部状态</i-option>
                   <i-option v-for="(item,i) in status"
                             :value="item.value"
                             :key="item.value">{{ item.label }}</i-option>
                 </i-select>
-              </FormItem>
-
-              <FormItem>
-                <DatePicker v-model="queryCreateTime"
+                <DatePicker style="width:50%;" v-model="queryCreateTime"
                             type="daterange"
                             placeholder="选择创建时间"
-                            class="w200"></DatePicker>
-              </FormItem>
-
-              <div class="fr">
-                <FormItem>
-                  <i-input v-model="query.name"
+                            ></DatePicker>
+              </div>
+              <div class="mt-10">
+                <i-input v-model="query.name"
+                           search
+                           @on-search="handlerSearch"
                            type="text"
                            @on-enter='handlerSearch'
                            placeholder="搜索企业名称">
                   </i-input>
-                </FormItem>
-                <FormItem>
-                  <i-button type="primary"
-                            @click="handlerSearch">查询</i-button>
-                </FormItem>
-              </div>
-            </i-form>
-          </div>
-        </div>
-      </div>
-      <div class="task">
-        <div class="task-l divide-item">
-          <div class="panel">
-            <div class="panel-header">
-              企业列表
-              <div class="panel-header-tools">
-                <i-button type="primary"
-                          icon="plus"
-                          @click="handlerAdd">添加企业</i-button>
               </div>
             </div>
             <div class="panel-body">
@@ -60,16 +50,12 @@
                     :key="i"
                     :class="{'active' : current.id == item.id }"
                     @click="handlerChangeCurrent(item)">
-                  <div class="list-item">
-                    <div class="list-item-main">
-                      <p class="list-item-title">{{item.name}}</p>
-                      <div class="list-item-info">
+                      <p class="mt-5 titles">{{item.name}}</p>
+                      <div class="fleX">
                         <span>机: {{item.robotCount}}</span>
                         <span class="ml-5">人: {{item.employeeCount}}</span>
                         <span class="ml-5">固: {{item.fixedCount}}</span>
                       </div>
-                    </div>
-                  </div>
                 </li>
               </ul>
 
@@ -85,12 +71,11 @@
 
         <div class="task-r divide-main">
           <div class="panel">
-            <div class="panel-header">
-              <i class="icon icon-enlarge panel-header-icon"
-                 :class="fullScreen ? 'icon-narrow' : 'icon-enlarge'"
-                 @click="() => fullScreen = !fullScreen"></i>
-              企业详情
-              <div class="panel-header-tools"
+           
+            <div class="panel-body">  
+                  <div class="fleX">
+                    <div class="title contentAfter mt-10 mb-10">基础信息</div>
+                    <div class="panel-header-tools"
                    v-show="current && current.id">
                 <i-button type="error"
                           @click="deleteFirm">删除企业</i-button>
@@ -99,22 +84,10 @@
                 <i-button type="primary"
                           @click="handlerOpenSeat">开通坐席</i-button>
               </div>
-            </div>
-            <div class="panel-body">
-              <Tabs value="1"
-                    v-model="tabName">
-                <TabPane label="基础信息"
-                         name="1">
-                  <firm-detail ref="detail"
-                               :current-id="current ? current.id : ''"></firm-detail>
-                </TabPane>
-                <TabPane label="坐席列表"
-                         name="2">
-                  <seat-list v-if="tabName=='2'"
-                             :current-id="current ? current.id : ''"></seat-list>
-                </TabPane>
-
-              </Tabs>
+                  </div>
+                  <firm-detail ref="detail" :current-id="current ? current.id : ''"></firm-detail>
+                  <div class="title contentAfter mt-10 mb-10">坐席列表</div>
+                  <seat-list  :current-id="current ? current.id : ''"></seat-list>
             </div>
           </div>
         </div>
@@ -159,6 +132,7 @@ import seatList from "./seat-list";
 import newFirm from "./components/new-firm";
 import editFirm from "./components/edit-firm";
 import seatApply from "../seat/components/seat-apply";
+import Util from "@/util/util";
 const status = [{ label: '禁用', value: 0 }, { label: '启用', value: 1 }]
 
 const newFirmEntry = {
@@ -228,6 +202,9 @@ export default {
     },
   },
   methods: {
+     linkTo(name) {
+      Util.openPage(this, name);
+    },
     async init() {
       this.current = await this.loadFirmList()
     },

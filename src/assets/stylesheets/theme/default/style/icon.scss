@@ -29,3 +29,12 @@ $icon-map: (
 .icon-horn {
   color: #FFF;
 }
+
+// Symbol 通用代码
+.iconSmbol {
+  width: rem(20px);
+  height: rem(20px);
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}

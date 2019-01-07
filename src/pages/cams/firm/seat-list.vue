@@ -58,7 +58,24 @@ export default {
         }},
         { key: "status", title: "状态" , render: (h,params)=>{
           let type = {'0': '审核中', '1': '正常', '2': '已过期', '3': '使用中'}
-          return h('span', type[`${params.row.status}`])
+            if(params.row.status==1){
+               return h('span',{
+                 style:{
+                   color:"#32BD1B"
+                 }
+               }, type[`${params.row.status}`])
+            }
+            else if(params.row.status==3){
+               return h('span',{
+                 style:{
+                   color:"#5983ff"
+                 }
+               }, type[`${params.row.status}`])
+            }
+            else{
+               return h('span', type[`${params.row.status}`])
+            }
+         
         }},
         // {
         //   title: "操作",
@@ -85,9 +102,9 @@ export default {
       }
     }
   },
-  mounted() {
-    this.loadList()
-  },
+  // mounted() {
+  //   this.loadList()
+  // },
   methods: {
     async loadList() {
       let query = this.assignQuery({})

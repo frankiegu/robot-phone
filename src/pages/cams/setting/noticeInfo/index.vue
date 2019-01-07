@@ -1,55 +1,43 @@
 <template>
   <div>
-    <div class="panel">
-      <div class="panel-body">
-        <Form class="panel-form clear"
-              inline
-              :label-width="80">
-          <div class="fr">
-            <FormItem>
+     <Breadcrumb separator=">">
+      <span class="home" @click="linkTo('pamsHomeIndex')">
+        <BreadcrumbItem>首页</BreadcrumbItem>
+      </span>
+      <BreadcrumbItem>我的消息</BreadcrumbItem>
+    </Breadcrumb>
+       <div class="task">
+      <div class="task-r" style="margin-left:0">
+        <div class="title pt-20 pl20 contentAfter ml10" style="position: relative;">我的消息</div>
+        <span class="iconfont icon-home"></span>
+        <div class="panel pl80 pr80">
+          <div class="panel-body">
+            <div>
               <i-input type="text"
+                       search
+                       style="width:30%;margin-left:35%"
+                       class="mb20"
+                       @on-search="search"
+                       enter-button
                        placeholder="搜索消息标题"
                        v-model.trim="params.title"
-                       @keyup.enter="search">
-                <Icon type="search"
-                      slot="prepend"></Icon>
+                       @keyup.native.enter="search">
+                
               </i-input>
-            </FormItem>
-            <FormItem :label-width="1">
-              <Button type="primary"
-                      @click="search">查询</Button>
-            </FormItem>
-          </div>
-        </Form>
-      </div>
-    </div>
-    <div class="task">
-      <div class="task-l">
-        <div class="panel">
-          <div class="panel-body">
-            <Button long
-                    class="mb-20"
-                    :type="params.readStatus === '' ? 'success' : 'default'"
-                    @click="changeStatus('')">全部消息</Button>
-            <Badge :count="count.unreadCount"
-                   overflow-count="99"
-                   style="display: block;">
-              <Button long
-                      class="mb-20"
-                      :type="params.readStatus === 0 ? 'success' : 'default'"
-                      @click="changeStatus(0)">未读消息</Button>
-            </Badge>
+            </div>
+           <div class="tabs-message mb20">
+             
+             <div 
+                    :class="params.readStatus === '' ? 'active' : ''"
+                    @click="changeStatus('')">全部消息</div>
+              <div 
+                      :class="params.readStatus === 0 ? 'active' : ''"
+                      @click="changeStatus(0)">未读消息</div>
 
-            <Button long
-                    class="mb-20"
-                    :type="params.readStatus === 1 ? 'success' : 'default'"
-                    @click="changeStatus(1)">已读消息</Button>
-          </div>
-        </div>
-      </div>
-      <div class="task-r">
-        <div class="panel">
-          <div class="panel-body">
+            <div 
+                    :class="params.readStatus === 1 ? 'active' : ''"
+                    @click="changeStatus(1)">已读消息</div>
+           </div>
             <div class="tool">
               <Button type="error"
                       @click="showBatchDel">批量删除</Button>
@@ -66,16 +54,17 @@
         </div>
       </div>
     </div>
-    <ms-panel v-model="detail.show"
+    <Modal :footer-hide="true" v-model="detail.show"
               title="消息详情">
       <mod-detail :data="detail.entity" />
-    </ms-panel>
+    </Modal>
   </div>
 </template>
 <script>
 import { indexMixin } from '@/mixins'
 import noticeInfoApi from '@/api/common/noticeInfoApi'
 import { fmt } from '@/util'
+import Util from "@/util/util";
 import ModDetail from './detail'
 
 export default {
@@ -127,6 +116,9 @@ export default {
     }
   },
   methods: {
+     linkTo(name) {
+      Util.openPage(this, name);
+    },
     getApi() {
       return noticeInfoApi
     },
@@ -152,3 +144,6 @@ export default {
   }
 }
 </script>
+<style>
+
+</style>

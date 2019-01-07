@@ -4,7 +4,7 @@ const ROUTER_MODULE = '/ems'
 export default [{
   path: `${ROUTER_MODULE}/`,
   redirect: '/home',
-  icon: 'icon-nav-home',
+  icon: '#icon-home',
   meta: {
     pass: true
   },
@@ -12,7 +12,7 @@ export default [{
   children: [{
     path: 'home',
     name: 'emsHomeIndex',
-    icon: 'icon-nav-home',
+    icon: '#icon-home',
     title: '首页',
     meta: {
       pass: true
@@ -35,7 +35,7 @@ export default [{
 }, {
   path: `${ROUTER_MODULE}/marketing`,
   name: 'marketing',
-  icon: 'icon-nav-marketing', // 自定义的图标
+  icon: '#icon-waihu', // 自定义的图标
   meta: {
     id: '89'
   },
@@ -76,7 +76,7 @@ export default [{
 }, {
   path: `${ROUTER_MODULE}/whispering`,
   name: 'whispering',
-  icon: 'icon-nav-marketing',
+  icon: '#icon-huashuku',
   meta: {
     id: '196'
   },
@@ -106,7 +106,7 @@ export default [{
 }, {
   path: `${ROUTER_MODULE}/client`,
   name: 'client',
-  icon: 'icon-nav-customer',
+  icon: '#icon-kehu',
   title: '客户中心',
   meta: {
     id: '90'
@@ -180,7 +180,7 @@ export default [{
 {
   path: `${ROUTER_MODULE}/manual`,
   name: 'manual',
-  icon: 'icon-nav-robot',
+  icon: '#icon-rengongrenwu',
   title: '人工坐席管理',
   meta: {
     id: '92'
@@ -200,7 +200,7 @@ export default [{
 }, {
   path: `${ROUTER_MODULE}/fix`,
   name: 'fix',
-  icon: 'icon-nav-robot',
+  icon: '#icon-zhinenghuagongcheng',
   title: '智能坐席',
   meta: {
     id: '194'
@@ -220,7 +220,7 @@ export default [{
 }, {
   path: `${ROUTER_MODULE}/relayLine`,
   name: 'relayLine',
-  icon: 'icon-nav-robot',
+  icon: '#icon-xianlu',
   title: '中继线计费',
   meta: {
     id: '207'
@@ -240,7 +240,7 @@ export default [{
 }, {
   path: `${ROUTER_MODULE}/seller`,
   name: 'seller',
-  icon: 'icon-nav-account',
+  icon: '#icon-tuandui',
   title: '团队管理',
   meta: {
     id: '93'
@@ -272,7 +272,7 @@ export default [{
 }, {
   path: `${ROUTER_MODULE}/setting`,
   name: 'setting',
-  icon: 'icon-nav-setting',
+  icon: '#icon-xitong',
   title: '系统设置',
   meta: {
     id: '94'

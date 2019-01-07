@@ -139,9 +139,9 @@
             &:hover {
                 background: $nav-color_hover;
             }
-            .icon {
+            .iconSmbol {
                 position: absolute;
-                top: 50%;
+                top: 46%;
                 left: rem(15px);
                 transform: translateY(-50%);
                 transition: color, transform .2s linear;
@@ -155,8 +155,8 @@
         }
         li.active,
         a:hover {
-            .icon {
-                transform: scale(1.4) translateY(-50%);
+            .iconSmbol {
+                transform: scale(1.2) translateY(-50%);
             }
         }
         li.active {
@@ -295,13 +295,8 @@
 }
 
 .frame-person {
-    position: absolute;
-    z-index: 10;
     overflow-y: auto;
-    top: rem(70px);
-    right: 0;
-    bottom: 0;
     // left: 0;
-    width: rem(1510px);
+    width: 100%;
     background: #F1F1F1;
 }

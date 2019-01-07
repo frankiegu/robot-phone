@@ -63,7 +63,7 @@
                 >
                   <div class="fleX alCenter">
                     <div class="list-item-info">
-                      <div>{{item.mobile}}</div>
+                      <div class="titles">{{item.mobile}}</div>
                       <div class="mr10">{{item.cardType | cardType}}</div>
                       <div v-show="item.remainDays">{{item.remainDays}}天后到期</div>
                     </div>
