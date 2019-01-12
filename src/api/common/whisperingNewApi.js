@@ -11,6 +11,36 @@ const API_MODULE = `${apiRootCommon}/${apiVersion}`
 // http://121.40.216.49:50999/common-business/swagger-ui.html#/WhisperingNewController
 export default Object.assign(extendBaseApi('whisperingNew', API_MODULE), {
   /**
+     * 新话术工单
+     */
+  workorderList(params) {
+    return axios({
+      url: `${API_MODULE}/whisperingNew/workOrder`,
+      method: 'GET',
+      params
+    })
+  },
+  addWorkorder(data) {
+    return axios({
+      url: `${API_MODULE}/whisperingNew/workOrder`,
+      method: 'POST',
+      data
+    })
+  },
+  editeWorker(data) {
+    return axios({
+      url: `${API_MODULE}/whisperingNew/workOrder`,
+      method: 'Put',
+      data
+    })
+  },
+  deleteWorker(id) {
+    return axios({
+      url: `${API_MODULE}/whisperingNew/workOrder?id=${id}`,
+      method: 'DELETE'
+    })
+  },
+  /**
    * 更新话术状态
    * @param {*} data
    */
@@ -85,7 +115,7 @@ export default Object.assign(extendBaseApi('whisperingNew', API_MODULE), {
   },
   sendPublic(id) {
     return axios({
-      url: `${API_MODULE}/whisperingNew/send/${id}`,
+      url: `${API_MODULE}/whisperingNew/send/${id}`
     })
   },
   listLog(params) {

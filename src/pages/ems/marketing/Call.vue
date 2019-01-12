@@ -124,14 +124,31 @@
               @on-search="search"
             ></i-input>
           </FormItem>
-          </div>
-        </Form>
-      </div>
-    </div>
-    <div class="panel">
-      <div class="panel-body">
-        <div class="mb10 tool">
-          <div class="tool-btns">
+          <FormItem style="width:12.8%">
+            <Select
+              v-model="params.hasWorkorder"
+              placeholder="有无工单"
+              clearable
+              @on-change="search"
+            >
+              <Option value="1">有</Option>
+              <Option value="2">无</Option>
+            </Select>
+          </FormItem>
+          <FormItem style="width:15%">
+            <Select
+              v-model="params.taskId"
+              placeholder="计划任务"
+              clearable
+              @on-change="search"
+            >
+              <Option v-for="(v) in planList" :key="v.value" :value="v.value">{{v.title}}</Option>
+            </Select>
+          </FormItem>
+          <FormItem>
+            <Button type="primary" @click="resetData">重置</Button>
+          </FormItem>
+           <FormItem>
             <Dropdown>
               <Button ghost  type="primary">导出
                 <Icon type="md-arrow-dropdown" />
@@ -144,8 +161,14 @@
                 >{{item}}</DropdownItem>
               </DropdownMenu>
             </Dropdown>
+          </FormItem>
           </div>
-        </div>
+        </Form>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-body">
+        
         <Table :border="false" :columns="table.columns" :data="table.list" ref="table"/>
         <ms-pagination
           :pageNum="params.pageNum"
@@ -158,7 +181,7 @@
     </div>
     <Modal
         class-name="vertical-center-modal"
-        width="850px"
+        width="1000px"
         :footer-hide = "true"
         v-model="detail.show"
         title="通话详情"
@@ -203,11 +226,14 @@ export default {
         startCallAllTime:null,
         endCallAllTime:null,
         startCallCount:null,
-        endCallCount:null
+        endCallCount:null,
+        hasWorkorder:"",
+        planType:""
 
       },
       dateRange: [],
       taskList: [],
+      planList:[{title:"全部",value:1},{title:"代办任务",value:2},{title:"已过期",value:3}],
       CALL_RESULT,
       table: {
         columns: [
@@ -375,6 +401,25 @@ export default {
     );
   },
   methods: {
+    resetData(){
+      this.params.status = '';
+      this.params.userLevel = '';
+      this.params.callResult = '';
+      this.params.idOrMobileOrCardMobile = '';
+      this.params.taskId = '';
+      this.params.callAllTime = '';
+      this.params.callCount = '';
+      this.params.isTransfer = '';
+      this.params.startTime = '';
+      this.params.startCallAllTime = '';
+      this.params.endCallAllTime = '';
+      this.params.startCallCount = '';
+      this.params.endCallCount = '';
+      this.params.hasWorkorder = '';
+      this.params.planType = '';
+       this.init()
+    },
+   
     linkTo(name) {
       Util.openPage(this, name);
     },

@@ -1,11 +1,21 @@
 <template>
   <div class="panel" style="border-radius: 0;box-shadow: none">
-    <div class="panel-header">
-      <!-- <i class="icon icon-enlarge panel-header-icon"
-         :class="fullScreen ? 'icon-narrow' : 'icon-enlarge'"
-         @click="toggleFullScreen"></i> -->
-      任务详情
-      <div class="panel-header-tools"
+    <div class="panel-body">
+      <p class="nodata" v-show="!entity.id">暂无数据</p>
+      <!-- <Tabs v-model="tabName"
+            v-if="entity.id">
+        <TabPane label="基础信息"
+                 name="info">
+          <info-tab-panel :data="entity"
+                          v-if="tabName === 'info'" />
+        </TabPane>
+        <TabPane label="通话记录"
+                 name="record">
+          <call-record-tab-panel :data="entity"
+                                 v-if="tabName === 'record'" />
+
+        </TabPane>
+             <div slot="extra" class="panel-header-tools"
            v-if="entity.id">
         <template v-if="entity.status === 0">
           <Button type="primary"
@@ -42,10 +52,49 @@
                   @click="showDel(entity.id)">删除任务</Button>
         </template>
       </div>
-    </div>
-    <div class="panel-body">
-      <p class="nodata" v-show="!entity.id">暂无数据</p>
+      </Tabs> -->
+      <div class="title fleX mt-5" style="padding-bottom:10px;align-items: center;">
+        基础信息
+       <div slot="extra" class="panel-header-tools"
+           v-if="entity.id">
+        <template v-if="entity.status === 0">
+          <Button type="primary"
+                  @click="showWhispering">修改话术模板</Button>
+          <template v-if="entity.startType === 1">
+            <Button type="primary"
+                    @click="updateTask(1)">开始任务</Button>
+          </template>
+          <template v-else-if="entity.startType === 2">
+            <Button type="warning"
+                    @click="updateTask(3)">终止任务</Button>
+          </template>
+        </template>
+        <template v-if="entity.status === 1">
+          <Button type="primary"
+                  @click="updateTask(2)">暂停任务</Button>
+          <Button type="warning"
+                  @click="updateTask(3)">终止任务</Button>
+        </template>
+        <template v-if="entity.status === 2">
+          <Button type="primary"
+                  @click="showWhispering">修改话术模板</Button>
+          <Button type="primary"
+                  @click="updateTask(1)">继续任务</Button>
+          <Button type="warning"
+                  @click="updateTask(3)">终止任务</Button>
+        </template>
+        <template v-if="entity.status === 3">
+          <Button type="error"
+                  @click="showDel(entity.id)">删除任务</Button>
+        </template>
+        <template v-if="entity.status === 4">
+          <Button type="error"
+                  @click="showDel(entity.id)">删除任务</Button>
+        </template>
+      </div>
+      </div>
           <info-tab-panel :data="entity"/>
+          <div class="title mb-15">通话记录</div>
           <call-record-tab-panel :data="entity" />
     </div>
 

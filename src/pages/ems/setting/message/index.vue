@@ -13,11 +13,14 @@
 				<!-- 左侧 -->
 				<div class="task-l divide-item">
 					<div class="panel">
-						<div class="panel-header">
-							短信模板列表
+						<div class="panel-header fleX" style="padding-left:0.5rem;padding-right:0.5rem;">
+							<div>
+								<Icon type="ios-list-outline" class="vm fs18 v-before mr10"></Icon>
+              <span class="vm mr-40">短信模板</span>
+							</div>
 							<div class="panel-header-tools">
 								<i-button type="primary"
-								          @click="showForm()">添加模板</i-button>
+								          @click="showForm()"><Icon type="md-add" size="16" class="mt--2"/>添加模板</i-button>
 							</div>
 						</div>
 						<div class="pd10" style="padding-bottom:0;">
@@ -89,10 +92,8 @@
 					                :fullScreen="fullScreen"
 					                :data="detail.entity" />
 				</div>
-			</div>
-			<!-- 弹窗 -->
-		
-			<Modal :mask-closable="false" class-name="vertical-center-modal" v-model="form.show"
+					<!-- 弹窗 -->
+			<Modal width="620px" :mask-closable="false" class-name="vertical-center-modal" v-model="form.show"
 			          :title="form.entity.id ? '编辑短信模板' : '新增短信模板'">
 				<template v-if="form.show">
 					<message-form :data="form.entity"
@@ -108,6 +109,8 @@
 				          @click="submitFrom">确定</i-button>
 				</div>
 			</Modal>
+			</div>
+		
 		</div>
 	</div>
 </template>

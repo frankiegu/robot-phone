@@ -1,72 +1,79 @@
 <template>
   <div class="divide" :class="{full: fullScreen}">
     <Breadcrumb separator=">">
-        <span class="home" @click="linkTo('emsHomeIndex')">
-          <BreadcrumbItem>首页</BreadcrumbItem>
-        </span>
-        <BreadcrumbItem>AI外呼</BreadcrumbItem>
-        <BreadcrumbItem>任务管理</BreadcrumbItem>
+      <span class="home" @click="linkTo('emsHomeIndex')">
+        <BreadcrumbItem>首页</BreadcrumbItem>
+      </span>
+      <BreadcrumbItem>AI外呼</BreadcrumbItem>
+      <BreadcrumbItem>任务管理</BreadcrumbItem>
     </Breadcrumb>
     <div class="task">
       <div class="task-l divide-item">
         <div class="panel" style="border-radius: 0;box-shadow: none">
           <div class="panel-body">
-            <div class="fleX panel-header" style="align-items: center;">
-              <div class="">任务管理列表</div>
+            <div class="fleX panel-header pt-5 plr" style="align-items: center;">
+              <div class>
+                <Icon type="ios-list-outline" class="vm fs18 v-before mr10"></Icon>
+                <span class="vm">任务管理列表</span>
+              </div>
               <div>
-                <Button type="primary" @click="showForm()">创建任务</Button>
+                <Button type="primary" @click="showForm()">
+                  <Icon type="md-add" size="16" class="mt--2"/>创建任务
+                </Button>
               </div>
             </div>
-            <div class="mb20 mt-10">
+            <div class="mb-15 mt-10">
               <div class="fleX mb10">
                 <Select
-                style="width:50%;"
-                v-model="params.status"
-                placeholder="任务状态"
-                clearable
-                @on-change="search"
-              >
-                <Option value="0">未开始</Option>
-                <Option value="1">进行中</Option>
-                <Option value="2">暂停</Option>
-                <Option value="3">终止</Option>
-                <Option value="4">完成</Option>
-              </Select>
-              <DatePicker
-                type="daterange"
-                placeholder="创建日期"
-                style="width: 50%;"
-                v-model="dateRange"
-                @on-change="delaySearch"
-              />
+                  style="width:50%;"
+                  v-model="params.status"
+                  placeholder="任务状态"
+                  clearable
+                  @on-change="search"
+                >
+                  <Option value="0">未开始</Option>
+                  <Option value="1">进行中</Option>
+                  <Option value="2">暂停</Option>
+                  <Option value="3">终止</Option>
+                  <Option value="4">完成</Option>
+                </Select>
+                <DatePicker
+                  type="daterange"
+                  placeholder="创建日期"
+                  style="width: 50%;"
+                  v-model="dateRange"
+                  @on-change="delaySearch"
+                />
               </div>
               <div class="mb10 fleX">
-                  <card-select
-                  widths='100%'
-                v-model="params.cardRelateId"
-                placeholder="坐席号码"
-                @change="search"
-              />
-               <whispering-select v-model="params.whisperingId" widths='100%' placeholder="话术模板" @change="search"/>
+                <card-select
+                  widths="100%"
+                  v-model="params.cardRelateId"
+                  placeholder="坐席号码"
+                  @change="search"
+                />
+                <whispering-select
+                  v-model="params.whisperingId"
+                  widths="100%"
+                  placeholder="话术模板"
+                  @change="search"
+                />
               </div>
-              
+
               <div class="mb10">
-               <i-input
-                type="text"
-                search
-                style="width: 100%;"
-                placeholder="搜索任务ID/名称"
-                v-model.trim="params.idOrName"
-                @on-enter="search"
-                @on-search="search"
-              ></i-input>
+                <i-input
+                  type="text"
+                  search
+                  style="width: 100%;"
+                  placeholder="搜索任务ID/名称"
+                  v-model.trim="params.idOrName"
+                  @on-enter="search"
+                  @on-search="search"
+                ></i-input>
               </div>
             </div>
             <p class="nodata" v-show="!table.list.length ||  table.list.length==0">暂无数据</p>
-            <div
-              class="card"
-              v-show="table.list.length "
-            >
+            <div class="card" v-show="table.list.length ">
               <div
                 class="card-item"
                 v-for="item in table.list"
@@ -104,7 +111,7 @@
                         </div>
                         <div class="porgress-bar" v-else>
                           <Progress
-                          style="width:65%;"
+                            style="width:65%;"
                             :stroke-width="6"
                             :percent="(item.completeUserCount/item.userCount*100)"
                           >
@@ -139,26 +146,25 @@
       </div>
     </div>
     <Modal
-    class-name="vertical-center-modal"
-      width="596"
+      class-name="vertical-center-modal"
+      width="500"
       :mask-closable="false"
       v-model="form.show"
       :title="form.entity.id ? '编辑营销任务' : '新增营销任务'"
     >
-      <template v-if="form.show">
-        <mod-form
-          ref="myForm"
-          :data="form.entity"
-          @on-cancel="cancelForm"
-          @after-submit="afterSubmitForm"
-        />
-      </template>
+      <div style="max-height:520px;overflow-y:auto;overflow-x:hidden;">
+        <template v-if="form.show">
+          <mod-form
+            ref="myForm"
+            :data="form.entity"
+            @on-cancel="cancelForm"
+            @after-submit="afterSubmitForm"
+          />
+        </template>
+      </div>
       <div slot="footer">
-         <Button size="large" type="text"
-              style="margin-right: 8px"
-              @click="cancelForm">取消</Button>
-              <Button  type="primary"
-              @click="submitTask">确定</Button>
+        <Button size="large" type="text" style="margin-right: 8px" @click="cancelForm">取消</Button>
+        <Button type="primary" @click="submitTask">确定</Button>
       </div>
     </Modal>
   </div>
@@ -171,7 +177,7 @@ import ModDetail from "./components/task/detail";
 import ModForm from "./components/task/Form";
 import { CardSelect, WhisperingSelect } from "@/components/packages/ems/select";
 import taskEventBus from "./components/task/taskEventBus";
-import Util from '@/util/util'
+import Util from "@/util/util";
 export default {
   name: "marketingTask",
   mixins: [indexMixin],

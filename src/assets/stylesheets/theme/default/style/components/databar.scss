@@ -1,7 +1,6 @@
 .databar {
   display: flex;
   padding-bottom: rem(20px);
-  border-bottom: rem(1px) solid #e8e8e8;
   .databar-item {
     @extend %ellipse;
     em {
@@ -21,7 +20,7 @@
   li {
     padding: 0 rem(20px);
     font-size: rem(14px);
-    line-height: rem(44px);
+    line-height: rem(30px);
     color: $color-dark; 
   }
   .border-R{

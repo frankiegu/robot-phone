@@ -35,10 +35,10 @@
     <hr class="mt-20">
     <div class="databar mt-20" style="border-bottom:none;">
       <ul class="databar-item">
-       <li class="databar-title">客户意向等级</li>
-        <li class="border-R" v-for="(item,index) in detail.userLevel" :key="index">
+       <li class="databar-title pl">客户意向等级</li>
+        <li class="border-R pl" v-for="(item,index) in detail.userLevel" :key="index">
              {{item.name}}级
-              <Progress :stroke-width="4" :percent="Number((item.value).substr(0,item.value.length-1))">
+              <Progress :stroke-width="4" style="width:95%" :percent="Number((item.value).substr(0,item.value.length-1))">
               <span>{{item.value}}</span>
             </Progress>
         </li>
@@ -48,7 +48,7 @@
         <li class="databar-title">通话时长</li>
         <li  class="border-R" v-for="(item,index) in detail.callTimeList" :key="index">
          <span style="width:4rem;display:inline-block;">{{item.name}}</span>
-              <Progress :stroke-width="4" class="callTime_ss" style="width:70%" :percent="Number((item.value).substr(0,item.value.length-1))">
+              <Progress :stroke-width="4" class="callTime_ss" style="width:78%" :percent="Number((item.value).substr(0,item.value.length-1))">
               <span>{{item.value}}</span>
             </Progress>
         </li>
@@ -57,7 +57,7 @@
         <li class="databar-title">对话轮次</li>
         <li v-for="(item,index) in detail.callCount" :key="index">
          <span style="width:3rem;display:inline-block;">{{item.name}}</span>
-              <Progress :stroke-width="4" class="callTime_ss2" style="width:85%;" :percent="Number((item.value).substr(0,item.value.length-1))">
+              <Progress :stroke-width="4" class="callTime_ss2" style="width:88%;" :percent="Number((item.value).substr(0,item.value.length-1))">
               <span>{{item.value}}</span>
             </Progress>
         </li>

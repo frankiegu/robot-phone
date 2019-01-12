@@ -8,13 +8,13 @@ export default {
       render: (h) => {
         return h('div', [
           h('Icon', {
-            'class': 'demo-spin-icon-load',
+            'class': 'demo-spin-icon-load ivu-icon ivu-icon-ios-loading',
             props: {
               type: 'load-c',
               size: 22
             }
           }),
-          h('div', '拼命加载中...')
+          h('div', '玩命加载中...')
         ])
       }
     })

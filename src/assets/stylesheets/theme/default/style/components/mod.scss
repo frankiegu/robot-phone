@@ -134,6 +134,7 @@
     position: relative;
     .audio-file {
         margin-right: rem(40px);
+        width:322px;
     }
     audio {
         display: block;
@@ -173,7 +174,6 @@
     h4 {
         font-size: rem(16px);
         color: $color-title;
-        margin-bottom: rem(35px);
         em {
             width: rem(60px);
             height: rem(24px);
@@ -212,12 +212,14 @@
     }
     .circle {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         text-align: center;
         padding: rem(28px) rem(90px);
         border-top: rem(1px) solid #e8e8e8;
         border-bottom: rem(1px) solid #e8e8e8;
+        .mr{
+            margin-right: rem(60px);
+        }
         .topText {
             font-size: rem(14px);
             margin-bottom: rem(12px);
@@ -232,6 +234,7 @@
             color: #5f84f7;
         }
         .smallText {
+            white-space: nowrap;
             font-size: rem(14px);
             color: #666;
         }
@@ -283,6 +286,8 @@
     border: 1px solid #DDDEE1;
     background: #FFF;
     overflow: auto;
+    white-space: pre-wrap;
+   
 }
 
 .form-btns {
@@ -344,7 +349,6 @@
     font-size: rem(16px);
     color: #333;
     padding-left: rem(15px);
-    margin-bottom: rem(15px);
     &::before {
         position: absolute;
         left: 0;

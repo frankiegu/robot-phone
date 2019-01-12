@@ -15,14 +15,20 @@
       <div class="home-taskBox cardBS">
         <div class="task-title">
           <span
-            :class="taskIndex==index?'link-active':''"
+            class="spanH"
+            :class="taskIndex==index?'link-active2':''"
             @click="changeTask(index)"
             v-for="(item,index) in taskArr"
             :key="index"
           >{{item}}</span>
+          <span
+            class="link-active"
+            @click="changeTask(2)"
+            
+          >全部任务</span>
         </div>
         <div class="flexWap" v-show="table.list.length">
-          <div class="taskContent" :key="index" v-for="(item,index) in table.list">
+          <div class="taskContent box-shadow" :key="index" v-for="(item,index) in table.list">
             <div class="row fleX">
               <div>{{item.taskName}}</div>
               <div :class="item.status==4?'finished':item.status==3?'end':item.status==2?'parseing':'doing'" class="lable">{{item.status | value(['未开始', '进行中', '暂停', '终止', '完成'])}}</div>
@@ -337,7 +343,7 @@ const getLevelChart = res => {
       itemGap: 10,
        icon: "rect",
       orient: "horizontal",
-      left: 50,
+      left: 30,
       bottom: 10,
       data: ["A", "B", "C", "D", "E", "F"],
       formatter: function(name) {
@@ -410,7 +416,7 @@ export default {
       timer: null,
       callCount: 0,
       homepage: {},
-      taskArr: ["最近的任务", "进行中的任务", "全部任务"],
+      taskArr: ["最近的任务", "进行中的任务"],
       shortcutNavList: [
         { name: "任务管理", route: "marketingTask" },
         { name: "呼叫记录", route: "marketingCall" },
@@ -540,7 +546,7 @@ export default {
                 borderWidth: 5,
                 borderColor: "#5983ff",
                 shadowBlur: 20,
-                shadowColor: "rgba(255, 0, 0, 1)"
+                shadowColor: "#5983ff"
               }
             },
             backgroundStyle: {
@@ -652,3 +658,5 @@ export default {
   }
 };
 </script>
+
+

@@ -3,6 +3,12 @@
  */
 
 // UI预设分辨率
+@font-face {
+  font-family: 'PingFangSC';
+  src: url('../fonts/pingfangRegular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
 $screen-width: 1920px;
 // 中文字体
 $font-family: 'PingFangSC',

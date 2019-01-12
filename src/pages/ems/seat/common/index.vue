@@ -12,6 +12,7 @@
         <div class="task-l divide-item">
           <div class="panel" style="border-radius: 0px; box-shadow: none;">
             <div class="panel-header">
+              <Icon type="ios-list-outline" class="vm fs18 v-before mr10"></Icon>
               <span class="vm">{{cardTypeName}}坐席列表</span>
             </div>
             <div>
@@ -89,12 +90,7 @@
         </div>
         <div class="task-r divide-main">
           <div class="panel" style="border-radius: 0px; box-shadow: none;">
-            <div class="panel-header">
-              {{cardTypeName}}坐席详情
-              <template v-if="detail && detail.id">
-                <slot name="detailOperator" :data="detail"/>
-              </template>
-            </div>
+            
             <div class="panel-body" v-show="!dataList.length">
               <p class="nodata">暂无数据!!</p>
             </div>
@@ -112,6 +108,11 @@
                     <call-record :id="activedId" :card-type="query.cardType"></call-record>
                   </slot>
                 </TabPane>
+                <div slot="extra">
+                    <template v-if="detail && detail.id">
+                <slot name="detailOperator" :data="detail"/>
+              </template>
+                </div>
               </Tabs>
               <p class="nodata" v-show="!(detail && detail.id)">请先选择坐席</p>
             </div>

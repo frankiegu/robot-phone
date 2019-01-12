@@ -2,6 +2,7 @@
   <Upload v-bind="computedOptions"
           class="mt-15"
           :headers="headers"
+          :show-upload-list="isShowList"
           :before-upload="beforeUpload"
           :on-preview="onPreview"
           :on-success="onSuccess"
@@ -54,6 +55,13 @@ export default {
     event: 'change'
   },
   props: {
+    isShowList:{
+      type:Boolean,
+      default:true
+    },
+     InUploadList:{
+      type:Array
+    },
     options: {
       type: Object,
       default() {
@@ -282,7 +290,8 @@ export default {
       return true
     },
     onSuccess(response, file, fileList) {
-      this.uploading = false
+      this.uploading = false;
+      this.InUploadList.push({audio:response.url})
       switch (this.target) {
         case 'qiniu':
           response.name = response.key

@@ -32,7 +32,7 @@
         </div>
       </div>
     </div>
-    <div class="task-r" style="border-radius:0;box-shadow:none;border: 1px solid #dcdcdc;">
+    <div class="task-r" style="border-radius:0;box-shadow:none;border: 1px solid #dcdcdc;overflow: initial">
       <div class="board2 "  ref="detail">
         <div class="board-body">
           <whispering-module
@@ -61,6 +61,7 @@
       />
       <div slot="footer">
          <Button 
+              type="text"
               style="margin-right: 8px"
               @click="cancelFrom">取消</Button>
       <Button type="primary"

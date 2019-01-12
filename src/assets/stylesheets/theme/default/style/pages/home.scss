@@ -89,6 +89,11 @@ $call-count2: #24C7A9;
         padding-left: rem(24px);
         line-height: rem(49px);
         border-bottom: 1px solid #e8e8e8;
+        .spanH{
+            display: inline-block;
+            height: rem(49px);
+            line-height: rem(49px);
+        }
         span {
             cursor: pointer;
             &:hover {
@@ -113,9 +118,14 @@ $call-count2: #24C7A9;
         flex-wrap: wrap;
         justify-content: flex-start;
     }
-    .link-active {
+    .link-active{
         color: $color-link;
         font-weight: 500;
+    }
+    .link-active2 {
+        color: $color-link;
+        font-weight: 500;
+        border-bottom: rem(2px) solid #5983ff;
     }
     .taskContent {
         width: 33.3%;
@@ -196,6 +206,7 @@ $call-count2: #24C7A9;
             box-sizing: border-box;
             text-align: center;
             font-size: rem(14px);
+            font-weight: bold;
             color: $color-link;
             cursor: pointer;
             &:nth-child(1),
@@ -210,7 +221,7 @@ $call-count2: #24C7A9;
             &:nth-child(5),
             &:nth-child(6),
             &:nth-child(7) {
-                border-right: 2px solid #eee;
+                border-right: 2px solid #ccc;
             }
         }
     }

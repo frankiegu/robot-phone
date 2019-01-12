@@ -5,7 +5,7 @@ import QuestionTabPane from './components/detail/questionTabPane'
 import whisperingDetailMixin from './components/detail/whisperingDetailMixin'
 import WhisperingForm from './components/form'
 import WhisperingFlow from './components/form/whisperingFlow'
-
+import workOrder from './components/detail/workOrder'
 export {
   Copy,
   InfoTabPane,
@@ -13,5 +13,6 @@ export {
   QuestionTabPane,
   whisperingDetailMixin,
   WhisperingForm,
+  workOrder,
   WhisperingFlow
 }

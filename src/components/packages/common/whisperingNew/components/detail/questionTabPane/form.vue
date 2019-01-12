@@ -25,9 +25,11 @@
           </FormItem>
         </info>
         -->
-        <info :data="entity"
+        <div style="height: 600px;
+    overflow: auto;"><info :data="entity"
               showKeyWord
-              ref="info" />
+              ref="info" /></div>
+        
       </i-col>
     </Row>
   </Form>

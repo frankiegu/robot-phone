@@ -108,6 +108,7 @@
       :mask-closable="false"
       v-model="form.show"
       @close="closeForm"
+      class-name="vertical-center-modal"
       :title="form.entity.id ? '编辑话术' : '新增话术'"
     >
       <template v-if="form.show">

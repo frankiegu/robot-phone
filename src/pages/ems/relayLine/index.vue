@@ -95,7 +95,7 @@
       </div>
     </div>
     </div>
-    <Modal  width="800px" :footer-hide="true" v-model="detail.show" title="通话详情">
+    <Modal class="vertical-center-modal"  width="1000px" :footer-hide="true" v-model="detail.show" title="通话详情">
       <call-record-detail :data="detail.entity" v-if="detail.show"/>
     </Modal>
   </div>

@@ -66,7 +66,7 @@ export default {
   },
   data() {
     return {
-      expand: false
+      expand: true
     }
   },
   methods: {
@@ -83,8 +83,8 @@ export default {
 }
 </script>
 <style scoped>
-.node-body {
+/* .node-body {
   max-height: 300px;
   overflow: auto;
-}
+} */
 </style>

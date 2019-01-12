@@ -8,12 +8,9 @@
         <div class="fr">
           
           <!-- 特殊流程/重复模块 不能删除 -->
-          <a href="###" @click="showDel">
-            <Icon size="24" color="red" type="ios-trash-outline" />
-          </a>
-          <a href="###" @click="showUpdate">
-            <Icon size="24" type="ios-create-outline" />
-          </a>
+          <span @click="showDel"><Icon size="24" color="red" type="ios-trash-outline" /></span>
+          <span @click="showUpdate"><Icon size="24" type="ios-create-outline" /></span>
+          
         </div>
         {{entity.name}}
       </div>
@@ -25,7 +22,23 @@
                      :rows="4"
                      v-model.trim="entity.content"
                      readonly />
-            <div class="audio"
+                     <div class="audio"
+                 v-if="entity.videoUrl">
+              <div class="audio-file"
+                   style="margin-right: 0; margin-bottom: 10px; margin-top: 10px;"
+                   v-for="(item,index) in entity.videoUrl.split(',')"
+                   :key="index">
+                <audio controls
+                       :src="item"  v-if="Regular(item)"/>
+                   <Input                 
+                   disabled
+              :value="item"
+              v-else
+              style="width: 322px"
+            />    
+              </div>
+            </div>
+            <!-- <div class="audio"
                  v-if="entity.videoUrl">
               <div class="audio-file"
                    style="margin-right: 0; margin-bottom: 10px; margin-top: 10px;"
@@ -34,7 +47,7 @@
                 <audio controls
                        :src="v" />
               </div>
-            </div>
+            </div> -->
           </i-col>
           <i-col :span="10"
                  style="padding-left: 10px;">
@@ -89,6 +102,12 @@ export default {
     getNextModuleLabel,
     showUpdate() {
       this.$emit('showUpdate', this.entity)
+    },
+    Regular(item){
+      let videoUrl = /^https?.+\.(swf|avi|flv|mpg|rm|mov|wav|asf|3gp|mkv|rmvb)$/i
+      if(videoUrl.test(item)){
+        return true;
+      }
     },
     showDel() {
       this.$emit('showDel', this.entity)

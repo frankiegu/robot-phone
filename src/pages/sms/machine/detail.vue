@@ -110,7 +110,8 @@ export default {
     async loadDetail() {
       this.machine = await this.$smsApi.machine
         .getMachineInfo(this.machineId)
-        .catch(() => {
+        .catch((err) => {
+          console.log(err)
           return initMachine();
         });
     },

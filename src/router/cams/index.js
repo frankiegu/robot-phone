@@ -70,7 +70,7 @@ export default [{
 {
   path: `${ROUTER_MODULE}/firm`,
   name: 'camsFirm',
-  icon: 'icon-nav-marketing', // 自定义的图标
+  icon: '#icon-company', // 自定义的图标
   meta: {
     id: '113'
   },

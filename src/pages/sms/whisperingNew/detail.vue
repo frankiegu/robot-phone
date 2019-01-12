@@ -26,7 +26,7 @@
           <Button type="primary"
                   @click="showRelate">关联企业</Button>
         </template>
-        <Button type="info"
+        <Button type="primary"
                 @click="showCopy">复制</Button>
         <Button type="primary"
                 @click="showForm">编辑</Button>

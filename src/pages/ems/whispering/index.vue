@@ -103,6 +103,7 @@
     </div>
     <Modal
       width="1000"
+      class-name="vertical-center-modal"
       :footer-hide="true"
       :mask-closable="false"
       v-model="form.show"

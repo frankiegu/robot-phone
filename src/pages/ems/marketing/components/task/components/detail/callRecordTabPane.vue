@@ -1,12 +1,12 @@
 <template>
   <div class="call_record">
-    <div class="title">通话记录</div>
+    
     <Form inline>
       <FormItem label="分配状态" :label-width="80">
         <Select
           style="width: 150px;"
           v-model="params.status"
-          placeholder="全部"
+          placeholder="分配状态"
           clearable
           @on-change="search"
         >
@@ -42,17 +42,10 @@
           <Option value="F">F</Option>
         </Select>
       </FormItem>
-      <FormItem label="呼叫时间" :label-width="80">
-        <DatePicker
-          v-model="queryCreateTime"
-          type="daterange"
-          placeholder="呼叫时间"
-          style="width: 150px;"
-        ></DatePicker>
-      </FormItem>
+      
       <FormItem>
         <div style="cursor: pointer;padding: 5px 10px;" @click="showOrHidden">
-          <span>
+          <span class="blue_link">
             {{isShow?"收起":"展开"}}
             <Icon type="ios-arrow-up" v-if="isShow"/>
             <Icon v-else type="ios-arrow-down"/>
@@ -90,7 +83,7 @@
             <Button @click="inputVerify2" shape="circle" icon="ios-search"></Button>
           </FormItem>
 
-          <FormItem label="呼叫结果" :label-width="80">
+          <FormItem label="呼叫结果" :label-width="73">
             <Select
               style="width: 150px;"
               v-model="params.callResult"
@@ -114,8 +107,15 @@
               <Option value="0">无效</Option>
             </Select>
           </FormItem>
-
-          <FormItem label :label-width="10">
+          <FormItem label="呼叫时间" :label-width="80">
+        <DatePicker
+          v-model="queryCreateTime"
+          type="daterange"
+          placeholder="呼叫时间"
+          style="width: 150px;"
+        ></DatePicker>
+      </FormItem>
+          <FormItem label :label-width="15">
             <i-input
               type="text"
               search
@@ -128,6 +128,7 @@
           </FormItem>
         </div>
       </collapse-transition>
+      
     </Form>
     <div class="tool">
       <div class="tool-btns">
@@ -169,7 +170,7 @@
 
     <Modal
       class-name="vertical-center-modal"
-      width="850px"
+      width="1000px"
       v-model="detail.show"
       title="通话详情"
       :footer-hide="true"
@@ -539,11 +540,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less" scoped>
-.ivu-table .demo-table-info-row td {
-  background-color: #dbe0e1;
-  color: #3c3b3b;
-}
-
-</style>

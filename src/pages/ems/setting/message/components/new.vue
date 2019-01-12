@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<i-form :label-width="80"
+	<div style="padding-right:2rem;">
+		<i-form :label-width="100"
 		        :data="entity"
 		        :rules="rules"
 		        :model="entity"

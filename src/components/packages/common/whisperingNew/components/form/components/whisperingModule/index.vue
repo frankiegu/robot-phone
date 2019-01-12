@@ -7,9 +7,9 @@
       <template v-if="[1, 2].includes(entity.module)">
         <Button  type="primary"
                 size="small"
-                class="ml-20 fr"
+                class="ml-10 fr"
                 @click="showUpdateModule">编辑模板</Button>
-        <Button class="ml-20 fr" type="error"
+        <Button class="ml-10 fr" type="error"
                 size="small"
                 @click="showDelModule">删除模板</Button>
       </template>
@@ -23,7 +23,7 @@
     </div>
     <div class="board-body" style="padding-left:0;padding-right:0;">
       <div v-show="shouldShowKeyWord || table.list.length"
-           style="max-height: 693px; overflow: auto;">
+           >
         <!-- 显示关键字编辑 -->
         <whispering-key-node v-if="shouldShowKeyWord"
                              :data="entity"
@@ -38,7 +38,8 @@
       <p class="nodata"
          v-show="!(shouldShowKeyWord || table.list.length)">暂无数据</p>
     </div>
-    <Modal class="vertical-center-modal" :mask-closable="false" width="1050px" v-model="form.show" :title="form.entity.id ? '编辑模板节点' : '新增模板节点'">
+    <!-- 编辑模板节点 -->
+    <Modal  class-name="vertical-center-modal" :mask-closable="false" width="1050px" v-model="form.show" :title="form.entity.id ? '编辑模板节点' : '新增模板节点'">
         <template v-if="form.show">
         <whispering-node-form ref="nodeForm" :data="form.entity"
                               @after-submit="afterSubmitForm"
@@ -46,6 +47,7 @@
       </template>
       <div slot="footer">
           <Button 
+          type="text"
               style="margin-right: 8px"
               @click="cancelForm">取消</Button>
       <Button type="primary"

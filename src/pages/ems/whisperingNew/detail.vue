@@ -16,6 +16,9 @@
             </template>
           </info-tab-pane>
         </TabPane>
+        <TabPane label="工单" name="workorder" style="padding: 0 5px;">
+          <work-Order :data="entity" v-if="tabName === 'workorder'"></work-Order>
+        </TabPane>
         <TabPane label="问答管理" name="question" v-if="entity.owner === 2" style="padding: 0 5px;">
           <question-tab-pane :data="entity" v-if="tabName === 'question'" @updated="updatedInfo"/>
         </TabPane>
@@ -30,14 +33,14 @@
         </TabPane>
         
          <div slot="extra" class="panel-header-tools" v-if="entity.id">
-        <export-whispering :data="entity" isNew v-if="entity.isDownload === 1"/>
-        <Button type="primary" @click="commit" v-if="entity.isChange === 1">提交审核</Button>
         <!-- 共享话术可以复制为企业话术 -->
-        <Button type="info" @click="showCopy" v-if="entity.owner === 1 && entity.isCopy === 1">复制</Button>
+        <Button type="primary" @click="showCopy" v-if="entity.owner === 1 && entity.isCopy === 1">复制</Button>
         <template v-if="entity.owner === 2">
           <Button type="primary" @click="showForm">编辑</Button>
           <Button type="error" @click="showDel(entity.id)">删除话术</Button>
         </template>
+        <export-whispering :data="entity" isNew v-if="entity.isDownload === 1"/>
+        <Button type="primary" @click="commit" v-if="entity.isChange === 1">提交审核</Button>
       </div>
       </Tabs>
     </div>
@@ -62,7 +65,8 @@ import {
   Copy,
   InfoTabPane,
   LogTabPane,
-  QuestionTabPane
+  QuestionTabPane,
+  workOrder
 } from "@/components/packages/common/whisperingNew";
 import StudyTabPane from "./components/detail/studyTabPane";
 import whisperingNewApi from "@/api/common/whisperingNewApi";
@@ -75,6 +79,7 @@ export default {
     InfoTabPane,
     LogTabPane,
     QuestionTabPane,
+    workOrder,
     Copy,
     StudyTabPane,
     Talk,

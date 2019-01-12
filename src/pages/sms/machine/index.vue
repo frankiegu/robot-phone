@@ -154,6 +154,7 @@ export default {
     },
     async loadMachineList() {
       return this.$smsApi.machine.getMachineList(this.query).then(data => {
+        console.log("data",data);
         this.machineList = data.dataList
         this.machineTotal = data.totalNum
         return data.dataList.length ? data.dataList[0] : {}

@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		<!-- 弹窗 -->
-    <Modal class-name="vertical-center-modal" v-model="template.show"
+    <Modal width="620px" :mask-closable="false" class-name="vertical-center-modal" v-model="template.show"
               :title="entity.id ? '编辑短信模板' : '新增短信模板'">
       <template v-if="template.show">
         <message-form :data="entity"
@@ -39,6 +39,7 @@
       </template>
 			<div slot="footer">
 							<i-button 
+							type="text"
 				          style="margin-right: 8px"
 				          @click="cancelForm">取消</i-button>
 				<i-button type="primary"

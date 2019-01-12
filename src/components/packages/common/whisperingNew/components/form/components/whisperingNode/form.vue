@@ -1,5 +1,6 @@
 <template>
-  <Row>
+  <div style="max-height:30rem;overflow:auto;">
+    <Row>
     <!-- 主流程/辅助流程 -->
     <template v-if="[1, 2].includes(entity.module)">
      <div class="fleX">
@@ -22,6 +23,7 @@
       </div>
     </template>
   </Row>
+  </div>
 </template>
 
 <script>
@@ -51,6 +53,8 @@ export default {
     submit() {
       let promises = []
       if (this.$refs.info) {
+        //获取录音文件列表数据
+        this.$refs.info.switchType();
         promises.push(this.$refs.info.validate())
       }
       if (this.$refs.branch) {

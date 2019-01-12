@@ -11,7 +11,7 @@
       <div class="task">
         <div class="task-l divide-item">
           <div class="panel">
-            <div class="panel-header">客户列表</div>
+            <div class="panel-header"><Icon type="ios-list-outline" class="vm fs18 v-before mr10"></Icon><span class="vm">客户列表</span></div>
             <div class="pd10" style="padding-bottom:0;">
                             <div class="fleX">
                <Select
@@ -105,7 +105,7 @@
               <p class="nodata">暂无数据!!</p>
             </div>
             <div v-show="dataList.length" class="panel-body">
-              <div class="title fleX" style="border-bottom:1px solid #F1F1F1;padding-bottom:10px;">
+              <div class="title fleX mt-5" style="border-bottom:1px solid #F1F1F1;padding-bottom:10px;">
                 <div>基础信息</div>
                 <div>
                   <span>
@@ -137,10 +137,10 @@
                     >已分配({{ client.employeeName }})</Button>
                   </div>
                 </h1>
-                <div class="keyword mt-30">
+                <div class="keyword">
                   <ins v-for="(label, i) in client.labels" :key="i" class="keyword-item">{{ label }}</ins>
                 </div>
-                <div class="mt-20">
+                <div class="">
                   <Row>
                     <i-col span="8">
                       <p>客户：{{ client.userName }}{{ client.sex === 0 ? '/女' : ''}}{{ client.sex === 1 ? '/男' : '' }}</p>
@@ -197,7 +197,7 @@
         </div>
       </div>
     </div>
-    <Modal :mask-closable="false" width="700px" title="编辑客户" v-model="editVisible">
+    <Modal class-name="vertical-center-modal" :mask-closable="false" width="700px" title="编辑客户" v-model="editVisible">
       <Edit ref="edit" v-show="editVisible" :confirm="editConfirm" :close="editClose"></Edit>
       <div slot="footer">
         <Button style="margin-right: 8px" @click="editClose">取消</Button>

@@ -8,9 +8,7 @@ import api from '@/api'
 import * as filters from './filter'
 import '@/assets/javascripts/polyfill'
 import plugins from './plugins'
-import {
-  api as apiBaseURL
-} from '@/config'
+
 import * as libComponents from '@/components/libs'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'

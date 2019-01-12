@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="panel-body">
-      <div class="task">
+      <div class="task" style="height:30rem;overflow:auto;">
         <div class="task-l" style="box-shadow:none;">
           <div class="board board-primary" style="box-shadow:none;border-radius:0;width:100%;">
             <div class="board-header">进阶设置</div>

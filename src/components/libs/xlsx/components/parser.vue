@@ -5,6 +5,7 @@
     <Button 
             icon="ios-cloud-upload-outline"
             v-else>批量导入</Button>
+            
     <template slot="tip">
       <slot name="tip"
             v-if="$slots.tip" />
@@ -12,8 +13,7 @@
         <p v-if="$slots.desc" class="pp">
           <slot name="desc" />
         </p>
-        注: 仅支持导入Excel格式文件。
-        <span v-if="templateUrl">
+        <span v-if="templateUrl" class="post">
           点击
           <a :href="templateUrl"
              class="c-primary">获取模板</a>

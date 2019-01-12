@@ -1,6 +1,6 @@
 <template>
-  <div class="task">
-    <div>
+  <div class="task" style="height: calc(100vh - 165px);">
+    <div  style="overflow:auto;">
       <div class=" board-primary">
         
         <div class="board-body">

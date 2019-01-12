@@ -1,6 +1,5 @@
 <template>
   <Tabs v-model="tabName"
-        style="margin: 0 15px;"
         type="card"
         v-if="initial">
     <TabPane label="肯定跳转"

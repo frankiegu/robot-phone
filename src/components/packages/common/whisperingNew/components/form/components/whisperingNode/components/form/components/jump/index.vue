@@ -13,19 +13,19 @@
           v-show="shouldShowForm"
           @submit.prevent
           ref="form">
-      <FormItem label="提取标签"
+      <!-- <FormItem label="提取标签"
                 prop="label"
                 v-if="showLabel">
         <Input placeholder="敬请期待..."
                v-model.trim="entity.label"
                disabled
                :maxlength="20" />
-      </FormItem>
+      </FormItem> -->
       <FormItem label="跳转流程"
                 prop="nextNode">
         <Row>
           <i-col :span="12">
-            <Select v-model="entity.nextModule"
+            <Select style="width:187px;" v-model="entity.nextModule"
                     placeholder="请选择"
                     transfer>
               <Option :value="1">主流程</Option>
@@ -35,7 +35,7 @@
             </Select>
           </i-col>
           <i-col :span="12">
-            <Select v-model="entity.nextNode"
+            <Select style="width:187px;" v-model="entity.nextNode"
                     clearable
                     transfer
                     placeholder="请选择">
@@ -58,6 +58,24 @@
                       :false-value="0">设为有效关键字</Checkbox>
           </template>
         </key-word>
+        <FormItem label="工单项"
+                >
+                <i-col :span="6">
+         <Select style="width:120px;" v-model="entity.workorderItem"
+                    placeholder="请选择"
+                    transfer>
+                    <Option :value="item.item" v-for="(item,index) in wrorkList" :key="index">{{item.item}}</Option>
+             
+            </Select>
+            </i-col>
+            <i-col :span="6" offset="2" v-if="entity.workorderItem!=null">
+              <Input placeholder="请输入工单记录值" v-model="entity.workorderValue" :disabled="isDisabled"/>
+            </i-col>
+           
+             <i-col :span="6" offset="2" v-if="entity.workorderItem!=null">
+              <Checkbox v-model="ischecked" @on-change="changeCheckBox">根据用户回答记录</Checkbox>
+            </i-col>
+            </FormItem>
       </template>
     </Form>
   </div>
@@ -65,6 +83,7 @@
 
 <script>
 import { formMixin } from '@/mixins'
+import whisperingNewApi from '@/api/common/whisperingNewApi'
 import entity from './src/entity'
 import { KeyWord } from '@/components/packages/common/whispering'
 
@@ -95,6 +114,15 @@ export default {
   },
   data() {
     return {
+       ischecked:false,
+      isDisabled:false,
+      wrorkList:[],
+       params: {
+        pageNum: 1,
+        pageSize: 1000,
+        totalNum: 0,
+        whisperingId: this.data.whisperingId
+      },
       enable: false,
       entity: entity({
         nextModule: 1,
@@ -135,8 +163,27 @@ export default {
   },
   mounted() {
     this.$refs.form.resetFields()
+    this.list();
   },
   methods: {
+     getApi() {
+      return whisperingNewApi
+    },
+     changeCheckBox(){
+     if(this.ischecked==true){
+       this.entity.workorderValue = '';
+       this.isDisabled = true;
+     }
+     else{
+        this.isDisabled = false;
+     }
+    },
+     list() {
+      let params = this.params;
+      whisperingNewApi.workorderList(params).then(page => {
+        this.wrorkList = page.dataList;
+      })
+    },
     afterEntity(entity) {
       this.enable = entity && !!entity.id
     },

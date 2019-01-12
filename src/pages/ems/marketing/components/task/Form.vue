@@ -77,7 +77,7 @@
       </i-col>
     </Row>
      <Row>
-      <i-col :span="16">
+      <i-col :span="20">
         <FormItem label="时间模板"
                   prop="timeTemplateId">
                   <!-- <span class="fr blue_link"    @click="goTimeTemplate">添加</span> -->
@@ -90,7 +90,7 @@
       </i-col>
     </Row>
     <div class="from_baseLine" @click="showOrHidden">
-      <span>{{isShow?"收起":"展开"}}<Icon type="ios-arrow-up" v-if="isShow"/><Icon v-else type="ios-arrow-down" /></span>
+      <span class="blue_link">{{isShow?"收起":"展开"}}<Icon type="ios-arrow-up" v-if="isShow"/><Icon v-else type="ios-arrow-down" /></span>
     </div>
      <collapse-transition>
               <div v-show="isShow">
@@ -111,7 +111,7 @@
       </i-col>
     </Row>
      <Row>
-      <i-col :span="16">
+      <i-col :span="24">
        <FormItem label="初筛推送短信"
                   prop="keyTemplate">
           <CheckboxGroup v-model="entity.messageLevelList">
@@ -263,7 +263,7 @@
       <div slot="footer"></div>
     </Modal>
 
-    <Modal v-model="seat.show"
+    <Modal draggable v-model="seat.show"
            title="添加人工坐席"
            width="500px"
            class="modal-hide-footer">
@@ -316,7 +316,7 @@ export default {
       isShow:false,
       phoneList:'',
       switch1:false,
-      switch2:false,
+      switch2:true,
       entity: entity({
         startType: 1,
         validKeyNum: 1,
@@ -439,6 +439,9 @@ export default {
         mobileMap[v.mobile] = v
         return true
       })
+    },
+    "isShow"(){
+      
     }
   },
   created() {
@@ -447,6 +450,9 @@ export default {
   methods: {
    showOrHidden(){
      this.isShow = !this.isShow;
+     if(this.show==false){
+       this.entity.isTransfer = 0;
+     }
    },
     getApi() {
       return taskApi
@@ -546,6 +552,7 @@ export default {
       this.time.show = true
     },
     changeCardSlotList(data) {
+      this.entity.customerData = JSON.stringify(data);//新加字段属性
       let xlsCardSlotList = []
       if (data && data.length) {
         xlsCardSlotList = data.map(v => {
@@ -589,7 +596,14 @@ export default {
       this.addCardSlot.show = true
     },
     afterSubmitAddCardSlot(list) {
-      this.exportXlsCardSlotList = this.exportXlsCardSlotList.concat(list)
+      this.exportXlsCardSlotList = this.exportXlsCardSlotList.concat(list);
+      this.addCardSlot.show = false
+      //下边是新加属性
+      var newArr = list.map(item=>{
+        return{电话:item.mobile, 姓名:item.userName}
+      })
+      // console.log("newArr",newArr);
+       this.entity.customerData = JSON.stringify(newArr);
     },
     cancelAddCardSlot() {
       this.addCardSlot.show = false

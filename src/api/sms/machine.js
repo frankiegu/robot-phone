@@ -8,8 +8,8 @@ const API_MODULE = `${apiRootSms}/${apiVersion}/machine_info`
 const removeEmpty = true
 /**
  * 获取设备列表
- * start_time 
- * end_time	
+ * start_time
+ * end_time
  * machine_no 设备号
  * page_num 当前分页数
  * page_size 分页大小
@@ -30,8 +30,8 @@ export function getMachineList(params) {
  * sip_id (string): sip编号 ,
  * slot_count (integer): 机器端口数
  * @export
- * @param {any} params 
- * @returns 
+ * @param {any} params
+ * @returns
  */
 export function addMachine(params) {
   return axios({
@@ -64,12 +64,12 @@ export function updateMachine(params) {
  * status 状态 0审批中 1已开通 2拒绝
  * admin_name 企业名称
  * page_num 当前分页码
- * page_size 
+ * page_size
  */
 export function getMachineApplyList(params) {
   return axios({
     url: `${API_MODULE}/applyInfo`,
-    params,
+    params
   })
 }
 
@@ -83,10 +83,10 @@ machine_id (integer, optional): 设备ID ,
 mobile (string, optional): 坐席号码 ,
 slot_id (integer, optional): 端口ID
 }
- * 
+ *
  * @export
- * @param {any} params 
- * @returns 
+ * @param {any} params
+ * @returns
  */
 export function postMachineApply(params) {
   return axios({
@@ -98,66 +98,66 @@ export function postMachineApply(params) {
 /**
  * 获取开通申请详情
  * @export
- * @param {any} id 
- * @returns 
+ * @param {any} id
+ * @returns
  */
 export function getApplyInfo(id) {
   return axios({
-    url: `${API_MODULE}/applyInfo/${id}`,
+    url: `${API_MODULE}/applyInfo/${id}`
   })
 }
 /**
  * 获取开通申请详情
  * @export
- * @param {any} id 
- * @returns 
+ * @param {any} id
+ * @returns
  */
 export function getApplyDetails(id) {
   return axios({
-    url: `${API_MODULE}/apply_details/${id}`,
+    url: `${API_MODULE}/apply_details/${id}`
   })
 }
 /**
  * 获取端口列表
- * 
+ *
  * @export
- * @param {any} id 
- * @returns 
+ * @param {any} id
+ * @returns
  */
 export function getSlotList(id) {
   return axios({
-    url: `${API_MODULE}/getSlotList/${id}`,
+    url: `${API_MODULE}/getSlotList/${id}`
   })
 }
 /**
  * 获取设备列表
- * 
+ *
  * @export
- * @param 
- * @returns 
+ * @param
+ * @returns
  */
 export function getUsableMachineList() {
   return axios({
-    url: `${API_MODULE}/getUsableMachineList`,
+    url: `${API_MODULE}/getUsableMachineList`
   })
 }
 /**
  * 获取端口列表
- * 
+ *
  * @export
- * @param {any} id 
- * @returns 
+ * @param {any} id
+ * @returns
  */
 export function getUsableSlot(id) {
   return axios({
-    url: `${API_MODULE}/getUsableSlot/${id}`,
+    url: `${API_MODULE}/getUsableSlot/${id}`
   })
 }
 /**
  * 拒绝申请
  * @export
- * @param {any} id 
- * @returns 
+ * @param {any} id
+ * @returns
  */
 export function rejectApply(id) {
   return axios({
@@ -167,10 +167,10 @@ export function rejectApply(id) {
 }
 /**
  * 删除设备信息
- * 
+ *
  * @export
- * @param {any} id 
- * @returns 
+ * @param {any} id
+ * @returns
  */
 export function deleteMachine(id) {
   return axios({
@@ -180,32 +180,32 @@ export function deleteMachine(id) {
 }
 /**
  * 获取设备详情
- * 
+ *
  * @export
- * @param {any} id 
- * @returns 
+ * @param {any} id
+ * @returns
  */
 export function getMachineInfo(id) {
   return axios({
-    url: `${API_MODULE}/${id}`,
+    url: `${API_MODULE}/${id}`
   })
 }
 /**
  * 获取运营商
- * 
+ *
  * @export
- * @returns 
+ * @returns
  */
 export function getOperator() {
   return axios({
-    url: `${API_MODULE}/operator`,
+    url: `${API_MODULE}/operator`
   })
 }
 /**
  * 获取省代
  * @export
- * @param {any} params 
- * @returns 
+ * @param {any} params
+ * @returns
  */
 export function getProvinceList(id) {
   return axios({
@@ -219,12 +219,12 @@ export function getProvinceList(id) {
  * 获取省代
  * @export
  * @param {any} platformId provinceProxyId
- * @returns 
+ * @returns
  */
 export function getCityList(params) {
   return axios({
     url: `${API_MODULE}/city`,
-    params,
+    params
   })
 }
 
@@ -243,13 +243,13 @@ export function deletePortById(id) {
  */
 export function getSlotDetail(id) {
   return axios({
-    url: `${API_MODULE}/slot/${id}`,
+    url: `${API_MODULE}/slot/${id}`
   })
 }
 /**
  * 编辑端口
  * id (required) 列表id query	integer
- * mobile 电话 query	string 
+ * mobile 电话 query	string
  * card_type 类型 1机器 2人工 query	integer
  */
 export function updateSlot(data) {

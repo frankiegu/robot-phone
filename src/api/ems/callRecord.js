@@ -40,6 +40,22 @@ export default Object.assign(extendBaseApi('call_record', API_MODULE), {
       params: removeEmpty(params)
     })
   },
+  // 添加计划任务
+  addPlan(data) {
+    return axios({
+      url: `${API_MODULE}/call_record/plan`,
+      method: 'POST',
+      data
+    })
+  },
+  // 删除计划任务
+  deletePlan(id) {
+    return axios({
+      url: `${API_MODULE}/call_record/plan/${id}`,
+      method: 'DELETE'
+
+    })
+  },
   /**
    *
    *
@@ -48,7 +64,7 @@ export default Object.assign(extendBaseApi('call_record', API_MODULE), {
   isRead(data) {
     return axios({
       url: `${API_MODULE}/call_record/read`,
-      method: "POST",
+      method: 'POST',
       data
     })
   },
@@ -60,12 +76,11 @@ export default Object.assign(extendBaseApi('call_record', API_MODULE), {
   callContent(data) {
     return axios({
       url: `${API_MODULE}/call_record/call_content`,
-      method: "PUT",
+      method: 'PUT',
       data
     })
   }
 })
-
 
 /**
  * 获取通话记录详情接口
@@ -73,15 +88,13 @@ export default Object.assign(extendBaseApi('call_record', API_MODULE), {
  */
 export function getRecordDetail(id) {
   return axios({
-    url: `${API_MODULE}/call_record/detail/${id}`,
+    url: `${API_MODULE}/call_record/detail/${id}`
   })
 }
 
-
-
 /**
  * 获取通话记录列表接口
- * @param  {[type]} params 
+ * @param  {[type]} params
  *   call_all_time (integer, optional): 通话时长 ,
  *   call_count (integer, optional): 通话轮次 ,
  *   call_type (integer, optional): 主叫类型 1机器 2人工 = ['1', '2']integerEnum:1, 2,
@@ -95,13 +108,13 @@ export function getRecordDetail(id) {
 export function getRecordList(params) {
   return axios({
     url: `${API_MODULE}/call_record`,
-    params,
+    params
   })
 }
 
 /**
  * 获取呼叫日志列表接口
- * @param  {[type]} params 
+ * @param  {[type]} params
  *         page_num   当前页
  *         page_size  分页数
  *         task_id    任务ID
@@ -112,7 +125,7 @@ export function getRecordList(params) {
 export function getRecordLogList(params) {
   return axios({
     url: `${API_MODULE}/call_record/log`,
-    params,
+    params
   })
 }
 

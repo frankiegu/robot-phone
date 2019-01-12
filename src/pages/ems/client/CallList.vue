@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="title" style="border-bottom:1px solid #F1F1F1;padding-bottom:10px;">通话记录</div>
+    <div class="title mt-20" style="border-bottom:1px solid #F1F1F1;padding-bottom:10px;">通话记录</div>
     <Table :columns="table.columns"
            :data="callDataList"
            class="table"></Table>
@@ -10,7 +10,7 @@
           :pageSize="pager.pageSize"
           @on-change="handleChangePageNum"
           @on-page-size-change="handleChangePageSize" />
-    <Modal width="850" :footer-hide="true" class-name="vertical-center-modal" v-model="detail.show"
+    <Modal width="1000" :footer-hide="true" class-name="vertical-center-modal" v-model="detail.show"
               title="通话详情">
       <call-record-detail :isShow="false"  :data="detail.entity"
                           v-if="detail.show" />
