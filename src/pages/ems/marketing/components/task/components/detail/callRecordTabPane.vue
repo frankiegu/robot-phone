@@ -177,6 +177,7 @@
       class="vertical-center-modal"
     >
       <call-record-detail
+      :isShow="true" :ishowWap="true"
         @showdetail="showDetail"
         @listdetail="listAndDetail"
         :data="detail.entity"

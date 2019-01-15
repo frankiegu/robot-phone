@@ -18,7 +18,7 @@
       <div v-show="whisperingList.length">
         <div class="plate"
              style="max-height: 300px; overflow: auto;">
-             <Select v-model="entity.whisperingId" clearable style="width:230px">
+             <Select v-model="entity.whisperingId" clearable style="width:230px" @on-change="changeSelect(entity.whisperingId)">
         <Option v-for="v in whisperingList" :value="v.id" :key="v.id">
           {{ v.title }}
           <p v-if="v.isChange === 1" class="c-warning">话术已变更，请提交审核</p>
@@ -571,9 +571,20 @@ export default {
     showCardSlotList() {
       this.cardSlot.show = true
     },
+    getTtitle(){
+      alert(2)
+    },
     setWhispering(v) {
       this.entity.whisperingId = v.id
       this.entity.whisperingTitle = v.title + (v.version ? `(${v.version})` : '')
+    },
+    changeSelect(id){
+      for(var i=0;i<this.whisperingList.length;i++){
+        if(id==this.whisperingList[i].id){
+           this.entity.whisperingTitle = this.whisperingList[i].title +(this.whisperingList[i].version?`${this.whisperingList[i].version}`:'')
+        }
+      }
+
     },
     afterAddTimeTemplate() {
       this.time.show = false

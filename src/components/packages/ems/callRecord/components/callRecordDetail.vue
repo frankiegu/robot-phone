@@ -2,24 +2,24 @@
   <div>
     <div class="task">
       <div class="task-l1" style="width:28rem;">
-        <div class="board" style="border-radius:0;">
-          <div class="board-body pl" style="padding-top:0;padding-bottom:0;">
-            <p>姓名: {{entity.userName}}</p>
-            <p>电话: {{entity.mobile}}</p>
+        <div class="board pt" style="border-radius:0;">
+          <div class="board-bod" style="padding-top:0;padding-bottom:0;">
+            <p class="fs-14">姓名: {{entity.userName}}</p>
+            <p class="fs-14 mb-5">电话: {{entity.mobile}}</p>
             <hr>
           </div>
-          <div class="board-body pl pr">
+          <div class="board-body pt pl pr mt-5">
             <p><span class="mr-5">任务名称: </span>{{entity.taskName}}</p>
-            <p><span class="mr-5">话术模板: </span>{{entity.whisperingTitle}}</p>
+            <p><span class="mr-5">话术模板: </span>{{entity.whisperingTitle||'--'}}</p>
             <p><span class="mr-5">机器坐席: </span>{{entity.cardMobile}}</p>
             <p><span class="mr-5">呼叫时间: </span>{{entity.callStartTime}}</p>
             <!-- 新增计划任务 -->
             <div class="box-flex" v-show="entity.recordPlan.length>0">
-              <p>计划任务：</p>
+              <p style="color:#5983ff">计划任务：</p>
               <div :class="showHidden?'overflow':''">
-                <p v-for="item in entity.recordPlan" :key="item.id">
+                <p v-for="item in entity.recordPlan" :key="item.id" class="Hovershow">
                   <span class="text"><span class="mr-10">{{item.planDate}}</span>{{item.planContent}}</span>
-                  <span class="redDelete" @click="deletePlan(item.id)">删除</span>
+                  <span class="redDelete" @click="deletePlan(item.id)"><img src="../components/components/img/deleteIcon.png" alt=""></span>
                 </p>
               </div>
             </div>
@@ -60,10 +60,10 @@
             </div>
           </div>
         </div>
-        <div class="posb" v-if="isShow">
-          <Button :disabled="isdisable1" type="primary" class="ml-30" @click="upPage(0)">上一条</Button>
-          <span class="circle ml-40" @click="newPlan">计划</span>
-          <Button :disabled="isdisable2" type="primary" class="ml-40" @click="upPage(1)">下一条</Button>
+        <div class="posb" >
+          <Button v-if="ishowWap" :disabled="isdisable1" type="primary" class="ml-30" @click="upPage(0)">上一条</Button>
+          <span v-if="isShow" :class="ishowWap?'ml-40':'ml-140'" class="circle" @click="newPlan"><img src="../components/components/img/planIcon.png" alt=""></span>
+          <Button  v-if="ishowWap" :disabled="isdisable2" type="primary" class="ml-40" @click="upPage(1)">下一条</Button>
         </div>
       </div>
       <div class="task-r1" style="width:100%;">
@@ -110,7 +110,11 @@ export default {
     },
     isShow: {
       type: Boolean,
-      default: true
+      default: false
+    },
+    ishowWap: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -204,6 +208,8 @@ export default {
     // 新增计划任务
     newPlan() {
       this.showPlan = true;
+      this.formInline.dates = '';
+      this.formInline.text = '';
     },
     dateSwitch(time){
        var d = new Date(time);
@@ -273,11 +279,16 @@ export default {
   height: 40px;
   text-align: center;
   line-height: 40px;
-  border: 1px solid #5983ff;
   border-radius: 50%;
+  img{
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+  }
   cursor: pointer;
   &:hover {
     color: #5983ff;
+   box-shadow: 0px 4px 15px  #5983ff;
   }
 }
 .tableWap {
@@ -306,6 +317,10 @@ export default {
 .overflow{
   max-height: 150px;
   overflow: hidden;
+}
+.Hovershow:hover .redDelete{
+  display: inline-block;
+  margin-top: 3px;
 }
 </style>
 

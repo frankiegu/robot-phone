@@ -34,7 +34,7 @@
                    disabled
               :value="item"
               v-else
-              style="width: 322px"
+              style="width: 383px"
             />    
               </div>
             </div>

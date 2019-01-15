@@ -1,10 +1,10 @@
 <template>
-  <div class="board" style="border-radius:0;box-shadow:none;">
+  <div class="board pt" style="border-radius:0;box-shadow:none;">
     <!-- <div class="board-header" style="padding-top:0;">通话记录</div> -->
-    <div class="board-body pl pr">
+    <div class="board-body pt pl pr">
       <div class="audio">
        
-        <div class="audio-file" style="margin-left: 7.2rem;">
+        <div class="audio-file">
           <audio controls :src="entity.allAutio" ref="fullCallAudio"/>
         </div>
       </div>

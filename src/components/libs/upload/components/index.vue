@@ -291,7 +291,10 @@ export default {
     },
     onSuccess(response, file, fileList) {
       this.uploading = false;
-      this.InUploadList.push({audio:response.url})
+      if(this.InUploadList!==undefined){
+         this.InUploadList.push({audio:response.url})
+      }
+     
       switch (this.target) {
         case 'qiniu':
           response.name = response.key

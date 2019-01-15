@@ -137,7 +137,7 @@
           </FormItem>
           <FormItem style="width:15%">
             <Select
-              v-model="params.taskId"
+              v-model="params.plan_type"
               placeholder="计划任务"
               clearable
               @on-change="search"
@@ -186,7 +186,7 @@
         v-model="detail.show"
         title="通话详情"
         >
-        <call-record-detail :isShow="false" :data="detail.entity" v-if="detail.show"/>
+        <call-record-detail   @showdetail="showDetail" :isShow="true" :ishowWap="false" :data="detail.entity" v-if="detail.show"/>
     </Modal>
     
   </div>
@@ -218,6 +218,7 @@ export default {
         callResult: "",
         idOrMobileOrCardMobile: "",
         taskId: "",
+        planType:'',
         callAllTime: "",
         callCount: "",
         isTransfer: "",
@@ -346,14 +347,14 @@ export default {
           },
           {
             title: "操作",
-            render: (h, { row }) => {
+            render: (h, { row,index }) => {
               if (row.isRead === 0) {
                 return h(
                   "a",
                   {
                     on: {
                       click: () => {
-                        this.showDetail(row.id);
+                        this.showDetail(row.id,index);
                         if (row.isRead === 0) {
                           callRecordApi.isRead({ callId: row.id }).then(res => {
                             this.listAndDetail(row.id);
@@ -373,7 +374,7 @@ export default {
                     },
                     on: {
                       click: () => {
-                        this.showDetail(row.id);
+                        this.showDetail(row.id,index);
                         if (row.isRead === 0) {
                           callRecordApi.isRead({ callId: row.id }).then(res => {
                             this.listAndDetail(row.id);

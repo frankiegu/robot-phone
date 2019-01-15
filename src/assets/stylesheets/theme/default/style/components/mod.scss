@@ -133,8 +133,8 @@
 .audio {
     position: relative;
     .audio-file {
-        margin-right: rem(40px);
-        width:322px;
+       margin: 0 auto;
+        width:rem(385px);
     }
     audio {
         display: block;

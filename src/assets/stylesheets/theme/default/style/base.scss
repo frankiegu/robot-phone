@@ -112,9 +112,17 @@ li {
     color: red;
     vertical-align: top;
     cursor: pointer;
+    width: rem(30px);
+    height: rem(15px);
+   display: none;
+    img{
+        width: 100%;
+        height: 100%;
+       
+    }
 }
 
-$size-map: (-2: rem(-2px), 5: rem(5px), 10: rem(10px), 15: rem(15px), 20: rem(20px), 24: rem(24px), 25: rem(25px), 30: rem(30px), 40: rem(40px));
+$size-map: (-2: rem(-2px), 5: rem(5px), 10: rem(10px), 15: rem(15px), 20: rem(20px), 24: rem(24px), 25: rem(25px), 30: rem(30px), 40: rem(40px), 140: rem(140px));
 @each $name in map-keys($size-map) {
     $value: map-get($size-map, $name);
     .mt-#{$name} {
@@ -154,6 +162,9 @@ $size-map: (-2: rem(-2px), 5: rem(5px), 10: rem(10px), 15: rem(15px), 20: rem(20
 }
 .pl{
     padding-left: 0 !important;
+}
+.pt{
+    padding-top: 0 !important;
 }
 .pr{
     padding-right: 0 !important;

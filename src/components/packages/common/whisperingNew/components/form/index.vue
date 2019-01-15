@@ -12,9 +12,9 @@
     <TabPane label="话术流程" name="node" :disabled="!entity.id">
       <whispering-flow v-if="tabName === 'node'" :data="entity" />
     </TabPane>
-    <TabPane label="话术图谱" name="atlas" :disabled="!entity.id">
+    <!-- <TabPane label="话术图谱" name="atlas" :disabled="!entity.id">
       <atlas :data="entity" class="pd10" v-if="tabName === 'atlas'"/>
-    </TabPane>
+    </TabPane> -->
   </Tabs>
 </template>
 

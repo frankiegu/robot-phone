@@ -148,7 +148,8 @@ export default {
     }
   },
   mounted() {
-    this.uploadList = this.$refs.msUpload.uploadList
+    this.uploadList = this.$refs.msUpload.uploadList;
+    console.log(" this.uploadList", this.uploadList)
   },
   methods: {
     handleView(url) {

@@ -76,11 +76,11 @@
                  placeholder="请输入备注"></i-input>
       </Form-item>
     </i-form>
-    <div class="tc">
+    <!-- <div class="tc">
       <i-button type="primary"
                 @click="handlerSave">确定</i-button>
       <i-button @click="handlerCancel">取消</i-button>
-    </div>
+    </div> -->
   </div>
 </template>
 

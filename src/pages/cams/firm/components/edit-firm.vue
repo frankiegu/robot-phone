@@ -1,6 +1,6 @@
 <template>
   <div>
-    <i-form :label-width="120"
+    <i-form :label-width="110"
             :model="entity"
             :rules="rules"
             class="mr30"
@@ -75,11 +75,11 @@
                  placeholder="请输入备注"></i-input>
       </Form-item>
     </i-form>
-    <div class="tc">
+    <!-- <div class="tc">
       <i-button @click="handlerCancel">取消</i-button>
        <i-button type="primary"
                 @click="handlerSave">确定</i-button>
-    </div>
+    </div> -->
   </div>
 </template>
 
