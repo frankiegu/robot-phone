@@ -2,7 +2,7 @@
   <span>
     <Dropdown>
       <Button  type="primary">
-        <Icon type="md-add" />
+        <Icon type="md-add" size="16" style="margin-top:-2px;"/>
         新建话术
         <Icon type="ios-arrow-down"></Icon>
       </Button>

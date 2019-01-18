@@ -6,61 +6,57 @@
       <Form class="login-form" ref="form" :model="form" :rules="rules">
         <Tabs v-model="form.loginType">
           <TabPane label="账号登入" name="1">
-             <FormItem prop="account">
-          <i-input
-            type="text"
-            v-model.trim="form.account"
-            :maxlength="20"
-            placeholder="请输入登录账号"
-            @keyup.native.enter="handleLoginSubmit"
-          ></i-input>
-        </FormItem>
-        <FormItem prop="password">
-          <i-input
-            type="password"
-            v-model.trim="form.password"
-            :maxlength="20"
-            placeholder="请输入密码"
-            @keyup.native.enter="handleLoginSubmit"
-          />
-        </FormItem>
+            <FormItem prop="account">
+              <i-input
+                type="text"
+                v-model.trim="form.account"
+                :maxlength="20"
+                placeholder="请输入登录账号"
+                @keyup.native.enter="handleLoginSubmit"
+              ></i-input>
+            </FormItem>
+            <FormItem prop="password">
+              <i-input
+                type="password"
+                v-model.trim="form.password"
+                :maxlength="20"
+                placeholder="请输入密码"
+                @keyup.native.enter="handleLoginSubmit"
+              />
+            </FormItem>
           </TabPane>
           <TabPane label="手机号登入" name="2">
-             <FormItem prop="account">
-          <i-input
-            type="text"
-            v-model.trim="form.account"
-            :maxlength="20"
-            placeholder="请输入登录账号"
-            @keyup.native.enter="handleLoginSubmit"
-          ></i-input>
-        </FormItem>
-        <FormItem prop="password">
-          <i-input
-            type="password"
-            v-model.trim="form.password"
-            :maxlength="20"
-            placeholder="请输入密码"
-            @keyup.native.enter="handleLoginSubmit"
-          >
-          </i-input>
-        </FormItem>
+            <FormItem prop="account">
+              <i-input
+                type="text"
+                v-model.trim="form.account"
+                :maxlength="20"
+                placeholder="请输入登录账号"
+                @keyup.native.enter="handleLoginSubmit"
+              ></i-input>
+            </FormItem>
+            <FormItem prop="password">
+              <i-input
+                type="password"
+                v-model.trim="form.password"
+                :maxlength="20"
+                placeholder="请输入密码"
+                @keyup.native.enter="handleLoginSubmit"
+              ></i-input>
+            </FormItem>
           </TabPane>
         </Tabs>
         <FormItem prop="loginType">
-         <div class="fleX" style="margin-top:-20px;">
+          <div class="fleX" style="margin-top:-20px;">
             <Checkbox v-model="form.rememberMe" @on-change="remeberMe">记住我</Checkbox>
-          <!-- <RadioGroup v-model="form.loginType">
-            <Radio :label="1">账号登录</Radio>
-            <Radio :label="2">手机登录</Radio>
-          </RadioGroup> -->
-          <div class="login-more">
-            <router-link
-              class="login-more-forget"
-              :to="{ name: 'forget', query: { type: adminType } }"
-            >忘记密码？</router-link>
+           
+            <div class="login-more">
+              <router-link
+                class="login-more-forget"
+                :to="{ name: 'forget', query: { type: adminType } }"
+              >忘记密码？</router-link>
+            </div>
           </div>
-         </div>
         </FormItem>
         <div class="rightTop">
           <slot name="adminType"/>
@@ -74,7 +70,9 @@
     <div class="loginCanvas">
       <particle-js></particle-js>
     </div>
-     <div class="footertext">为了获得最佳体验,建议使用&nbsp;<a href="https://www.google.cn/chrome/" target="_blank" rel="noopener noreferrer">谷歌浏览器Chrome</a></div>
+    <div class="footertext">为了获得最佳体验,建议使用&nbsp;
+      <a href="https://www.google.cn/chrome/" target="_blank" rel="noopener noreferrer">谷歌浏览器Chrome</a>
+    </div>
   </div>
 </template>
 <script>
@@ -112,14 +110,14 @@ export default {
     // }
 
     return {
-      storageUser:'',
+      storageUser: "",
       form: {
         account: lastUser,
-        password: '',
+        password: "",
         code: "",
         adminType: "",
         loginType: "1",
-        rememberMe:true
+        rememberMe: true
       },
       rules: {
         account: [{ required: true, message: "请输入账号", trigger: "blur" }],
@@ -141,39 +139,32 @@ export default {
     }
   },
   mounted() {
-    // const $img = window.document.getElementById('codeImg')
-    // const react = $img.getBoundingClientRect()
-    // this.verifyCode = new GVerify({
-    //   id: 'codeImg',
-    //   width: react.width,
-    //   height: react.height
-    // })
-    this.firstLogin();
+   
+     this.firstLogin();
   },
-  watch: {
-    "form.password"(){
-      if(this.form.rememberMe){
-       this.remeberMe();
-      }
-    }
-  },
+  // watch: {
+  //   "form.password"(){
+  //     if(this.form.rememberMe){
+  //      this.remeberMe();
+  //     }
+  //   }
+  // },
   methods: {
-    remeberMe(){
+    remeberMe() {
       this.storageUser = window.localStorage;
-      if(this.form.rememberMe){
-       this.form.account = lastLoginAccountLocal.getBySystem() || "";
-       console.log("password",this.form.password);
-        this.storageUser.setItem("passWord",this.form.password);
-        this.storageUser.setItem("isstorepassword",'yes');
+      if (this.form.rememberMe) {
+        this.form.account = lastLoginAccountLocal.getBySystem() || "";
+        console.log("password", this.form.password);
+        this.storageUser.setItem("passWord", this.form.password);
+        this.storageUser.setItem("isstorepassword", "yes");
         // this.form.password = this.storageUser.getItem("passWord");
-      }
-      else{
-         this.storageUser.setItem("isstorepassword",'no');
-        this.storageUser.setItem("passWord",'');
+      } else {
+        this.storageUser.setItem("isstorepassword", "no");
+        this.storageUser.setItem("passWord", "");
       }
     },
-    firstLogin(){
-      if('yes' == window.localStorage.getItem("isstorepassword")){
+    firstLogin() {
+      if ("yes" == window.localStorage.getItem("isstorepassword")) {
         this.form.password = window.localStorage.getItem("passWord");
       }
     },
@@ -222,7 +213,10 @@ export default {
                     system: this.adminType
                   });
                   this.$Message.success("登录成功");
-                  // this.$emit('after-login')
+                  //用于首次登入
+                  if (this.form.rememberMe) {
+                    this.remeberMe();
+                  }
                 });
             });
         }

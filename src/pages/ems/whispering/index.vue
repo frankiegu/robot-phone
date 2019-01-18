@@ -1,40 +1,41 @@
 <template>
   <div class="divide" :class="{full: fullScreen}">
     <Breadcrumb separator=">">
-        <span class="home" @click="linkTo('emsHomeIndex')">
-          <BreadcrumbItem>首页</BreadcrumbItem>
-        </span>
-        <BreadcrumbItem>话术管理</BreadcrumbItem>
-        <BreadcrumbItem>话术列表</BreadcrumbItem>
+      <span class="home" @click="linkTo('emsHomeIndex')">
+        <BreadcrumbItem>首页</BreadcrumbItem>
+      </span>
+      <BreadcrumbItem>话术管理</BreadcrumbItem>
+      <BreadcrumbItem>话术列表</BreadcrumbItem>
     </Breadcrumb>
     <div class="task">
       <div class="task-l divide-item">
         <div class="panel" style="border-radius: 0px; box-shadow: none;">
-          <div class="panel-header">话术列表
+          <div class="panel-header">
+            <Icon type="ios-list-outline" class="vm fs18 v-before mr10"></Icon>
+            <span class="vm">话术列表</span>
             <div class="panel-header-tools">
               <import-whispering @create="showForm()" @afterImportWhispering="listAndDetail(0)"/>
             </div>
           </div>
-
           <div class="panel-body">
             <div class="checkBox-common">
               <div class="fleX">
-                  <whispering-type-select
-                    widths="100%"
-                    placeholder="请选择话术分类"
-                    v-model="params.whisperingTypeId"
-                    @change="search"
-                  />
-                  <Select
-                    style="width:50%"
-                    v-model="params.owner"
-                    placeholder="请选择话术类型"
-                    clearable
-                    @on-change="changeOwner"
-                  >
-                    <Option :value="1">共享话术</Option>
-                    <Option :value="2">企业话术</Option>
-                  </Select>
+                <whispering-type-select
+                  widths="100%"
+                  placeholder="请选择话术分类"
+                  v-model="params.whisperingTypeId"
+                  @change="search"
+                />
+                <Select
+                  style="width:50%"
+                  v-model="params.owner"
+                  placeholder="请选择话术类型"
+                  clearable
+                  @on-change="changeOwner"
+                >
+                  <Option :value="1">共享话术</Option>
+                  <Option :value="2">企业话术</Option>
+                </Select>
               </div>
               <div v-show="params.owner === 2">
                 <Select
@@ -123,7 +124,7 @@ import ModForm from "./form";
 import { WhisperingTypeSelect } from "@/components/packages/ems/select";
 import whisperingEventBus from "./src/whisperingEventBus";
 import { ImportWhispering } from "@/components/packages/common/whispering";
-import Util from '@/util/util'
+import Util from "@/util/util";
 export default {
   mixins: [indexMixin],
   components: {

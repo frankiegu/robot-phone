@@ -53,6 +53,8 @@ export default {
     get() {
       this.entity = Object.assign({}, this.entity, this.data)
       this.afterEntity(this.entity)
+      // 不知道为什么此处要调用list()方法，不然，点击学习时，主流程的数据没有调用
+      this.list()
     },
     submit() {
       this.$refs.form.validate().then(valid => {

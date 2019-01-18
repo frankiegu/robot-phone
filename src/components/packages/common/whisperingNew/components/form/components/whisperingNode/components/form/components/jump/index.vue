@@ -171,7 +171,7 @@ export default {
     },
      changeCheckBox(){
      if(this.ischecked==true){
-       this.entity.workorderValue = '';
+       this.entity.workorderValue = '$asr.result';
        this.isDisabled = true;
      }
      else{

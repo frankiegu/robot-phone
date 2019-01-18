@@ -24,7 +24,8 @@ export default {
   methods: {
     afterEntity(entity) {
       whisperingApi.get(entity.whisperingId).then(data => {
-        this.whispering.entity = data
+        this.whispering.entity = data;
+        console.log("this.whispering.entity",this.whispering.entity)
       })
     }
   }

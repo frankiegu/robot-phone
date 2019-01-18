@@ -112,6 +112,7 @@ export default {
   },
   mounted() {
     this.search();
+    console.log('data',this.data)
   },
   destroyed() {
     FlowItem.clear();
@@ -136,6 +137,7 @@ export default {
         id: this.data.id
       });
       return whisperingNewModuleApi.list(params).then(data => {
+        
         // 五期未完成屏蔽
         // 特殊流程只保留挽回
         FlowItem.addData(

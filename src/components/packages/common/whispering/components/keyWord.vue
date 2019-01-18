@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <FormItem label="关键字"
               :required="required"
               prop="keyWord">
@@ -7,6 +8,8 @@
              v-model.trim="key.text"
               style="width:398px;"
              @keyup.native.enter.prevent="addKeys" />
+             <!-- 防止只有一个输入框时按enter会使表单刷新 -->
+             <input id="hiddenText" type="text" style="display:none" />
     </FormItem>
     <FormItem prop="keys">
       <div v-show="keys.length">

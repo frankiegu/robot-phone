@@ -125,7 +125,12 @@ export default {
       isdisable1: false,
       isdisable2: false,
       entity: {
-        keywordList: []
+        recordWorkorder:[],
+        keywords:[],
+        keywordList: [],
+        recordPlan:[],
+        tableData:[],
+        recordDetailsList:[]
       },
       formInline: {
         dates: "",
@@ -151,7 +156,7 @@ export default {
     };
   },
   created() {
-    //console.log("entity",this.entity)
+    console.log("entity",this.entity)
     if (this.entity.tableData.length <= 1) {
       this.isdisable1 = true;
       this.isdisable2 = true;
